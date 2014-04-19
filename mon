@@ -31,7 +31,13 @@
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##  30           10             2               300              10               2               2               2               200     10          -1
 
-
+#ENEMIC3
+     #MESH assets/meshes/space_tank
+     #TEXTURA assets/textures/tank1.tga
+     #MIPMAP  1
+     #POSICIO 500 500 500 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
+     ##  30           10             2               200              10               3               3               3               100     50          -1
 
 
 
