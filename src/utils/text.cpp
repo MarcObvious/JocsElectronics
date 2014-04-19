@@ -1,7 +1,3 @@
-#include "includes.h"
-#include <sys/stat.h>
-#include <string>
-#include <algorithm>
 #include "text.h"
 
 //extern HWND GLOBmainwindow;
@@ -9,7 +5,10 @@ char g_string_temporal[256];
 
 text::text()
 : data(NULL)
-{}
+{
+size=0;
+sl=0;
+}
 
 text::text(const char *name)
 : data(NULL)
@@ -64,7 +63,7 @@ int legal(char c)
 
 char *text::getword()
 {
-  int p0,p1,i;
+  unsigned int p0,p1,i;
 
   p0 = sl;
   if (p0 >= size)

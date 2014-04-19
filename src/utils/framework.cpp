@@ -1,9 +1,6 @@
 #include "framework.h"
 
-#include "includes.h"
-#include <cassert>
-#include <cmath> //for sqrt (square root) function
-#include <math.h> //atan2
+
 
 
 #define M_PI_2 1.57079632679489661923
@@ -369,6 +366,13 @@ void Matrix44::setFrontAndOrthonormalize(Vector3 front)
 	m[1] = right.y;
 	m[2] = right.z;
 	
+}
+
+Matrix44 Matrix44::setPosition(Matrix44 mu, Vector3 pos) {
+	mu.setIdentity();
+
+
+	return mu;
 }
 
 bool Matrix44::inverse()

@@ -6,8 +6,8 @@
 #define MESH_H
 
 #include <vector>
-#include "text.h"
-#include "framework.h"
+#include "../utils/text.h"
+#include "../utils/framework.h"
 
 class Mesh
 {

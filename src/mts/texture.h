@@ -4,9 +4,11 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#include "includes.h"
+#include "../includes.h"
 #include <map>
 #include <string>
+#include "../utils/utils.h"
+#include <cmath>
 
 
 

@@ -1,6 +1,6 @@
 #include "includes.h"
-#include "framework.h"
-#include "utils.h"
+#include "utils/framework.h"
+#include "utils/utils.h"
 #include "camera.h"
 #include "game.h"
 //create a window using SDL

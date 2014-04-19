@@ -7,12 +7,10 @@
 
 #include "includes.h"
 #include "camera.h"
-#include "utils.h"
-#include "mesh.h"
-#include "texture.h"
-#include "shader.h"
-#include "MeshManager.h"
-#include "TextureManager.h"
+#include "utils/utils.h"
+#include "mts/shader.h"
+#include "world.h"
+
 #include <string.h>
 
 class Game
@@ -31,9 +29,6 @@ public:
 	Vector2 mouse_position; //last mouse position
 	Vector2 mouse_delta; //mouse movement in the last frame
 	bool mouse_locked; //tells if the mouse is locked (not seen)
-
-
-	Camera* camera; //our global camera
 
 	Game(SDL_Window* window);
 	void init( void );

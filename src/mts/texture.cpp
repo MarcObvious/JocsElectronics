@@ -1,10 +1,4 @@
 #include "texture.h"
-#include "utils.h"
-
-#include <iostream> //to output
-#include <cmath>
-
-
 
 //function to create mipmaps using the GPU (much faster)
 typedef void (APIENTRY *glGenerateMipmapEXT_func)( GLenum target );
@@ -15,7 +9,7 @@ Texture::Texture()
 {
 	width = 0;
 	height = 0;
-
+	texture_id = 0;
 	if(glGenerateMipmapEXT == NULL) //get the extension
 		glGenerateMipmapEXT = (glGenerateMipmapEXT_func) SDL_GL_GetProcAddress("glGenerateMipmapEXT");
 }
@@ -110,7 +104,7 @@ Texture::TGAInfo* Texture::loadTGA(const char* filename)
     GLubyte header[6];
     GLuint bytesPerPixel;
     GLuint imageSize;
-    GLuint type = GL_RGBA;
+    //GLuint type = GL_RGBA;
 
     FILE * file = fopen(filename, "rb");
     

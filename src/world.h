@@ -1,0 +1,65 @@
+/*
+ * world.h
+ *
+ *  Created on: 14/04/2014
+ *      Author: marc
+ */
+
+#ifndef WORLD_H_
+#define WORLD_H_
+
+#include "includes.h"
+#include <assert.h>
+#include <vector>
+#include <algorithm>
+
+
+#include "movingentity.h"
+#include "entitymesh.h"
+#include "entity.h"
+
+#include "camera.h"
+
+#include "mts/TextureManager.h"
+#include "mts/MeshManager.h"
+
+#include "utils/text.h"
+#include <string>
+
+class World{
+
+private:
+
+	static World* _instance;
+
+	EntityMesh* _terreny;
+
+	EntityMesh* _cel;
+
+	std::vector<EntityMesh*> _totes_entyties;
+
+	World();
+
+	~World();
+
+	bool llegeixIcarrega(char *dir);
+
+public:
+
+	Camera* _camera;
+
+	std::vector<MovingEntity*> _enemics;
+
+	MovingEntity* _jugador;
+
+	static World* getInstance();
+
+	void update(double elapsed_time);
+
+	void render();
+
+};
+
+
+
+#endif /* WORLD_H_ */

@@ -7,7 +7,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "framework.h"
+#include "utils/framework.h"
 
 class Camera
 {

@@ -1,6 +1,6 @@
 #include "mesh.h"
 #include <cassert>
-#include "includes.h"
+#include "../includes.h"
 
 
 Mesh::Mesh()

@@ -1,15 +1,17 @@
 #include "MeshManager.h"
 
 MeshManager::MeshManager() {
+	assert(_instance == NULL); //Si no es cumpleix PETA
+	_instance = this;
 	_meshs_loaded = new std::map<std::string, Mesh*>();
+
 }
 
-MeshManager & MeshManager::getInstance() {
-	static MeshManager _instance;
-
+MeshManager * MeshManager::getInstance() {
+	if (_instance == NULL)
+		_instance = new MeshManager();
 	return _instance;
 }
-
 Mesh* MeshManager::get(std::string mesh_dir) {
 	std::map<std::string, Mesh*>::iterator it = _meshs_loaded->find(mesh_dir);
 

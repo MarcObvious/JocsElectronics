@@ -8,6 +8,11 @@
 #include <vector>
 #include <cmath>
 
+#include "../includes.h"
+#include <cassert>
+#include <cmath> //for sqrt (square root) function
+#include <math.h> //atan2
+
 #define DEG2RAD 0.0174532925
 
 class Vector2
@@ -143,6 +148,9 @@ class Matrix44
 		bool getXYZ(float* euler) const;
 
 		Matrix44 operator * (const Matrix44& matrix) const;
+
+		Matrix44 setPosition(Matrix44 mu, Vector3 pos);
+
 };
 
 //Operators, they are our friends

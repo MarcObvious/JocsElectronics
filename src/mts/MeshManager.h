@@ -11,19 +11,22 @@
 #include <map>
 #include "mesh.h"
 #include <string>
-#include "includes.h"
+//#include "../manager.h"
+#include "../includes.h"
 
-class MeshManager {
+class MeshManager{
+
 private:
+
+	static MeshManager* _instance;
+
 	std::map<std::string, Mesh*>* _meshs_loaded; //Vector punters totes les mesh
 
-	MeshManager(); 								//Constructor
-	MeshManager(MeshManager const&);
-	void operator=(MeshManager const&);	//Forçar singleton s'exectuti nomes un cop
+	MeshManager();
 
 public:
 
-	static MeshManager & getInstance(); 		//Retorna el Meshmanager
+	static MeshManager * getInstance(); 		//Retorna el Meshmanager
 
 	Mesh* get(std::string mesh_dir);//Retorna una mesh del vector, si no hi es la crea.
 

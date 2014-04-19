@@ -5,10 +5,10 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include "includes.h"
+#include "../includes.h"
 #include <string>
 #include <map>
-#include "framework.h"
+#include "../utils/framework.h"
 
 #ifdef _DEBUG
 	#define CHECK_SHADER_VAR(a,b) if (a == -1) return

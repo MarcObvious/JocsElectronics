@@ -1,12 +1,15 @@
 #include "TextureManager.h"
 
 TextureManager::TextureManager() {
+	assert(_instance==NULL); //Si no es cumpleix PETA
+	_instance = this;
 	_textures_loaded = new std::map<std::string, Texture*>();
 }
 
-TextureManager & TextureManager::getInstance() {
-	static TextureManager _instance;
-	return _instance;
+TextureManager * TextureManager::getInstance() {
+		if (_instance == NULL)
+			_instance = new TextureManager();
+		return _instance;
 }
 
 Texture* TextureManager::get(std::string text_dir, bool mipmapping) {

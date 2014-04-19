@@ -1,6 +1,11 @@
 #ifndef _TEXT_INC
 #define _TEXT_INC
 
+#include "../includes.h"
+#include <sys/stat.h>
+#include <string>
+#include <algorithm>
+
 /*
 A classic, used everywhere to read formatted text files without using Lex
 and Yacc. Written in C around 1995

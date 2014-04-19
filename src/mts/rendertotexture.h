@@ -7,8 +7,8 @@
 
 #include <string>
 #include <map>
-#include "includes.h"
-#include "framework.h"
+#include "../includes.h"
+#include "../utils/framework.h"
 #include "texture.h"
 
 class RenderToTexture : public Texture

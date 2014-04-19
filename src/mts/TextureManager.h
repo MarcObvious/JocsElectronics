@@ -9,21 +9,19 @@
 #define TEXTUREMANAGER_H_
 
 #include <string>
-#include <map>
 #include "texture.h"
 
 class TextureManager{
 private:
-	std::map<std::string, Texture*>* _textures_loaded; //vector textures carregades
+
+	static TextureManager* _instance;
+	std::map<std::string, Texture*>* _textures_loaded; //Vector textures carregades
 
 	TextureManager(); 								//Constructor
-	TextureManager(TextureManager const&);
-	void operator=(TextureManager const&);			//Forçar singleton s'exectuti nomes un cop
 
 public:
 
-
-	static TextureManager & getInstance();
+	static TextureManager * getInstance();
 
 	Texture* get(std::string dir, bool mipmapping);
 };
