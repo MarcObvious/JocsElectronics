@@ -1,0 +1,17 @@
+#Git hints & usefull orders 
+
+#No haver de Posar mil i un cops les credencials, almenys espera una hora
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
+
+#Recupera del servidor //cada cop que canvi de lloc de treball//
+git pull
+
+#Afegeix
+git add elquesigui
+
+#Commit de fitxer o de tot canvi
+git commit -m "comentariquesigui"
+
+#pujaho a la branca que sigui
+git push origin master
