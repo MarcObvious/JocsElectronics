@@ -1,4 +1,8 @@
-
+/*  entitymesh.h
+*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+*	Classe que defineix objectes que tenen mesh i textura, 
+*   hereva de Entity.
+*/
 #ifndef ENTITYMESH_H_
 #define ENTITYMESH_H_
 

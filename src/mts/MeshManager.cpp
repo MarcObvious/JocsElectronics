@@ -7,6 +7,11 @@ MeshManager::MeshManager() {
 
 }
 
+MeshManager::~MeshManager() {
+	    _meshs_loaded->clear();
+	    free(_instance);
+}
+
 MeshManager * MeshManager::getInstance() {
 	if (_instance == NULL)
 		_instance = new MeshManager();

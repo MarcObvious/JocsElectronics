@@ -31,6 +31,7 @@ public:
 	bool mouse_locked; //tells if the mouse is locked (not seen)
 
 	Game(SDL_Window* window);
+	~Game();
 	void init( void );
 	void render( void );
 	void update( double dt );

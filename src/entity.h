@@ -1,9 +1,9 @@
-/*
- * entity.h
- *
- *  Created on: 13/04/2014
- *      Author: marc
- */
+/*  entity.h
+*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+*	Classe base del que heredara qualsevol objecte del
+*   joc, basicament nomès te una id un nom i una posició.
+*   (pot no tenir ni tan sols una mesh)
+*/
 
 #ifndef ENTITY_H_
 #define ENTITY_H_

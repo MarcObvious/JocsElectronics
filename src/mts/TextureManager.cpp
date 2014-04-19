@@ -6,6 +6,11 @@ TextureManager::TextureManager() {
 	_textures_loaded = new std::map<std::string, Texture*>();
 }
 
+TextureManager::~TextureManager() {
+    _textures_loaded->clear();
+    free(_instance);
+}
+
 TextureManager * TextureManager::getInstance() {
 		if (_instance == NULL)
 			_instance = new TextureManager();
@@ -18,6 +23,7 @@ Texture* TextureManager::get(std::string text_dir, bool mipmapping) {
 
 	if (it != _textures_loaded->end())  //La textura ja existia
 		return (it->second);
+	
 	else {						 //La texture no existia, la carreguem
 		Texture* textura_nova = new Texture();
 		if (!textura_nova->load(text_dir.c_str(), mipmapping)) {

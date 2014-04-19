@@ -1,5 +1,9 @@
-/*  by Javi Agenjo 2013 UPF  javi.agenjo@gmail.com
-	The Mesh contains the info about how to render a mesh and also how to parse it from a file.
+/*  world.h  
+*   by Javi Agenjo 2013 UPF  javi.agenjo@gmail.com
+*	The Mesh contains the info about how to render a mesh 
+*	and also how to parse it from a file.
+*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+*	Ara llegeix meshes i les guarda a .bin
 */
 
 #ifndef MESH_H

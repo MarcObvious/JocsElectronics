@@ -37,7 +37,7 @@ World* World::getInstance() {
 	return _instance;
 }
 
-bool World::llegeixIcarrega(char *dir) {
+bool World::llegeixIcarrega(const char *dir) {
 	text my_parser;
 
 	if (!my_parser.create(dir))

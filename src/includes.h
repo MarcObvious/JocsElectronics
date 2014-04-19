@@ -12,6 +12,7 @@
 #define WINDOW_FULLSCREEN false
 #define WINDOW_CAPTION "my game"
 
+//Canvis fets per a Linux. NO FUNCIONARA a Windows
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>

@@ -1,9 +1,9 @@
-/*
- * world.h
- *
- *  Created on: 14/04/2014
- *      Author: marc
- */
+/*  world.h
+*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+*	Classe on es defineixen tots els elements i 
+*    parametres del joc falta tenir un vector general.
+*   Ja llegeix la configuració d'un fitxer
+*/
 
 #ifndef WORLD_H_
 #define WORLD_H_
@@ -42,7 +42,7 @@ private:
 
 	~World();
 
-	bool llegeixIcarrega(char *dir);
+	bool llegeixIcarrega(const char *dir);
 
 public:
 

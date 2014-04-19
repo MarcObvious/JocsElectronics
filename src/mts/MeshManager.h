@@ -1,9 +1,10 @@
-/*
- * MeshManager.h
- *  Meshmanager Estatic seguint patro Singleton
- *  Created on: 13/04/2014
- *      Author: marc
- */
+/*  entitymesh.h
+*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+*  MeshManager que conte el vector de meshs, segueix
+*   un patró singleton
+*/
+ 
+ 
 
 #ifndef MESHMANAGER_H_
 #define MESHMANAGER_H_
@@ -23,6 +24,8 @@ private:
 	std::map<std::string, Mesh*>* _meshs_loaded; //Vector punters totes les mesh
 
 	MeshManager();
+
+	~MeshManager();
 
 public:
 

@@ -1,9 +1,8 @@
-/*
- * TextureManager.h
- *
- *  Created on: 13/04/2014
- *      Author: marc
- */
+/*  texturemanager.h
+*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+*   TextureManager que conte el vector de textures, segueix
+*   un patró singleton
+*/
 
 #ifndef TEXTUREMANAGER_H_
 #define TEXTUREMANAGER_H_
@@ -19,6 +18,7 @@ private:
 
 	TextureManager(); 								//Constructor
 
+    ~TextureManager();
 public:
 
 	static TextureManager * getInstance();

@@ -1,9 +1,9 @@
-///*
-// * manager.h
-// *
-// *  Created on: 14/04/2014
-// *      Author: marc
-// */
+/*  manager.h  
+    Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+	Prototip de Manager Estandar d'on heredaran tots els manajers, 
+	S'ha de currar mes.
+*/
+
 //#ifndef MANAGER_H_
 //#define MANAGER_H_
 //

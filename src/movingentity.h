@@ -1,9 +1,8 @@
-/*
- * movingentity.h
- *
- *  Created on: 16/04/2014
- *      Author: marc
- */
+/*  movingentity.h
+*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+*	Classe hereva de EntityMesh. Basicament defineix
+*	les funcions estandar d'una mesh que es mogui
+*/
 
 #ifndef MOVINGENTITY_H_
 #define MOVINGENTITY_H_
