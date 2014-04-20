@@ -13,7 +13,8 @@
 #include <vector>
 #include <algorithm>
 
-
+#include "jugador.h"
+#include "enemic.h"
 #include "movingentity.h"
 #include "entitymesh.h"
 #include "entity.h"
@@ -48,9 +49,9 @@ public:
 
 	Camera* _camera;
 
-	std::vector<MovingEntity*> _enemics;
+	std::vector<Enemic*> _enemics;
 
-	MovingEntity* _jugador;
+	Jugador* _jugador;
 
 	static World* getInstance();
 

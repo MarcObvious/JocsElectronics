@@ -80,12 +80,12 @@ bool World::llegeixIcarrega(const char *dir) {
 
 		else if (i == 2){ //elements mobils començant per jugador principal
 			my_parser.seek("##");
-			_jugador = new MovingEntity(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
+			_jugador = new Jugador(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
 			_jugador->setParams(my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 		}
 		else {
 			my_parser.seek("##");
-			MovingEntity* _enemy = new MovingEntity( mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
+			Enemic* _enemy = new Enemic( mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
 			_enemy->setParams(my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 			_enemics.push_back(_enemy);
 		}
@@ -98,11 +98,12 @@ bool World::llegeixIcarrega(const char *dir) {
 void World::update(double elapsed_time) {
 	_jugador->update(elapsed_time);
 
-	//Vector3 cel = _cel->getPosition();
+	Vector3 cel = _cel->getPosition();
 
 
-	//_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,(_camera->center.y*0.05 + cel.y*0.95)-500 , (_camera->center.z*0.05 + cel.z*0.95)));
-
+	_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,(_camera->center.y*0.05 + cel.y*0.95)-500 , (_camera->center.z*0.05 + cel.z*0.95)));
+	for(unsigned int i = 0; i < _enemics.size(); ++i)
+		_enemics.at(i)-> update(elapsed_time);
 
 	//No faig un lookAt, pk aixi, fem el set quan interessa, al render.
 	_camera->center = _jugador->getCenter();
@@ -114,7 +115,7 @@ void World::render() {
 	_camera->set();
 
 	glDisable(GL_DEPTH_TEST); //Z buffer desactivat
-	//_cel->render();
+	_cel->render();
 	glEnable(GL_DEPTH_TEST);  //Altre cop activat
 
 	_terreny->render();
