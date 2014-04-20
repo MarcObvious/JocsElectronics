@@ -90,9 +90,9 @@ bool MovingEntity::setParams(float aZY, float aZX, float aXY, float min, float m
 		_model.rotateLocal(getAgirZX() * elapsed_time, Vector3(1,0,0));
 }
 
- void MovingEntity::update(double elapsed_time){
+/* void  MovingEntity::update(double elapsed_time){
 //	if((_velocitat -= getFriction()) < min__velocitat)
 //		_velocitat = min__velocitat;
 
 	_model.traslateLocal(0,0,_velocitat*elapsed_time);
-}
+}*/

@@ -30,7 +30,7 @@ public:
 
 	 ~MovingEntity(){};
 
-	bool setParams(float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
+	 bool setParams(float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
 
 	 float getVelocitat();
 
@@ -54,7 +54,7 @@ public:
 
 	 void girZY(std::string dir, double elapsed_time);
 
-	 void update(double elapsed_time);
+	 //virtual void update(double elapsed_time){};
 
 };
 
