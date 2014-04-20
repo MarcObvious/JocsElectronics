@@ -1,4 +1,4 @@
-#NUM_ELEMENTS 6
+#NUM_ELEMENTS 8
 #TERRENY
      #MESH assets/meshes/terreny/island
      #TEXTURA assets/textures/terreny/island_color.tga
@@ -22,14 +22,14 @@
      #MIPMAP  1
      #POSICIO 200 200 200
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
-     ##  100           40             2               600              100               2               2               2               200     10          -1
+     ##  200           40             2               600              100               0.1         0.1            0.1               200     10          -1
 #ENEMIC2
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
      #POSICIO 150 100 150 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
-     ##  30           10             2               300              10               2               2               2               200     10          -1
+     ##  200           10             2               300              10               0.1             0.1          0.1               200     10          -1
 
 #ENEMIC3
      #MESH assets/meshes/space_tank
@@ -37,7 +37,25 @@
      #MIPMAP  1
      #POSICIO 500 500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
-     ##  30           10             2               200              10               3               3               3               100     50          -1
+     ##  400           10             2               200              10              0.1            0.1              0.1             100     50          -1
+
+#ENEMIC4
+     #MESH assets/meshes/space_tank
+     #TEXTURA assets/textures/tank1.tga
+     #MIPMAP  1
+     #POSICIO 500 1500 500 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
+     ##  250           10             2               200              10               0.1            0.1             0.1              100     50          -1
 
 
+#ENEMIC5
+     #MESH assets/meshes/space_tank
+     #TEXTURA assets/textures/tank1.tga
+     #MIPMAP  1
+     #POSICIO 500 500 1500 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
+     ##  200           10             2               200              10             0.1              0.1             0.1              100     50          -1
+
+
+#Afegir "modes d'enemics", es a dir codificació de 1 a 4 (per exemple) que defineix com es comporten els enmics. Que uns donin voltes a certa altura, altres a una altra zona, etc.
 
