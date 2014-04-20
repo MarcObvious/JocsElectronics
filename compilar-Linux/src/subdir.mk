@@ -1,7 +1,3 @@
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/camera.cpp \
@@ -11,7 +7,9 @@ CPP_SRCS += \
 ../src/game.cpp \
 ../src/main.cpp \
 ../src/movingentity.cpp \
-../src/world.cpp 
+../src/world.cpp \
+../src/enemic.cpp \
+../src/jugador.cpp
 
 OBJS += \
 ./src/camera.o \
@@ -21,7 +19,9 @@ OBJS += \
 ./src/game.o \
 ./src/main.o \
 ./src/movingentity.o \
-./src/world.o 
+./src/world.o \
+./src/enemic.o \
+./src/jugador.o
 
 CPP_DEPS += \
 ./src/camera.d \
@@ -31,7 +31,9 @@ CPP_DEPS += \
 ./src/game.d \
 ./src/main.d \
 ./src/movingentity.d \
-./src/world.d 
+./src/world.d \
+./src/enemic.d \
+./src/jugador.d
 
 
 # Each subdirectory must supply rules for building sources it contributes
