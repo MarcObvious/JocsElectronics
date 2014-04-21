@@ -1,6 +1,6 @@
 /*  manager.h  
     Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
-	Prototip de Manager Estandar d'on heredaran tots els manajers, 
+	Prototip de Manager Estandar d'on heredaran tots els managers, 
 	S'ha de currar mes.
 */
 

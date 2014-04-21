@@ -37,7 +37,7 @@ private:
 
 	EntityMesh* _cel;
 
-	std::vector<EntityMesh*> _totes_entyties;
+	std::vector<MovingEntity*>* _totes_entyties;
 
 	World();
 
@@ -49,9 +49,9 @@ public:
 
 	Camera* _camera;
 
-	std::vector<Enemic*> _enemics;
+	std::vector<MovingEntity*> _enemics;
 
-	Jugador* _jugador;
+	MovingEntity* _jugador;
 
 	static World* getInstance();
 

@@ -15,7 +15,7 @@
      #MIPMAP  1
      #POSICIO 0 0 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
-     ##   100           40             2               600              100               2               2               2               200     10          -1
+     ##   300           40           40            800            0               2               2               2               200     10          -1
 #ENEMIC1
      #MESH assets/meshes/x3_fighter
      #TEXTURA assets/textures/x3_fighter.tga
@@ -35,7 +35,7 @@
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
      #MIPMAP  1
-     #POSICIO 500 500 500 
+     #POSICIO 2000 500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##  400           10             2               200              10              0.1            0.1              0.1             100     50          -1
 
@@ -45,16 +45,16 @@
      #MIPMAP  1
      #POSICIO 500 1500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
-     ##  250           10             2               200              10               0.1            0.1             0.1              100     50          -1
+     ##  500           10             2               200              10               0.1            0.1             0.1              100     50          -1
 
 
 #ENEMIC5
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
      #MIPMAP  1
-     #POSICIO 500 500 1500 
+     #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
-     ##  200           10             2               200              10             0.1              0.1             0.1              100     50          -1
+     ##  1000           10             2               200              10             0.1              0.1             0.1              100     50          -1
 
 
 #Afegir "modes d'enemics", es a dir codificació de 1 a 4 (per exemple) que defineix com es comporten els enmics. Que uns donin voltes a certa altura, altres a una altra zona, etc.

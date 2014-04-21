@@ -248,7 +248,7 @@ void Mesh::renderdebug() {
 	glPointSize(3);
 	glBegin(GL_LINE_STRIP);
 
-	for (int i = 0; i<vertices.size(); i++)
+	for (unsigned int i = 0; i<vertices.size(); i++)
 	{
 		glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
 		glColor3f(normals[i].x, normals[i].y, normals[i].z);

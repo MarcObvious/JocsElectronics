@@ -3,7 +3,7 @@
 Entity::Entity(Vector3 posinicial){
 	_id = _last_id;
 	_last_id++;
-//	_name = "Entity " + _id;
+	_name = "Entity " + _id;
 	_model = Matrix44();
 	setPosition(posinicial);
 };
@@ -18,6 +18,6 @@ void Entity::setPosition(Vector3 pos){
 	//_model.setTranslation(pos.x,pos.y,pos.z);
 
 	_model.setIdentity();
-	_model.traslate(pos.x, pos.y, pos.z);
+	_model.setTranslation(pos.x, pos.y, pos.z);
 
 }

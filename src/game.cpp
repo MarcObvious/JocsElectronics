@@ -91,10 +91,10 @@ void Game::update(double seconds_elapsed) {
 		speed *= 10; //move faster with left shift
 
 	if (keystate[SDL_SCANCODE_UP])
-		World::getInstance()->_camera->move(Vector3(0, 0, 1) * speed);
+		World::getInstance()->_camera->move(Vector3(0, 1, 0) * speed);
 
 	if (keystate[SDL_SCANCODE_DOWN])
-		World::getInstance()->_camera->move(Vector3(0, 0, -1) * speed);
+		World::getInstance()->_camera->move(Vector3(0, -1, 0) * speed);
 
 	if (keystate[SDL_SCANCODE_LEFT])
 		World::getInstance()->_camera->move(Vector3(1, 0, 0) * speed);
@@ -115,17 +115,17 @@ void Game::update(double seconds_elapsed) {
 		World::getInstance()->_jugador->girZX("AVALL", seconds_elapsed);
 	
 
-	if (keystate[SDL_SCANCODE_N]) 
+	if (keystate[SDL_SCANCODE_Q]) 
 		World::getInstance()->_jugador->girXY("DRETA", seconds_elapsed);
 	
-	if (keystate[SDL_SCANCODE_M]) 
+	if (keystate[SDL_SCANCODE_E]) 
 		World::getInstance()->_jugador->girXY("ESQUERRA", seconds_elapsed);
 	
 	
-	if (keystate[SDL_SCANCODE_Q]) 
+	if (keystate[SDL_SCANCODE_N]) 
 		World::getInstance()->_jugador->accelera(seconds_elapsed);
 	
-	if (keystate[SDL_SCANCODE_E]) 
+	if (keystate[SDL_SCANCODE_M]) 
 		World::getInstance()->_jugador->decelera(seconds_elapsed);
 	
 	
