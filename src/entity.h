@@ -10,6 +10,7 @@
 
 #include "utils/framework.h"
 #include "includes.h"
+#include <string>
 
 class Entity {
 	protected:
@@ -19,8 +20,9 @@ class Entity {
 
 	public:
 		static int _last_id;
-		Entity(Vector3 posinicial = Vector3(0,0,0));
+		Entity(Vector3 posinicial);
 
+		std::string getName();
 		Vector3 getPosition();
 		void setPosition(Vector3 pos);
 };
