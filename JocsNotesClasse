@@ -1,0 +1,38 @@
+Entity::getAtribute(string ett)
+        if (att== "id") return id;
+
+enlloc de retornar id millor fer a entity return int, float, string, o el que sigui
+
+
+
+EntityMeshh::getAtribute(string ett) {
+        Entity::getAtribute();
+}
+
+Aixi vaig accedint a tots els metodes de upcasts. Bona idea!
+
+vector <Entity *>* _entityies;
+
+
+composicio - player -plane
+
+Fer puta classe controller.
+
+Fer vector <Entity*> children
+
+
+sendEvent ?¿ explicat a la web, 
+Basicament es per gestionar accions que poden fer els fills de cada entitat
+
+sendEvent(){
+ process event
+ 
+ for childrens
+        (it)->sendEvent
+        
+        
+transformacions d'objectes multiples
+
+render{ glpushMatrix matrix.set() render render(child); glPopMatrix(); }
+_model -> Posició respecte al seu pare
+_worldmodel -> Posició respecte al mon!
