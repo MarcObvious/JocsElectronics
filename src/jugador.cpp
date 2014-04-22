@@ -3,6 +3,7 @@
 Jugador::Jugador(std::string mesh_dir, std::string text_dir, bool mipmapping,
 			Vector3 posinicial) :
 			MovingEntity(mesh_dir, text_dir, mipmapping, posinicial) {
+			_name << " i es jugador";
 }
 
 void Jugador::update(double elapsed_time){

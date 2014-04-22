@@ -5,6 +5,7 @@ EntityMesh::EntityMesh(std::string mesh_dir, std::string text_dir,
 		Entity(posinicial) {
 	_mesh = (MeshManager::getInstance())->get(mesh_dir);
 	_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
+	_name << "Mesh";
 }
 
 void EntityMesh::render() {

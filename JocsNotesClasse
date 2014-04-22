@@ -36,3 +36,13 @@ transformacions d'objectes multiples
 render{ glpushMatrix matrix.set() render render(child); glPopMatrix(); }
 _model -> Posició respecte al seu pare
 _worldmodel -> Posició respecte al mon!
+
+
+
+
+Entity* parent;
+typedef std::vector<Entity> tEntityList
+tentity
+
+setParent(entity*parent)
+entity getchild(int)

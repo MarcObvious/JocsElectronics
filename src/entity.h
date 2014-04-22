@@ -11,11 +11,12 @@
 #include "utils/framework.h"
 #include "includes.h"
 #include <string>
+#include <sstream>
 
 class Entity {
 	protected:
 		int _id;
-		std::string _name;
+		std::stringstream _name;
 		Matrix44 _model;
 
 	public:
