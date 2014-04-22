@@ -9,7 +9,9 @@ Entity::Entity(Vector3 posinicial){
 };
 
 Vector3 Entity::getPosition(){
-
+        //11-31
+        //12-32
+        //13-33
 	return Vector3(_model.m[12],_model.m[13],_model.m[14]);
 }
 
