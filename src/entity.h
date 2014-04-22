@@ -23,6 +23,7 @@ class Entity {
 		Entity(Vector3 posinicial);
 
 		std::string getName();
+		void printPosition();
 		Vector3 getPosition();
 		void setPosition(Vector3 pos);
 };
