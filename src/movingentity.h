@@ -25,12 +25,12 @@ protected:
 	float _angle_gir_ZY;
 
 public:
-	MovingEntity(std::string mesh_dir, std::string text_dir, bool mipmapping,
-			Vector3 posinicial);
+	MovingEntity();
 
-	 ~MovingEntity(){};
+	virtual void setParams(std::string mesh_dir, std::string text_dir,
+			bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
 
-	 bool setParams(float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
+	 virtual ~MovingEntity(){};
 
 	 float getVelocitat();
 

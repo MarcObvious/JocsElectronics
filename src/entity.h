@@ -21,8 +21,10 @@ class Entity {
 
 	public:
 		static int _last_id;
-		Entity(Vector3 posinicial);
+		Entity();
+		virtual ~Entity(){};
 
+		virtual void setParams(Vector3 pos);
 		std::string getName();
 		void printPosition();
 		Vector3 getPosition();

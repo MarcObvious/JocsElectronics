@@ -1,12 +1,17 @@
 #include "entitymesh.h"
 
-EntityMesh::EntityMesh(std::string mesh_dir, std::string text_dir,
-		bool mipmapping, Vector3 posinicial) :
-		Entity(posinicial) {
-	_mesh = (MeshManager::getInstance())->get(mesh_dir);
-	_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
+EntityMesh::EntityMesh() {
 	_name << "Mesh";
 }
+
+void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
+		bool mipmapping, Vector3 posinicial) {
+
+		Entity::setParams(posinicial);
+		_mesh = (MeshManager::getInstance())->get(mesh_dir);
+		_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
+}
+
 
 void EntityMesh::render() {
 

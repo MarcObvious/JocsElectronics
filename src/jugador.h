@@ -15,9 +15,10 @@ class Jugador: public MovingEntity {
 protected:
 	
 public:
-	Jugador(std::string mesh_dir, std::string text_dir, bool mipmapping,
-			Vector3 posinicial);
+	Jugador();
 
+	virtual void setParams(std::string mesh_dir, std::string text_dir,
+			bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
 	 ~Jugador(){};
 
 	 void update(double elapsed_time);
