@@ -13,6 +13,7 @@ MovingEntity::MovingEntity(std::string mesh_dir, std::string text_dir, bool mipm
 		 _angle_gir_XY=0;
 		 _angle_gir_ZX=0;
 		 _angle_gir_ZY=0;
+		 _name << "mobil";
 
 	}
 

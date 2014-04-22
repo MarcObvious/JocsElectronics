@@ -48,6 +48,8 @@ private:
 public:
 
 	Camera* _camera;
+	
+	void printPositions();
 
 	std::vector<MovingEntity*> _enemics;
 

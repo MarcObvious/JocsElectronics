@@ -1,6 +1,6 @@
 #include "world.h"
 
-int Entity::_last_id = 0;
+int Entity::_last_id =0;
 MeshManager* MeshManager::_instance = NULL; //Definirla fora de la classe
 TextureManager* TextureManager::_instance = NULL;
 
@@ -97,9 +97,22 @@ bool World::llegeixIcarrega(const char *dir) {
 	//_totes_entyties->push_back(_cel);
 	//_totes_entyties->push_back(_terreny);
 	//_totes_entyties->push_back(_jugador);
+	
+	printPositions();
 
 	return true;
 }
+
+void World::printPositions(){
+        //Hauria de recorrer el vector de entitats que ENCARA no esta fet.
+        _terreny->printPosition();
+        _cel->printPosition();
+        _jugador->printPosition();
+        for(unsigned int i = 0; i < _enemics.size(); ++i)
+		_enemics.at(i)-> printPosition();
+        
+
+} 
 void World::update(double elapsed_time) {
 	_jugador->update(elapsed_time);
 
