@@ -8,7 +8,7 @@ World::World() {
 	assert(_instance == NULL);
 	_instance = this;
          
-        _totes_entyties = NULL;
+    _totes_entyties = NULL;
 	_camera = new Camera();
 	_camera->setPerspective(70, WINDOW_WIDTH / (float) WINDOW_HEIGHT, 0.1,	10000); //set the projection, we want to be perspective
 
@@ -71,25 +71,23 @@ bool World::llegeixIcarrega(const char *dir) {
 		float posy = my_parser.getfloat();
 		float posz = my_parser.getfloat();
 
-		std::cout << mesh_dir << " " << text_dir << " X " << posx  << " Y " << posy << " Z " << posz << std::endl;
-
-
-
-		if (i == 0) //terreny
-			_terreny = new EntityMesh( mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
-
-		else if (i == 1) //cel
-			_cel = new EntityMesh(mesh_dir, text_dir, mip, Vector3(_camera->center.x,_camera->center.y, _camera->center.z));
-
+		if (i == 0) { //terreny
+			_terreny = new EntityMesh();
+			_terreny->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
+		}
+		else if (i == 1) {//cel
+			_cel = new EntityMesh();
+			_cel->setParams(mesh_dir, text_dir, mip, Vector3(_camera->center.x,_camera->center.y, _camera->center.z));
+		}
 		else if (i == 2){ //elements mobils començant per jugador principal
 			my_parser.seek("##");
-			_jugador = new Jugador(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
-			_jugador->setParams(my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
+			_jugador = new Jugador();
+			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 		}
 		else {
 			my_parser.seek("##");
-			MovingEntity* _enemy = new Enemic( mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
-			_enemy->setParams(my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
+			MovingEntity* _enemy = new Enemic();
+			_enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 			_enemics.push_back(_enemy);
 		}
 
@@ -109,8 +107,7 @@ void World::printPositions(){
         _cel->printPosition();
         _jugador->printPosition();
         for(unsigned int i = 0; i < _enemics.size(); ++i)
-		_enemics.at(i)-> printPosition();
-        
+		    _enemics.at(i)-> printPosition();      
 
 } 
 void World::update(double elapsed_time) {
@@ -120,12 +117,12 @@ void World::update(double elapsed_time) {
         
         std::cout << _camera->center.x << " X " << _camera->center.y << " Y " << _camera->center.z << " Z vs "
                << cel.x << " X " << cel.y << " Y " << cel.z << " Z\n";
-        //_cel->setPosition(Vector3(_camera->center.x, _camera->center.y, _camera->center.z));
-	_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
+        _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
+        
+	//_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
 	for(unsigned int i = 0; i < _enemics.size(); ++i)
 		_enemics.at(i)-> update(elapsed_time);
-
-	//No faig un lookAt, pk aixi, fem el set quan interessa, al render.
+	
 	_camera->center = _jugador->getCenter();
 	_camera->up = _jugador->getTop();
 	_camera->eye = (_camera->eye - _camera->center).normalize() * 50 + _camera->center;

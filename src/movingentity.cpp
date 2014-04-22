@@ -1,8 +1,6 @@
 #include "movingentity.h"
 
-MovingEntity::MovingEntity(std::string mesh_dir, std::string text_dir, bool mipmapping,
-			Vector3 posinicial) :
-			EntityMesh(mesh_dir, text_dir, mipmapping, posinicial) {
+MovingEntity::MovingEntity() {
 	 _velocitat=0;
 		 _acceleraccio=0;
 		 _deceleraccio=0;
@@ -16,8 +14,11 @@ MovingEntity::MovingEntity(std::string mesh_dir, std::string text_dir, bool mipm
 		 _name << "mobil";
 
 	}
+void MovingEntity::setParams(std::string mesh_dir, std::string text_dir,
+		bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel){
 
-bool MovingEntity::setParams(float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel) {
+	EntityMesh::setParams(mesh_dir, text_dir, mipmapping, posinicial);
+
 	_velocitat = vel;
 	_acceleraccio = acc;
 	_deceleraccio = decc;
@@ -29,9 +30,7 @@ bool MovingEntity::setParams(float aZY, float aZX, float aXY, float min, float m
 	_angle_gir_ZX = aZX;
 	_angle_gir_ZY = aZY;
 
-	std::cout << vel << " " << acc  << " "<< decc << " "<< max << " "<<  min << " "<< aXY << " "<< aZX << " "<< aZY << std::endl;
-
-	return true;
+	//std::cout << vel << " " << acc  << " "<< decc << " "<< max << " "<<  min << " "<< aXY << " "<< aZX << " "<< aZY << std::endl;
 }
 
 

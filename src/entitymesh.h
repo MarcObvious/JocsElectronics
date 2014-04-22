@@ -14,12 +14,14 @@
 
 class EntityMesh : public Entity {
 protected:
-	Mesh* _mesh;
-	Texture* _texture;
+	Mesh* _mesh = NULL;
+	Texture* _texture = NULL;
 public:
-	EntityMesh(std::string mesh_dir, std::string text_dir, bool mipmapping, Vector3 posinicial);
-	~EntityMesh() {}
+	EntityMesh();
+	virtual ~EntityMesh() {}
 
+	virtual void setParams(std::string mesh_dir, std::string text_dir,
+			bool mipmapping, Vector3 posinicial);
 	void render();
 	Matrix44 getMatrix();
 	Vector3 getTop();
