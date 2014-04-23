@@ -115,8 +115,8 @@ void World::update(double elapsed_time) {
 
 	Vector3 cel = _cel->getPosition();
         
-        std::cout << _camera->center.x << " X " << _camera->center.y << " Y " << _camera->center.z << " Z vs "
-               << cel.x << " X " << cel.y << " Y " << cel.z << " Z\n";
+       // std::cout << _camera->center.x << " X " << _camera->center.y << " Y " << _camera->center.z << " Z vs "
+         //      << cel.x << " X " << cel.y << " Y " << cel.z << " Z\n";
         _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
         
 	//_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
