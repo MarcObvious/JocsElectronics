@@ -2,6 +2,7 @@
 #TERRENY
      #MESH assets/meshes/terreny/island
      #TEXTURA assets/textures/terreny/island_color.tga
+     terrain_airport
      #MIPMAP  1
      #POSICIO 0 -1000 0
 #CEL
