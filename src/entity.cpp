@@ -31,3 +31,10 @@ void Entity::setPosition(Vector3 pos){//posicio global! ens PETEM el que hi havi
 	_model.traslate(pos.x, pos.y, pos.z);
 
 }
+
+void Entity::addChild(Entity* ent){
+	_children.push_back(ent);
+}
+void Entity::removeChid(Entity* ent){
+	_children.pop_back();
+}
