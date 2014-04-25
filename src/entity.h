@@ -20,7 +20,7 @@ class Entity {
 		Matrix44 _model;
 
 		//Punter al pare
-		Entity* _parent;
+		Entity* _parent = NULL;
 
 		//Llista de punters als fills
 		std::vector<Entity*> _children;
@@ -36,6 +36,12 @@ class Entity {
 		Vector3 getPosition();
 		void setPosition(Vector3 pos);
 
+		virtual void render(){};
+		virtual void update(double elapsed_time){};
+
+		Matrix44 getGlobalMatrix();
+
+		void setParent(Entity* ent);
 		void addChild(Entity* ent);
 		void removeChid(Entity* ent);
 

@@ -35,6 +35,17 @@ void Entity::setPosition(Vector3 pos){//posicio global! ens PETEM el que hi havi
 void Entity::addChild(Entity* ent){
 	_children.push_back(ent);
 }
+
 void Entity::removeChid(Entity* ent){
 	_children.pop_back();
+}
+
+void Entity::setParent(Entity* ent){
+	_parent = ent;
+}
+
+Matrix44 Entity::getGlobalMatrix(){
+	if (_parent)
+			return _model * _parent->getGlobalMatrix();
+	return _model;
 }
