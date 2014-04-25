@@ -84,6 +84,12 @@ bool World::llegeixIcarrega(const char *dir) {
 			_jugador = new Jugador();
 			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 		}
+		else if (i == 3) {
+			EntityMesh* fill = new EntityMesh();
+			fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
+			fill->setParent(_jugador);
+			_jugador->addChild(fill);
+		}
 		else {
 			my_parser.seek("##");
 			MovingEntity* _enemy = new Enemic();

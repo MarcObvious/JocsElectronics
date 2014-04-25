@@ -1,4 +1,4 @@
-#NUM_ELEMENTS 8
+#NUM_ELEMENTS 9
 #TERRENY
      #MESH assets/meshes/terreny/island
      #TEXTURA assets/textures/terreny/island_color.tga
@@ -16,6 +16,12 @@
      #POSICIO 0 0 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##   300           40           40            800            0               2               2               2               200     10          -1
+#FILLSJUGADOR
+     #MESH assets/meshes/x3_fighter
+     #TEXTURA assets/textures/x3_fighter.tga
+     #MIPMAP  1
+     #POSICIO -10 -10 -10
+     
 #ENEMIC1
      #MESH assets/meshes/x3_fighter
      #TEXTURA assets/textures/x3_fighter.tga

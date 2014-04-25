@@ -5,7 +5,12 @@ Entity::Entity(){
 	_last_id++;
 	_name << _id << " Entity"; 
 	_model = Matrix44();
-};
+}
+
+Entity::Entity(Entity* ent){
+	Entity();
+	setParent(ent);
+}
 
 void Entity::setParams(Vector3 posinicial) {
 	setPosition(posinicial);

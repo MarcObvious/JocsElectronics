@@ -28,6 +28,7 @@ class Entity {
 	public:
 		static int _last_id;
 		Entity();
+		Entity(Entity* ent);
 		virtual ~Entity(){};
 
 		virtual void setParams(Vector3 pos);
