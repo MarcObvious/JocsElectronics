@@ -19,9 +19,16 @@ class Entity {
 		std::stringstream _name;
 		Matrix44 _model;
 
+		//Punter al pare
+		Entity* _parent = NULL;
+
+		//Llista de punters als fills
+		std::vector<Entity*> _children;
+
 	public:
 		static int _last_id;
 		Entity();
+		Entity(Entity* ent);
 		virtual ~Entity(){};
 
 		virtual void setParams(Vector3 pos);
@@ -29,6 +36,16 @@ class Entity {
 		void printPosition();
 		Vector3 getPosition();
 		void setPosition(Vector3 pos);
+
+		virtual void render(){};
+		virtual void update(double elapsed_time){};
+
+		Matrix44 getGlobalMatrix();
+
+		void setParent(Entity* ent);
+		void addChild(Entity* ent);
+		void removeChid(Entity* ent);
+
 };
 
 #endif /* ENTITY_H_ */

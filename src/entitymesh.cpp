@@ -21,6 +21,10 @@ void EntityMesh::render() {
 
 	_texture->bind();
 	_mesh->render();
+
+	for (unsigned int i = 0; i < _children.size(); i++)
+		_children[i]->render();
+
 	_texture->unbind();
 
 	glPopMatrix();

@@ -5,7 +5,12 @@ Entity::Entity(){
 	_last_id++;
 	_name << _id << " Entity"; 
 	_model = Matrix44();
-};
+}
+
+Entity::Entity(Entity* ent){
+	Entity();
+	setParent(ent);
+}
 
 void Entity::setParams(Vector3 posinicial) {
 	setPosition(posinicial);
@@ -30,4 +35,22 @@ void Entity::setPosition(Vector3 pos){//posicio global! ens PETEM el que hi havi
 	_model.setIdentity();
 	_model.traslate(pos.x, pos.y, pos.z);
 
+}
+
+void Entity::addChild(Entity* ent){
+	_children.push_back(ent);
+}
+
+void Entity::removeChid(Entity* ent){
+	_children.pop_back();
+}
+
+void Entity::setParent(Entity* ent){
+	_parent = ent;
+}
+
+Matrix44 Entity::getGlobalMatrix(){
+	if (_parent)
+			return _model * _parent->getGlobalMatrix();
+	return _model;
 }

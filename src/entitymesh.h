@@ -16,6 +16,7 @@ class EntityMesh : public Entity {
 protected:
 	Mesh* _mesh = NULL;
 	Texture* _texture = NULL;
+	Vector3 _color ; //per saber quan disparo a algu si faig mal o no. "proves"
 public:
 	EntityMesh();
 	virtual ~EntityMesh() {}
@@ -27,6 +28,8 @@ public:
 	Vector3 getTop();
 
 	Vector3 getCenter();
+
+	virtual void update(double elapsed_time){};
 
 };
 
