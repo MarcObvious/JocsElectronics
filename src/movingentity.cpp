@@ -11,11 +11,13 @@ MovingEntity::MovingEntity() {
 		 _angle_gir_XY=0;
 		 _angle_gir_ZX=0;
 		 _angle_gir_ZY=0;
+
+		 _distancia_optima=0;
 		 _name << "mobil";
 
 	}
 void MovingEntity::setParams(std::string mesh_dir, std::string text_dir,
-		bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel){
+		bool mipmapping, Vector3 posinicial, float opt, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel){
 
 	EntityMesh::setParams(mesh_dir, text_dir, mipmapping, posinicial);
 
@@ -29,6 +31,8 @@ void MovingEntity::setParams(std::string mesh_dir, std::string text_dir,
 	_angle_gir_XY = aXY;
 	_angle_gir_ZX = aZX;
 	_angle_gir_ZY = aZY;
+
+	_distancia_optima= opt;
 
 	//std::cout << vel << " " << acc  << " "<< decc << " "<< max << " "<<  min << " "<< aXY << " "<< aZX << " "<< aZY << std::endl;
 }
@@ -57,6 +61,10 @@ void MovingEntity::setParams(std::string mesh_dir, std::string text_dir,
  float MovingEntity::getAgirZY() {
 	return _angle_gir_ZY;
 }
+
+ float MovingEntity::getDistOpt(){
+	 return _distancia_optima;
+ }
 
  void MovingEntity::accelera(double elapsed_time){
 	if((_velocitat += getAcceleraccio() * elapsed_time) > _max_velocitat)

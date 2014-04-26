@@ -83,7 +83,7 @@ bool World::llegeixIcarrega(const char *dir) {
 		else if (i == 2){ //elements mobils començant per jugador principal
 			my_parser.seek("##");
 			_jugador = new MovingEntity();
-			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
+			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 
 			_totes_entyties.push_back(_jugador);
 
@@ -102,7 +102,7 @@ bool World::llegeixIcarrega(const char *dir) {
 		else {
 			my_parser.seek("##");
 			MovingEntity* enemy = new MovingEntity();
-			enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
+			enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz),my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 			//_enemics.push_back(_enemy );
 			_totes_entyties.push_back(enemy);
 		}

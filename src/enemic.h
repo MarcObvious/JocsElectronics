@@ -8,7 +8,7 @@
 #define ENEMIC_H_
 
 #include "movingentity.h"
-#include "controller.h".h"
+#include "controller.h"
 #include "utils/framework.h"
 #include <string>
 
