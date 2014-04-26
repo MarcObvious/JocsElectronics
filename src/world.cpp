@@ -101,7 +101,7 @@ bool World::llegeixIcarrega(const char *dir) {
 			my_parser.seek("##");
 			MovingEntity* _enemy = new Enemic();
 			_enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
-			_enemics.push_back(_enemy);
+			_enemics.push_back(_enemy );
 		}
 
 	}
