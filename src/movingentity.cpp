@@ -90,3 +90,7 @@ void MovingEntity::setParams(std::string mesh_dir, std::string text_dir,
 		_model.rotateLocal(getAgirZX() * elapsed_time, Vector3(1,0,0));
 }
 
+ void MovingEntity::endavant(double elapsed_time) {
+	 _model.traslateLocal(0, 0, _velocitat * elapsed_time);
+ }
+

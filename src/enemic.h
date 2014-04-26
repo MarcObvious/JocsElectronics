@@ -8,19 +8,17 @@
 #define ENEMIC_H_
 
 #include "movingentity.h"
+#include "controller.h".h"
 #include "utils/framework.h"
 #include <string>
 
-class Enemic: public MovingEntity {
+class Enemic: public Controller {
 protected:
-	
+
 public:
-	Enemic();
+	Enemic(MovingEntity* contr);
 
 	 ~Enemic(){};
-
-	 virtual void setParams(std::string mesh_dir, std::string text_dir,
-				bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
 
 	 void update(double elapsed_time);
 

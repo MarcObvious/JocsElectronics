@@ -7,21 +7,23 @@
 #ifndef JUGADOR_H_
 #define JUGADOR_H_
 
-#include "movingentity.h"
+#include "controller.h"
 #include "utils/framework.h"
+#include "movingentity.h"
+#include "world.h"
 #include <string>
 
-class Jugador: public MovingEntity {
+class Jugador : public Controller {
 protected:
-	
-public:
-	Jugador();
 
-	virtual void setParams(std::string mesh_dir, std::string text_dir,
-			bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
+public:
+	Jugador(MovingEntity* contr);
+
+//	virtual void setParams(std::string mesh_dir, std::string text_dir,
+//			bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
 	 ~Jugador(){};
 
-	 void update(double elapsed_time);
+	 void update(double elapsed_time, const Uint8* keystate);
 
 };
 

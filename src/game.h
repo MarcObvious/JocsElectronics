@@ -10,6 +10,7 @@
 #include "utils/utils.h"
 #include "mts/shader.h"
 #include "world.h"
+#include "jugador.h"
 
 #include <string.h>
 

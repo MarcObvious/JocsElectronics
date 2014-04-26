@@ -1,16 +1,54 @@
 #include "jugador.h"
 
-Jugador::Jugador() {
-	_name << " i es jugador";
-}
-void Jugador::setParams(std::string mesh_dir, std::string text_dir,
-		bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel) {
-
-	MovingEntity::setParams(mesh_dir, text_dir,mipmapping,posinicial ,aZY ,aZX, aXY, min, max, decc, acc, vel);
+Jugador::Jugador(MovingEntity* contr) : Controller(contr){
+	//_name << " i es jugador";
 }
 
-void Jugador::update(double elapsed_time) {
+void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 
-	_model.traslateLocal(0, 0, _velocitat * elapsed_time);
+	double speed = seconds_elapsed * 100;
+
+	if (keystate[SDL_SCANCODE_LSHIFT])
+		speed *= 10; //move faster with left shift
+
+	if (keystate[SDL_SCANCODE_UP])
+		World::getInstance()->_camera->move(Vector3(0, 1, 0) * speed);
+
+	if (keystate[SDL_SCANCODE_DOWN])
+		World::getInstance()->_camera->move(Vector3(0, -1, 0) * speed);
+
+	if (keystate[SDL_SCANCODE_LEFT])
+		World::getInstance()->_camera->move(Vector3(1, 0, 0) * speed);
+
+	if (keystate[SDL_SCANCODE_RIGHT])
+		World::getInstance()->_camera->move(Vector3(-1, 0, 0) * speed);
+
+	if (keystate[SDL_SCANCODE_D])
+		_controlat->girZY("DRETA", seconds_elapsed);
+
+	if (keystate[SDL_SCANCODE_A])
+		_controlat->girZY("ESQUERRA", seconds_elapsed);
+
+	if (keystate[SDL_SCANCODE_W])
+		_controlat->girZX("AMUNT", seconds_elapsed);
+
+	if (keystate[SDL_SCANCODE_S])
+		_controlat->girZX("AVALL", seconds_elapsed);
+
+
+	if (keystate[SDL_SCANCODE_Q])
+		_controlat->girXY("DRETA", seconds_elapsed);
+
+	if (keystate[SDL_SCANCODE_E])
+		_controlat->girXY("ESQUERRA", seconds_elapsed);
+
+
+	if (keystate[SDL_SCANCODE_N])
+		_controlat->accelera(seconds_elapsed);
+
+	if (keystate[SDL_SCANCODE_M])
+		_controlat->decelera(seconds_elapsed);
+
+	_controlat->endavant(seconds_elapsed);
 }
 

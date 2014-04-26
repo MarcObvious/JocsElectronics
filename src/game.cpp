@@ -6,6 +6,8 @@ World* World::_instance = NULL; //Mon
 
 Shader* shader = NULL;
 
+Jugador* jugador = NULL;
+
 Game::Game(SDL_Window* window) {
 	this->window = window;
 	// initialize attributes
@@ -37,6 +39,8 @@ void Game::init(void) {
 
 	shader = new Shader();
 	shader->load("assets/shaders/simple.vs", "assets/shaders/simple.ps");
+
+	jugador = new Jugador(World::getInstance()->_jugador);
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -74,7 +78,7 @@ void Game::update(double seconds_elapsed) {
 		this->mouse_position.y = window_height * 0.5;
 	}
 
-	double speed = seconds_elapsed * 100; //the speed is defined by the seconds_elapsed so it goes constant
+	 //the speed is defined by the seconds_elapsed so it goes constant
 
 //	//mouse input to rotate the cam
 //	if ((mouse_state & SDL_BUTTON_LEFT) || mouse_locked) //is left button pressed?
@@ -87,46 +91,7 @@ void Game::update(double seconds_elapsed) {
 //	async input to move the camera around
 	
 	
-	if (keystate[SDL_SCANCODE_LSHIFT])
-		speed *= 10; //move faster with left shift
-
-	if (keystate[SDL_SCANCODE_UP])
-		World::getInstance()->_camera->move(Vector3(0, 1, 0) * speed);
-
-	if (keystate[SDL_SCANCODE_DOWN])
-		World::getInstance()->_camera->move(Vector3(0, -1, 0) * speed);
-
-	if (keystate[SDL_SCANCODE_LEFT])
-		World::getInstance()->_camera->move(Vector3(1, 0, 0) * speed);
-
-	if (keystate[SDL_SCANCODE_RIGHT])
-		World::getInstance()->_camera->move(Vector3(-1, 0, 0) * speed);
-
-	if (keystate[SDL_SCANCODE_D]) 
-		World::getInstance()->_jugador->girZY("DRETA", seconds_elapsed);
-	
-	if (keystate[SDL_SCANCODE_A]) 
-		World::getInstance()->_jugador->girZY("ESQUERRA", seconds_elapsed);
-
-	if (keystate[SDL_SCANCODE_W]) 
-		World::getInstance()->_jugador->girZX("AMUNT", seconds_elapsed);
-	
-	if (keystate[SDL_SCANCODE_S]) 
-		World::getInstance()->_jugador->girZX("AVALL", seconds_elapsed);
-	
-
-	if (keystate[SDL_SCANCODE_Q]) 
-		World::getInstance()->_jugador->girXY("DRETA", seconds_elapsed);
-	
-	if (keystate[SDL_SCANCODE_E]) 
-		World::getInstance()->_jugador->girXY("ESQUERRA", seconds_elapsed);
-	
-	
-	if (keystate[SDL_SCANCODE_N]) 
-		World::getInstance()->_jugador->accelera(seconds_elapsed);
-	
-	if (keystate[SDL_SCANCODE_M]) 
-		World::getInstance()->_jugador->decelera(seconds_elapsed);
+	jugador->update(seconds_elapsed, keystate);
 	
 	
 	World::getInstance()->update(seconds_elapsed);

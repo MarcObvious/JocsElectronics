@@ -82,7 +82,7 @@ bool World::llegeixIcarrega(const char *dir) {
 		}
 		else if (i == 2){ //elements mobils començant per jugador principal
 			my_parser.seek("##");
-			_jugador = new Jugador();
+			_jugador = new MovingEntity();
 			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 
 			_totes_entyties.push_back(_jugador);
@@ -101,7 +101,7 @@ bool World::llegeixIcarrega(const char *dir) {
 		}
 		else {
 			my_parser.seek("##");
-			MovingEntity* enemy = new Enemic();
+			MovingEntity* enemy = new MovingEntity();
 			enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 			//_enemics.push_back(_enemy );
 			_totes_entyties.push_back(enemy);
@@ -133,9 +133,9 @@ void World::update(double elapsed_time) {
         
        // std::cout << _camera->center.x << " X " << _camera->center.y << " Y " << _camera->center.z << " Z vs "
          //      << cel.x << " X " << cel.y << " Y " << cel.z << " Z\n";
-        _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
+    //    _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
         
-	//_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
+	_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
 	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
 		_totes_entyties.at(i)-> update(elapsed_time);
 	
