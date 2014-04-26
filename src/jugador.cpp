@@ -1,15 +1,27 @@
 #include "jugador.h"
 
 Jugador::Jugador(MovingEntity* contr) : Controller(contr){
+	_apunta = 0;
 	//_name << " i es jugador";
 }
 
+void Jugador::canvia_control() {
+	if (_apunta >= World::getInstance()->_totes_entyties.size())
+		_apunta = 0;
+	else {
+		_controlat = World::getInstance()->_totes_entyties[_apunta];
+		++_apunta;
+	}
+}
 void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 
 	double speed = seconds_elapsed * 100;
 
 	if (keystate[SDL_SCANCODE_LSHIFT])
 		speed *= 10; //move faster with left shift
+
+	if (keystate[SDL_SCANCODE_T])
+		canvia_control();
 
 	if (keystate[SDL_SCANCODE_UP])
 		World::getInstance()->_camera->move(Vector3(0, 1, 0) * speed);
@@ -50,5 +62,9 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 		_controlat->decelera(seconds_elapsed);
 
 	_controlat->endavant(seconds_elapsed);
+
+	World::getInstance()->_camera->center = _controlat->getCenter();
+	World::getInstance()->	_camera->up = _controlat->getTop();
+	World::getInstance()->	_camera->eye = (World::getInstance()->_camera->eye - World::getInstance()->_camera->center).normalize() * 50 + World::getInstance()->_camera->center;
 }
 

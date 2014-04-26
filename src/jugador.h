@@ -15,13 +15,15 @@
 
 class Jugador : public Controller {
 protected:
-
+	unsigned int _apunta;
 public:
 	Jugador(MovingEntity* contr);
 
 //	virtual void setParams(std::string mesh_dir, std::string text_dir,
 //			bool mipmapping, Vector3 posinicial, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
 	 ~Jugador(){};
+
+	 void canvia_control();
 
 	 void update(double elapsed_time, const Uint8* keystate);
 

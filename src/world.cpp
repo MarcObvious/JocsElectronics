@@ -139,9 +139,7 @@ void World::update(double elapsed_time) {
 	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
 		_totes_entyties.at(i)-> update(elapsed_time);
 	
-	_camera->center = _jugador->getCenter();
-	_camera->up = _jugador->getTop();
-	_camera->eye = (_camera->eye - _camera->center).normalize() * 50 + _camera->center;
+
 
 }
 void World::render() {
