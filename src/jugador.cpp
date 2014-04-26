@@ -1,11 +1,13 @@
 #include "jugador.h"
-Jugador::Jugador(MovingEntity* contr) : Controller(contr){
+Jugador::Jugador(MovingEntity* contr) :
+		Controller(contr) {
 	_apunta = 0;
+	_controlat = contr;
 	//_name << " i es jugador";
 }
 
 void Jugador::canvia_control() {
-	std::cout <<  "Estic controlant a: " << _apunta << std::endl;
+	std::cout << "Estic controlant a: " << _apunta << std::endl;
 	if (_apunta >= World::getInstance()->_totes_entyties.size())
 		_apunta = 0;
 	else {
@@ -47,13 +49,11 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 	if (keystate[SDL_SCANCODE_S])
 		_controlat->girZX("AVALL", seconds_elapsed);
 
-
 	if (keystate[SDL_SCANCODE_Q])
 		_controlat->girXY("DRETA", seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_E])
 		_controlat->girXY("ESQUERRA", seconds_elapsed);
-
 
 	if (keystate[SDL_SCANCODE_N])
 		_controlat->accelera(seconds_elapsed);
@@ -64,7 +64,9 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 	_controlat->endavant(seconds_elapsed);
 
 	World::getInstance()->_camera->center = _controlat->getCenter();
-	World::getInstance()->	_camera->up = _controlat->getTop();
-	World::getInstance()->	_camera->eye = (World::getInstance()->_camera->eye - World::getInstance()->_camera->center).normalize() * _controlat->getDistOpt() + World::getInstance()->_camera->center;
+	World::getInstance()->_camera->up = _controlat->getTop();
+	World::getInstance()->_camera->eye = (World::getInstance()->_camera->eye
+			- World::getInstance()->_camera->center).normalize()
+			* _controlat->getDistOpt() + World::getInstance()->_camera->center;
 }
 

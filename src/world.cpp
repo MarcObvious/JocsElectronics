@@ -25,13 +25,12 @@ World::World() {
 
 World::~World() {
 	free (_camera);
-	free (_jugador);
 	free(_terreny);
 	free(_cel);
-	//for (unsigned int i = 0; i < _totes_entyties->size(); i++)
-	//	free (_totes_entyties->at(i));
-	for (unsigned int i = 0; i < _enemics.size(); i++)
-		free (_enemics.at(i));
+	for (unsigned int i = 0; i < _totes_entyties.size(); i++)
+		free(_totes_entyties.at(i));
+
+	free(_instance);
 }
 
 World* World::getInstance() {

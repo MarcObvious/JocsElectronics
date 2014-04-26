@@ -22,6 +22,7 @@ Game::Game(SDL_Window* window) {
 }
 
 Game::~Game(){
+	free(window);
     free (shader);
 	
 }

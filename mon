@@ -64,7 +64,7 @@
      #MIPMAP  1
      #POSICIO 2000 500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales 
-     ##  400           10             2               200              10              1.1            1.1              1.1          500           500      10          -1
+     ##  400           10             2               700              10              0.2            0.2              0.2         600           500      10          -1
      #FILLS 0
     
 #ENEMIC4
@@ -73,7 +73,7 @@
      #MIPMAP  1
      #POSICIO 500 1500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales 
-     ##  500           10             2               200              10               1.1            1.1             1.1        500            500      10          -1
+     ##  200           10             2               700              10               0.2           0.2             0.2        600            500      10          -1
      #FILLS 0
     
 #ENEMIC5
@@ -82,7 +82,7 @@
      #MIPMAP  1
      #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales 
-     ##  1000           10             2               200              10             1.1              1.1             0.1        500            500      10          -1
+     ##  1000           10             2               200              10             0.2             0.2             0.2        600            500      10          -1
      #FILLS 0
 
 #Afegir "modes d'enemics", es a dir codificació de 1 a 4 (per exemple) que defineix com es comporten els enmics. Que uns donin voltes a certa altura, altres a una altra zona, etc.

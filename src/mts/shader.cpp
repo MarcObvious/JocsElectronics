@@ -94,7 +94,7 @@ Shader* Shader::Load(const char* vsf, const char* psf)
 		return it->second;
 
 	Shader* sh = new Shader();
-	if (sh->load(vsf,psf) == NULL)
+	if (!sh->load(vsf,psf))
 		return NULL;
 	s_Shaders[name] = sh;
 	return sh;

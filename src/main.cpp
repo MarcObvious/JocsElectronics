@@ -110,7 +110,7 @@ void mainLoop() {
 }
 
 int main(int argc, char **argv) {
-	glutInit(&argc, argv);
+	//glutInit(&argc, argv);
 	//create the game window (WINDOW_WIDTH and WINDOW_HEIGHT are two macros defined in includes.h
 	SDL_Window* window = createWindow(WINDOW_CAPTION, WINDOW_WIDTH,
 			WINDOW_HEIGHT, WINDOW_FULLSCREEN);
