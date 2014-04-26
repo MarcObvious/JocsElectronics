@@ -46,6 +46,7 @@ class Entity {
 		void addChild(Entity* ent);
 		void removeChid(Entity* ent);
 
+		void setMatrix(Matrix44 m);
 };
 
 #endif /* ENTITY_H_ */

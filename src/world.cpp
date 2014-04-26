@@ -46,9 +46,10 @@ bool World::llegeixIcarrega(const char *dir) {
 	if (!my_parser.create(dir))
 		return 0;
 
+	int fills = 0;
 	my_parser.seek("#NUM_ELEMENTS");
-
 	int n = my_parser.getint();
+
 	for (int i = 0; i < n; i++) {
 		std::string mesh_dir;
 		std::string text_dir;
@@ -83,10 +84,16 @@ bool World::llegeixIcarrega(const char *dir) {
 			my_parser.seek("##");
 			_jugador = new Jugador();
 			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
+			my_parser.seek("#FILLS");
+			fills = my_parser.getint();
+			n += fills;
 		}
-		else if (i == 3) {
+		else if (i+1 < n-fills) {
 			EntityMesh* fill = new EntityMesh();
 			fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
+			Matrix44 mat = fill->getMatrix();
+		//	mat.rotateLocal(0.5,Vector3(0,0,1));
+			fill->setMatrix(mat);
 			fill->setParent(_jugador);
 			_jugador->addChild(fill);
 		}

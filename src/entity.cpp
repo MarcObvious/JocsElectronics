@@ -48,6 +48,9 @@ void Entity::removeChid(Entity* ent){
 void Entity::setParent(Entity* ent){
 	_parent = ent;
 }
+void Entity::setMatrix(Matrix44 m) {
+	_model = m;
+}
 
 Matrix44 Entity::getGlobalMatrix(){
 	if (_parent)

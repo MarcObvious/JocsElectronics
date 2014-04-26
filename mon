@@ -1,14 +1,16 @@
-#NUM_ELEMENTS 9
+#NUM_ELEMENTS 8
 #TERRENY
      #MESH assets/meshes/terreny/island
      #TEXTURA assets/textures/terreny/island_color.tga
      #MIPMAP  1
      #POSICIO 0 -1000 0
+     
 #CEL
      #MESH assets/meshes/cel/cel_dia
      #TEXTURA assets/textures/cel/cel_dia.tga
      #MIPMAP  1
      #POSICIO 0 0 0
+     
 #JUGADOR
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
@@ -16,11 +18,27 @@
      #POSICIO 0 0 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##   300           40           40            800            0               2               2               2               200     10          -1
-#FILLSJUGADOR
-     #MESH assets/meshes/x3_fighter
-     #TEXTURA assets/textures/x3_fighter.tga
-     #MIPMAP  1
-     #POSICIO -10 -10 -10
+     #FILLS 4
+        #FILLSJUGADOR
+             #MESH assets/meshes/misil  
+             #TEXTURA assets/textures/misil.tga
+             #MIPMAP  1
+             #POSICIO 10.5 0.8 0
+        #FILLSJUGADOR
+             #MESH assets/meshes/misil  
+             #TEXTURA assets/textures/misil.tga
+             #MIPMAP  1
+             #POSICIO 14.5 0 -1
+        #FILLSJUGADOR
+             #MESH assets/meshes/misil  
+             #TEXTURA assets/textures/misil.tga
+             #MIPMAP  1
+             #POSICIO 18.5 -0.8 -2
+        #FILLSJUGADOR
+             #MESH assets/meshes/misil  
+             #TEXTURA assets/textures/misil.tga
+             #MIPMAP  1
+             #POSICIO 22.5 -1.9 -3  
      
 #ENEMIC1
      #MESH assets/meshes/x3_fighter
@@ -29,6 +47,8 @@
      #POSICIO 200 200 200
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##  200           40             2               600              100               0.1         0.1            0.1               200     10          -1
+     #FILLS 0
+    
 #ENEMIC2
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
@@ -36,7 +56,8 @@
      #POSICIO 150 100 150 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##  200           10             2               300              10               0.1             0.1          0.1               200     10          -1
-
+     #FILLS 0
+    
 #ENEMIC3
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
@@ -44,7 +65,8 @@
      #POSICIO 2000 500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##  400           10             2               200              10              0.1            0.1              0.1             100     50          -1
-
+     #FILLS 0
+    
 #ENEMIC4
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
@@ -52,8 +74,8 @@
      #POSICIO 500 1500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##  500           10             2               200              10               0.1            0.1             0.1              100     50          -1
-
-
+     #FILLS 0
+    
 #ENEMIC5
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
@@ -61,7 +83,7 @@
      #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dany  #_cadencia  #_num_bales 
      ##  1000           10             2               200              10             0.1              0.1             0.1              100     50          -1
-
+     #FILLS 0
 
 #Afegir "modes d'enemics", es a dir codificació de 1 a 4 (per exemple) que defineix com es comporten els enmics. Que uns donin voltes a certa altura, altres a una altra zona, etc.
 
