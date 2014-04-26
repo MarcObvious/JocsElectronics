@@ -1,7 +1,7 @@
 #NUM_ELEMENTS 8
 #TERRENY
      #MESH assets/meshes/terreny/island
-     #TEXTURA assets/textures/terreny/island_color.tga
+     #TEXTURA assets/textures/terreny/island_color_luz.tga
      #MIPMAP  1
      #POSICIO 0 -1000 0
      

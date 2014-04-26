@@ -17,6 +17,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include <GL/glu.h>
+#include <GL/glut.h>
+#include <stdlib.h>
 
 //used to access opengl extensions
 //void* getGLProcAddress(const char*);

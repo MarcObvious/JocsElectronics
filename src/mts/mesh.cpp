@@ -290,3 +290,7 @@ void Mesh::createPlane(float size)
 	uvs.push_back( Vector2(0,0) );
 }
 
+void Mesh::renderBounds(){
+	glutWireSphere(bounds.at(0).distance(bounds.at(1)), 20, 10);
+}
+

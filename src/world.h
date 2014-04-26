@@ -37,7 +37,7 @@ private:
 
 	EntityMesh* _cel;
 
-	std::vector<MovingEntity*>* _totes_entyties;
+	std::vector<MovingEntity*> _totes_entyties;
 
 	World();
 

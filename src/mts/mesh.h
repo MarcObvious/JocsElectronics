@@ -10,6 +10,7 @@
 #define MESH_H
 
 #include <vector>
+#include "../includes.h"
 #include "../utils/text.h"
 #include "../utils/framework.h"
 
@@ -32,7 +33,7 @@ public:
 	void renderdebug();
 	bool meshdefitxer(char *ase, char *bin); //Si el binari del ase no existeix, crea el binari
 	bool loadASE(char *dir); //Carrega ase a partir d'un binari
-
+	void renderBounds();
 	void createPlane(float size);
 };
 

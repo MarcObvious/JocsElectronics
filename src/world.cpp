@@ -8,7 +8,7 @@ World::World() {
 	assert(_instance == NULL);
 	_instance = this;
          
-    _totes_entyties = NULL;
+    //_totes_entyties = NULL;
 	_camera = new Camera();
 	_camera->setPerspective(70, WINDOW_WIDTH / (float) WINDOW_HEIGHT, 0.1,	10000); //set the projection, we want to be perspective
 
@@ -84,6 +84,9 @@ bool World::llegeixIcarrega(const char *dir) {
 			my_parser.seek("##");
 			_jugador = new Jugador();
 			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
+
+			_totes_entyties.push_back(_jugador);
+
 			my_parser.seek("#FILLS");
 			fills = my_parser.getint();
 			n += fills;
@@ -92,23 +95,23 @@ bool World::llegeixIcarrega(const char *dir) {
 			EntityMesh* fill = new EntityMesh();
 			fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
 			Matrix44 mat = fill->getMatrix();
-		//	mat.rotateLocal(0.5,Vector3(0,0,1));
 			fill->setMatrix(mat);
 			fill->setParent(_jugador);
 			_jugador->addChild(fill);
 		}
 		else {
 			my_parser.seek("##");
-			MovingEntity* _enemy = new Enemic();
-			_enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
-			_enemics.push_back(_enemy );
+			MovingEntity* enemy = new Enemic();
+			enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
+			//_enemics.push_back(_enemy );
+			_totes_entyties.push_back(enemy);
 		}
 
 	}
 	//_totes_entyties->push_back(_cel);
 	//_totes_entyties->push_back(_terreny);
-	//_totes_entyties->push_back(_jugador);
 	
+
 	printPositions();
 
 	return true;
@@ -118,13 +121,13 @@ void World::printPositions(){
         //Hauria de recorrer el vector de entitats que ENCARA no esta fet.
         _terreny->printPosition();
         _cel->printPosition();
-        _jugador->printPosition();
-        for(unsigned int i = 0; i < _enemics.size(); ++i)
-		    _enemics.at(i)-> printPosition();      
+        //_jugador->printPosition();
+        for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
+		    _totes_entyties.at(i)-> printPosition();
 
 } 
 void World::update(double elapsed_time) {
-	_jugador->update(elapsed_time);
+	//_jugador->update(elapsed_time);
 
 	Vector3 cel = _cel->getPosition();
         
@@ -133,8 +136,8 @@ void World::update(double elapsed_time) {
         _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
         
 	//_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
-	for(unsigned int i = 0; i < _enemics.size(); ++i)
-		_enemics.at(i)-> update(elapsed_time);
+	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
+		_totes_entyties.at(i)-> update(elapsed_time);
 	
 	_camera->center = _jugador->getCenter();
 	_camera->up = _jugador->getTop();
@@ -150,8 +153,8 @@ void World::render() {
 
 	_terreny->render();
 
-	_jugador->render();
+	//_jugador->render();
 
-	for(unsigned int i = 0; i < _enemics.size(); ++i)
-		_enemics.at(i)-> render();
+	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
+		_totes_entyties.at(i)-> render();
 }
