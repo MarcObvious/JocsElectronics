@@ -1,14 +1,13 @@
 #include "world.h"
 
-int Entity::_last_id =0;
-MeshManager* MeshManager::_instance = NULL; //Definirla fora de la classe
+int Entity::_last_id = 0;  //començem a 0 el cnt d'entitats
+MeshManager* MeshManager::_instance = NULL; //Inicialitzem els Singletons
 TextureManager* TextureManager::_instance = NULL;
 
 World::World() {
 	assert(_instance == NULL);
 	_instance = this;
-         
-    //_totes_entyties = NULL;
+
 	_camera = new Camera();
 	_camera->setPerspective(70, WINDOW_WIDTH / (float) WINDOW_HEIGHT, 0.1,	10000); //set the projection, we want to be perspective
 
@@ -17,9 +16,9 @@ World::World() {
 	else
 		std::cout << "Mon ... NO OK" << std::endl;
 
-	_camera->center = _jugador->getCenter();
-	_camera->up = _jugador->getTop();
-	_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);
+	//_camera->center = _jugador->getCenter();
+	//_camera->up = _jugador->getTop();
+	//_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);
 
 }
 
@@ -117,28 +116,21 @@ bool World::llegeixIcarrega(const char *dir) {
 }
 
 void World::printPositions(){
-        //Hauria de recorrer el vector de entitats que ENCARA no esta fet.
+        //Recorrer totes les entitats treient posicions
         _terreny->printPosition();
         _cel->printPosition();
-        //_jugador->printPosition();
         for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
 		    _totes_entyties.at(i)-> printPosition();
 
 } 
 void World::update(double elapsed_time) {
-	//_jugador->update(elapsed_time);
 
-	Vector3 cel = _cel->getPosition();
-        
-       // std::cout << _camera->center.x << " X " << _camera->center.y << " Y " << _camera->center.z << " Z vs "
-         //      << cel.x << " X " << cel.y << " Y " << cel.z << " Z\n";
-    //    _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
-        
-	_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
-	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
+    _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
+    //Vector3 cel = _cel->getPosition(); //Hauria de ser mes suau, per alguna rao no acaba de funcionar ok.
+	//_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
+
+    for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
 		_totes_entyties.at(i)-> update(elapsed_time);
-	
-
 
 }
 void World::render() {
@@ -149,8 +141,6 @@ void World::render() {
 	glEnable(GL_DEPTH_TEST);  //Altre cop activat
 
 	_terreny->render();
-
-	//_jugador->render();
 
 	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
 		_totes_entyties.at(i)-> render();

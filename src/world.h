@@ -51,7 +51,7 @@ public:
 
 	void printPositions();
 
-	std::vector<MovingEntity*> _enemics;
+	std::vector<Controller*> _enemics;
 
 	MovingEntity* _jugador;
 

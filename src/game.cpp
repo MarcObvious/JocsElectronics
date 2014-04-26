@@ -6,7 +6,7 @@ World* World::_instance = NULL; //Mon
 
 Shader* shader = NULL;
 
-Jugador* jugador = NULL;
+Jugador* jugador = NULL;  //Controlador del jugador
 
 Game::Game(SDL_Window* window) {
 	this->window = window;
@@ -35,13 +35,10 @@ void Game::init(void) {
 	glEnable( GL_CULL_FACE); //render both sides of every triangle
 	glEnable( GL_DEPTH_TEST); //check the occlusions using the Z buffer
 
-	//create our camera
-
-
 	shader = new Shader();
 	shader->load("assets/shaders/simple.vs", "assets/shaders/simple.ps");
 
-	jugador = new Jugador(World::getInstance()->_jugador);
+	jugador = new Jugador(World::getInstance()->_jugador); //controlador amb el primer element controlable
 
 	//hide the cursor
 	SDL_ShowCursor(!mouse_locked); //hide or show the mouse
@@ -55,14 +52,8 @@ void Game::render(void) {
 	// Clear the window and the depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//Put the camera matrices on the stack of OpenGL (only for fixed rendering)
-	//camera->set();
-
-	//Draw out world
-	//drawGrid(500); //background grid
-
 	//draw the plane
-	glColor3f(1, 1, 1);
+//	glColor3f(1, 1, 1);
 	World::getInstance()->render();
 
 	//swap between front buffer and back buffer
@@ -79,23 +70,9 @@ void Game::update(double seconds_elapsed) {
 		this->mouse_position.y = window_height * 0.5;
 	}
 
-	 //the speed is defined by the seconds_elapsed so it goes constant
-
-//	//mouse input to rotate the cam
-//	if ((mouse_state & SDL_BUTTON_LEFT) || mouse_locked) //is left button pressed?
-//			{
-//		camera->rotate(speed * mouse_delta.x * 0.0005, Vector3(0, -1, 0));
-//		camera->rotate(speed * mouse_delta.y * 0.0005,
-//				camera->getLocalVector(Vector3(-1, 0, 0)));
-//	}
-
-//	async input to move the camera around
+	jugador->update(seconds_elapsed, keystate);	 //actualitza el controlador, amb les tecles que sigui
 	
-	
-	jugador->update(seconds_elapsed, keystate);
-	
-	
-	World::getInstance()->update(seconds_elapsed);
+	World::getInstance()->update(seconds_elapsed); //actualitza tot el mon
 }
 
 //Keyboard event handler (sync input)
