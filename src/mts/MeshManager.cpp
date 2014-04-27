@@ -17,6 +17,7 @@ MeshManager * MeshManager::getInstance() {
 		_instance = new MeshManager();
 	return _instance;
 }
+
 Mesh* MeshManager::get(std::string mesh_dir) {
 	std::map<std::string, Mesh*>::iterator it = _meshs_loaded->find(mesh_dir);
 

@@ -106,9 +106,6 @@ bool World::llegeixIcarrega(const char *dir) {
 		}
 
 	}
-	//_totes_entyties->push_back(_cel);
-	//_totes_entyties->push_back(_terreny);
-	
 
 	printPositions();
 
@@ -123,6 +120,7 @@ void World::printPositions(){
 		    _totes_entyties.at(i)-> printPosition();
 
 } 
+
 void World::update(double elapsed_time) {
 
     _cel->setPosition(Vector3(_camera->center.x, _camera->center.y-500, _camera->center.z));
@@ -133,6 +131,7 @@ void World::update(double elapsed_time) {
 		_totes_entyties.at(i)-> update(elapsed_time);
 
 }
+
 void World::render() {
 	_camera->set();
 

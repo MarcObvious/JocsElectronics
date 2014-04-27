@@ -4,18 +4,15 @@
 *   un patró singleton
 */
  
- 
-
 #ifndef MESHMANAGER_H_
 #define MESHMANAGER_H_
 
 #include <map>
 #include "mesh.h"
 #include <string>
-//#include "../manager.h"
 #include "../includes.h"
 
-class MeshManager{
+class MeshManager {
 
 private:
 
