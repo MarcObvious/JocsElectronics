@@ -46,3 +46,71 @@ tentity
 
 setParent(entity*parent)
 entity getchild(int)
+
+
+Cubemap
+shaders pel cel. Els pebrots. 
+fer mesh per a nuvols i particules
+utilitzar create plane de mesh.
+
+plane = new Mesh();
+plane = createplane
+
+cloud_text= new texture()
+cloud_text-> load(texture)
+cloud-> mesh = plane
+cloud _> texture = cloud_text;
+
+alpha test a entity
+has alpha? 
+bool has_alpha;
+A RENDER!
+if (alpha) {
+        glAlphaFunc (gl_gequal
+        glenalbe gl_alpha_test
+   
+ }
+        
+        glENable(GL_BLEND) Meslca amb radera
+        glBlendFunc(GL_SRC_ALPHA , GL_ONE_MINUS_ALPHA)
+        
+        
+        
+ tunejar el render per a fer billboards:render 
+ 
+ 
+ pla orientat a la camara:
+ getLocalVector (de camara) 
+ camera* camera ) Camera::instance
+ vector3  top = camera->getLocalvector(vector3(0,1,0);
+ vector3 rigth = camera->getLocalVector(vector3(1,0,0);
+ 
+ vector cantonades del pla a partir de la camara 
+ top-right
+ -top-rigth
+ top*-1 + rigth
+ top+rigth
+ 
+ tamany de bilboards. alearoti
+ 
+ gurdar distancies a la camera
+ 
+ for ( entities.size)
+ entities[].distance to camara = entitites -> modelg.gettranlation.distace(camara->eye) i aplicar sort
+ 
+ 
+ 
+ com ferho sense que els nubols no toquin el depth basfer
+ gldepthmask(false)
+ plane->render();
+ gldepthmask(true) 
+ 
+ 
+ 
+ 
+ bilboard
+ std::vector<vecto 3> points;
+ plane->verices.reserve(piints.size()*4)
+ plane->uvs.reserve(points.size()*4
+ for (points.size)
+        vertexs aprop uns d'altres
