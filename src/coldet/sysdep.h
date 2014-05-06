@@ -76,7 +76,7 @@ unsigned get_tick_count();
 double get_tick_count();
 #else
 
-#error No system specified (WIN32 GCC macintosh)
+//#error No system specified (WIN32 GCC macintosh)
 
 #endif
 
