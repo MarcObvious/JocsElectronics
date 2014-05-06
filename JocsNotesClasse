@@ -114,3 +114,79 @@ if (alpha) {
  plane->uvs.reserve(points.size()*4
  for (points.size)
         vertexs aprop uns d'altres
+        
+        
+        
+ BulletManager{
+ vector<Bullet>
+ Max
+   render
+   update
+Pool????
+
+class Bullet{
+    public:
+        vec3 pos
+        vec3 vel
+        char typedeffloat TTL
+        int author_id
+        Bullet() {TTL=0;};
+        update(dt);
+}
+
+
+std::Vector<Bullets> bullets;
+
+bullets.resize(MAX_bullet);
+for (int i....
+        bullet b;
+        b.pos.random(100);
+        b.TTL= 10; ?????
+        bullets.push_back(b);
+}
+
+Mesh bullets_mesh;
+bullets_mesh.vertices.resize(bullets.size());
+
+update{
+        for (size_t i = 0; i< bullets.size; 
+        bullet & b = bullets[i]
+        bullets_mesh.vertices[i] = b.pos;
+        b.TTL -= seconds_elapsed;
+        }
+        
+        
+        
+ render
+        
+        if b.TTL <= 0 continue; =?????
+        glPointsize();
+        glColor3g(1,1,1)
+        bullets_mesh.primitive(POINTS)
+        bullets_mesh.render(0, true)
+        glColor3f(1,1,1)
+G = vector3 (0,-1,0)
+        for(i->N)
+       
+       TRAJECTORIES PARABOLIQUES DE LES BALES
+      vel = (1, 1, )????
+      
+      bullets&b = bullets[i];
+      b.last_pos= b.pos;  ///Per fer colisions raig esfera (bounds)
+      b.pos = b.pos+b.vel*dt;
+      b.vel = b.vel+G*dt;
+      b.vel = b.vel-b.vel*0.1*dt;
+      
+      
+Colisions:
+
+
+disparar
+
+if keystate SDL_SCANCODE_SPACE>
+bullet b
+b.vel = camera->getlocalvector(vecto3(0,0,-19 * 1000);
+
+b.pos = camera->eye;
+b.TTL = 10
+for (
