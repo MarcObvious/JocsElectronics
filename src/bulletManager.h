@@ -30,7 +30,7 @@ public:
 
 	static BulletManager * getInstance(); 		//Retorna el Bulletmanager
 
-	Bullet* createBullet(std::string b_id);//Retorna una Bullet del vector, si no hi es la crea.
+	void createBullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type);//Retorna una Bullet del vector, si no hi es la crea.
 
 	void render();
 

@@ -32,16 +32,17 @@ void BulletManager::update( float elapsed_time ){
 
 }
 
-Bullet* BulletManager::createBullet(std::string b_id) {
+void BulletManager::createBullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type) {
 //	std::map<std::string, Bullet*>::iterator it = _bullets->find(b_id);
 //
 //	if (it != _bullets->end()) {    //La bullet ja existia
 //		return (it->second);
 //	} else {						//Creem nova bullet
-		Bullet* b = new Bullet(Vector3(0,0,0), Vector3(0,0,0), Vector3(0,0,0), 0,0,0, "caca");
+		Bullet* b = new Bullet( position,  last_position,  velocity , ttl,  power,  author_id,  type);
+		_bullets->push_back(b);
 //
 //		_bullets->insert(
 //				std::pair<std::string, Bullet*>(b_id, b));
-		return b;
+
 //	}
 }

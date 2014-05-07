@@ -23,6 +23,9 @@ Vector3 Entity::getPosition(){
 
 }
 
+int Entity::getId(){
+	return _id;
+}
 std::string Entity::getName() {
         return _name.str();
 }

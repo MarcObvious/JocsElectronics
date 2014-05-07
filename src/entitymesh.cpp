@@ -18,7 +18,7 @@ void EntityMesh::render() {
 	glPushMatrix();
 	_model.set();
 
-	_mesh->renderBounds();
+	//_mesh->renderBounds();
 
 	_texture->bind();
 	_mesh->render();

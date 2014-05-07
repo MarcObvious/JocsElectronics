@@ -30,4 +30,5 @@ void Bullet::render() {
 	//bullets_mesh.primitive(POINTS)
 	//bullets_mesh.render(0, true)
 	glColor3f(1,1,1);
+	glEnd();
 }
