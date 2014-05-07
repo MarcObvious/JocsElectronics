@@ -22,4 +22,5 @@ SUBDIRS := \
 src \
 src/utils \
 src/mts \
+src/coldet \
 

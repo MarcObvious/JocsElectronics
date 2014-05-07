@@ -12,29 +12,29 @@ tritri.o
 libcoldet.a: $(OBJS)
 	ar cr libcoldet.a $(OBJS)
 	
-box.o: box.cpp
-	g++ -c -DGCC -O2 box.cpp
+box.o: ../src/coldet/box.cpp
+	g++ -c -DGCC -O2 ../src/coldet/box.cpp
 
-box_bld.o: box_bld.cpp
-	g++ -c -DGCC -O2 box_bld.cpp
+box_bld.o: ../src/coldet/box_bld.cpp
+	g++ -c -DGCC -O2 ../src/coldet/box_bld.cpp
 
-cdmath3d.o: cdmath3d.cpp
-	g++ -c -DGCC -O2 cdmath3d.cpp
+cdmath3d.o: ../src/coldet/cdmath3d.cpp
+	g++ -c -DGCC -O2 ../src/coldet/cdmath3d.cpp
 
-coldet.o: coldet.cpp
-	g++ -c -DGCC -O2 coldet.cpp
+coldet.o: ../src/coldet/coldet.cpp
+	g++ -c -DGCC -O2 ../src/coldet/coldet.cpp
 
-coldet_bld.o: coldet_bld.cpp
-	g++ -c -DGCC -O2 coldet_bld.cpp
+coldet_bld.o: ../src/coldet/coldet_bld.cpp
+	g++ -c -DGCC -O2 ../src/coldet/coldet_bld.cpp
 
-multiobject.o: multiobject.cpp
-	g++ -c -DGCC -O2 multiobject.cpp
+multiobject.o: ../src/coldet/multiobject.cpp
+	g++ -c -DGCC -O2 ../src/coldet/multiobject.cpp
 
-mytritri.o: mytritri.cpp
-	g++ -c -DGCC -O2 mytritri.cpp
+mytritri.o: ../src/coldet/mytritri.cpp
+	g++ -c -DGCC -O2 ../src/coldet/mytritri.cpp
 
-sysdep.o: sysdep.cpp
-	g++ -c -DGCC -O2 sysdep.cpp
+sysdep.o: ../src/coldet/sysdep.cpp
+	g++ -c -DGCC -O2 ../src/coldet/sysdep.cpp
 
-tritri.o: tritri.c
-	gcc -c -DGCC -O2 tritri.c
+tritri.o: ../src/coldet/tritri.c
+	gcc -c -DGCC -O2 ../src/coldet/tritri.c

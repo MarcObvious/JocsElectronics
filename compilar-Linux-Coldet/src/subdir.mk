@@ -9,9 +9,8 @@ CPP_SRCS += \
 ../src/movingentity.cpp \
 ../src/world.cpp \
 ../src/enemic.cpp \
-../src/jugador.cpp \
-../src/bullet.cpp \
-../src/bulletManager.cpp
+../src/jugador.cpp 
+
 
 OBJS += \
 ./src/camera.o \
@@ -23,9 +22,8 @@ OBJS += \
 ./src/movingentity.o \
 ./src/world.o \
 ./src/enemic.o \
-./src/jugador.o \
-./src/bullet.o \
-./src/bulletManager.o
+./src/jugador.o 
+
 
 CPP_DEPS += \
 ./src/camera.d \
@@ -37,9 +35,8 @@ CPP_DEPS += \
 ./src/movingentity.d \
 ./src/world.d \
 ./src/enemic.d \
-./src/jugador.d \
-./src/bullet.d \
-./src/bulletManager.d
+./src/jugador.d 
+
 
 
 # Each subdirectory must supply rules for building sources it contributes
