@@ -8,12 +8,16 @@
 #define TEXTUREMANAGER_H_
 
 #include <string>
+#include <map>
+#include <cassert>
+
 #include "texture.h"
 
 class TextureManager{
 private:
 
 	static TextureManager* _instance;
+
 	std::map<std::string, Texture*>* _textures_loaded; //Vector textures carregades
 
 	TextureManager(); 								//Constructor

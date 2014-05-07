@@ -7,10 +7,11 @@
 #ifndef MESHMANAGER_H_
 #define MESHMANAGER_H_
 
-#include <map>
-#include "mesh.h"
 #include <string>
-#include "../includes.h"
+#include <map>
+#include <cassert>
+
+#include "mesh.h"
 
 class MeshManager {
 
