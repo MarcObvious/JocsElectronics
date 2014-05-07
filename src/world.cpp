@@ -17,7 +17,6 @@ World::World() {
 	else
 		std::cout << "Mon ... NO OK" << std::endl;
 
-	Bullet* b = (BulletManager::getInstance())->get("aha");
 
 	//_camera->center = _jugador->getCenter();
 	//_camera->up = _jugador->getTop();

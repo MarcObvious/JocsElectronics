@@ -11,6 +11,8 @@
 #include <map>
 #include <cassert>
 
+#include "utils/framework.h"
+
 #include "bullet.h"
 
 class BulletManager {
