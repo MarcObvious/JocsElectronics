@@ -190,3 +190,5 @@ b.vel = camera->getlocalvector(vecto3(0,0,-19 * 1000);
 b.pos = camera->eye;
 b.TTL = 10
 for (
+
+

@@ -15,6 +15,7 @@
 
 #include "jugador.h"
 #include "enemic.h"
+
 #include "movingentity.h"
 #include "entitymesh.h"
 #include "entity.h"
@@ -23,7 +24,7 @@
 
 #include "mts/TextureManager.h"
 #include "mts/MeshManager.h"
-
+#include "mts/mesh.h"
 #include "utils/text.h"
 #include <string>
 
