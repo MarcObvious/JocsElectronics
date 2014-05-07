@@ -8,7 +8,6 @@
 #define BULLETMANAGER_H_
 
 #include <string>
-#include <map>
 #include <cassert>
 
 #include "utils/framework.h"
@@ -21,7 +20,7 @@ private:
 
 	static BulletManager* _instance;
 
-	std::map<std::string, Bullet*>* _bullets; //Vector punters totes les bales
+	std::vector<Bullet*>* _bullets; //Vector punters totes les bales
 
 	BulletManager();
 
@@ -31,7 +30,13 @@ public:
 
 	static BulletManager * getInstance(); 		//Retorna el Bulletmanager
 
-	Bullet* get(std::string b_id);//Retorna una Bullet del vector, si no hi es la crea.
+	Bullet* createBullet(std::string b_id);//Retorna una Bullet del vector, si no hi es la crea.
+
+	void render();
+
+	void update( float elapsed_time);
+
+
 
 };
 
