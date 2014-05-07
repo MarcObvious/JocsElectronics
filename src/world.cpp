@@ -3,6 +3,7 @@
 int Entity::_last_id = 0;  //començem a 0 el cnt d'entitats
 MeshManager* MeshManager::_instance = NULL; //Inicialitzem els Singletons
 TextureManager* TextureManager::_instance = NULL;
+BulletManager* BulletManager::_instance = NULL;
 
 World::World() {
 	assert(_instance == NULL);
@@ -15,6 +16,7 @@ World::World() {
 		std::cout << "Mon carregat... OK" << std::endl;
 	else
 		std::cout << "Mon ... NO OK" << std::endl;
+
 
 	//_camera->center = _jugador->getCenter();
 	//_camera->up = _jugador->getTop();

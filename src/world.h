@@ -24,7 +24,11 @@
 
 #include "mts/TextureManager.h"
 #include "mts/MeshManager.h"
+
 #include "mts/mesh.h"
+#include "bulletManager.h"
+#include "bullet.h"
+
 #include "utils/text.h"
 #include <string>
 
