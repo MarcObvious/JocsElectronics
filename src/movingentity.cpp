@@ -1,7 +1,7 @@
 #include "movingentity.h"
 
 MovingEntity::MovingEntity() {
-	 _velocitat=0;
+	 	 _velocitat=0;
 		 _acceleraccio=0;
 		 _deceleraccio=0;
 

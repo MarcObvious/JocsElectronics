@@ -33,6 +33,7 @@ class Entity {
 
 		virtual void setParams(Vector3 pos);
 		std::string getName();
+		int getId();
 		void printPosition();
 		Vector3 getPosition();
 		void setPosition(Vector3 pos);

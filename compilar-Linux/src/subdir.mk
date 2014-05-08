@@ -1,5 +1,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/bullet.cpp \
+../src/bulletManager.cpp \
 ../src/camera.cpp \
 ../src/controller.cpp \
 ../src/entity.cpp \
@@ -12,6 +14,8 @@ CPP_SRCS += \
 ../src/jugador.cpp
 
 OBJS += \
+./src/bullet.o \
+./src/bulletManager.o \
 ./src/camera.o \
 ./src/controller.o \
 ./src/entity.o \
@@ -24,6 +28,8 @@ OBJS += \
 ./src/jugador.o
 
 CPP_DEPS += \
+./src/bullet.d \
+./src/bulletManager.d \
 ./src/camera.d \
 ./src/controller.d \
 ./src/entity.d \

@@ -132,6 +132,8 @@ void World::update(double elapsed_time) {
     for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
 		_totes_entyties.at(i)-> update(elapsed_time);
 
+    BulletManager::getInstance()->update(elapsed_time);
+
 }
 
 void World::render() {
@@ -145,4 +147,6 @@ void World::render() {
 
 	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
 		_totes_entyties.at(i)-> render();
+
+	BulletManager::getInstance()->render();
 }

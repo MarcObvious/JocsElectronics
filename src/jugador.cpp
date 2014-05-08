@@ -61,6 +61,9 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 	if (keystate[SDL_SCANCODE_M])
 		_controlat->decelera(seconds_elapsed);
 
+	if (keystate[SDL_SCANCODE_SPACE])
+			BulletManager::getInstance()->createBullet(_controlat->getCenter(),_controlat->getCenter(),Vector3(1,0,0)*_controlat->getVelocitat(),20,20, _controlat->getId(),"puta");
+
 	_controlat->endavant(seconds_elapsed);
 
 	World::getInstance()->_camera->center = _controlat->getCenter();

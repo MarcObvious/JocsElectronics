@@ -11,6 +11,8 @@
 #include "utils/framework.h"
 #include "movingentity.h"
 #include "world.h"
+#include "bulletManager.h"
+
 #include <string>
 
 class Jugador : public Controller {

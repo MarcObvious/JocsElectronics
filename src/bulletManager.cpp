@@ -4,12 +4,12 @@
 BulletManager::BulletManager() {
 	assert(_instance == NULL); //Si no es cumpleix PETA
 	_instance = this;
-	_bullets = new std::map<std::string, Bullet*>();
+	_bullets = new std::vector<Bullet*>();
 
 }
 
 BulletManager::~BulletManager() {
-	    _bullets->clear();
+	   // _bullets->clear();
 	    free(_instance);
 }
 
@@ -19,16 +19,30 @@ BulletManager * BulletManager::getInstance() {
 	return _instance;
 }
 
-Bullet* BulletManager::get(std::string b_id) {
-	std::map<std::string, Bullet*>::iterator it = _bullets->find(b_id);
+void BulletManager::render() {
 
-	if (it != _bullets->end()) {    //La bullet ja existia
-		return (it->second);
-	} else {						//Creem nova bullet
-		Bullet* b = new Bullet();
+	for(unsigned int i = 0; i < _bullets->size(); i++)
+			_bullets->at(i)->render();
+}
 
-		_bullets->insert(
-				std::pair<std::string, Bullet*>(b_id, b));
-		return b;
-	}
+void BulletManager::update( float elapsed_time ){
+
+	for(unsigned int i = 0; i < _bullets->size(); i++)
+		_bullets->at(i)->update( elapsed_time );
+
+}
+
+void BulletManager::createBullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type) {
+//	std::map<std::string, Bullet*>::iterator it = _bullets->find(b_id);
+//
+//	if (it != _bullets->end()) {    //La bullet ja existia
+//		return (it->second);
+//	} else {						//Creem nova bullet
+		Bullet* b = new Bullet( position,  last_position,  velocity , ttl,  power,  author_id,  type);
+		_bullets->push_back(b);
+//
+//		_bullets->insert(
+//				std::pair<std::string, Bullet*>(b_id, b));
+
+//	}
 }
