@@ -27,9 +27,14 @@ void BulletManager::render() {
 
 void BulletManager::update( float elapsed_time ){
 
-	for(unsigned int i = 0; i < _bullets->size(); i++)
+	for(unsigned int i = 0; i < _bullets->size(); i++) {
 		_bullets->at(i)->update( elapsed_time );
+//		if ( !_bullets->at(i)->getTTL() ) {
+//			free( _bullets->at(i) );
+//			_bullets->resize(sizeof(Bullet*));
+//		}
 
+}
 }
 
 void BulletManager::createBullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type) {

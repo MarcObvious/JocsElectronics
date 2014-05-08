@@ -9,7 +9,12 @@ Bullet::Bullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float 
 	 _power = power;
 	 _author_id = author_id;
 	 _type = type;
+}
 
+
+bool Bullet::getTTL() {
+	if ( _ttl < 0 ) return false;
+	return true;
 }
 
 void Bullet::update( float elapsed_time ) {
@@ -19,12 +24,13 @@ void Bullet::update( float elapsed_time ) {
     _position = _position+_velocity*elapsed_time;
     _velocity = _velocity+G*elapsed_time;
     _velocity = _velocity-_velocity*0.1*elapsed_time;
+    _ttl -= elapsed_time;
 
 }
 
 void Bullet::render() {
 	glPointSize(10);
-	glColor3f(255,255,255);
+	glColor3f(1,0,0);
 	glBegin(GL_POINTS);
 	glVertex3f(_position.x, _position.y, _position.z);
 	//bullets_mesh.primitive(POINTS)
