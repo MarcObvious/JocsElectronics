@@ -12,7 +12,7 @@ Bullet::Bullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float 
 }
 
 
-bool Bullet::getTTL() {
+bool Bullet::viva() {
 	if ( _ttl < 0 ) return false;
 	return true;
 }

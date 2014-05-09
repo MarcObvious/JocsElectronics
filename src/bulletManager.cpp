@@ -5,6 +5,7 @@ BulletManager::BulletManager() {
 	assert(_instance == NULL); //Si no es cumpleix PETA
 	_instance = this;
 	_bullets = new std::vector<Bullet*>();
+	_bullets->reserve(500);
 
 }
 
@@ -22,17 +23,15 @@ BulletManager * BulletManager::getInstance() {
 void BulletManager::render() {
 
 	for(unsigned int i = 0; i < _bullets->size(); i++)
+		if ( _bullets->at(i)->viva() ) //Dibuixa nomes les que el temps de vida sigui positiu
 			_bullets->at(i)->render();
+
 }
 
 void BulletManager::update( float elapsed_time ){
 
 	for(unsigned int i = 0; i < _bullets->size(); i++) {
 		_bullets->at(i)->update( elapsed_time );
-//		if ( !_bullets->at(i)->getTTL() ) {
-//			free( _bullets->at(i) );
-//			_bullets->resize(sizeof(Bullet*));
-//		}
 
 }
 }
