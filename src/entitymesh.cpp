@@ -10,6 +10,8 @@ void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
 		Entity::setParams(posinicial);
 		_mesh = (MeshManager::getInstance())->get(mesh_dir);
 		_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
+		_bounds.resize(2);
+		_bounds = (MeshManager::getInstance())->get(mesh_dir)->getBounds();
 }
 
 

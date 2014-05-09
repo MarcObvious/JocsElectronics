@@ -31,6 +31,7 @@ public:
 	void clear();
 	void render();
 	void renderdebug();
+	std::vector<Vector3> getBounds();
 	bool meshdefitxer(char *ase, char *bin); //Si el binari del ase no existeix, crea el binari
 	bool loadASE(char *dir); //Carrega ase a partir d'un binari
 	void renderBounds();
