@@ -1,6 +1,6 @@
 #include "jugador.h"
 Jugador::Jugador(MovingEntity* contr) :
-		Controller(contr) {
+Controller(contr) {
 	_apunta = 0;
 	_controlat = contr;
 	//_name << " i es jugador";
@@ -62,7 +62,7 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 		_controlat->decelera(seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_SPACE])
-			BulletManager::getInstance()->createBullet(_controlat->getCenter(),_controlat->getTop(), World::getInstance()->_camera->getLocalVector(Vector3(0,0,-4 * _controlat->getVelocitat())),10,20, _controlat->getId(),"puta");
+		BulletManager::getInstance()->createBullet(_controlat->getCenter(),_controlat->getTop(), World::getInstance()->_camera->getLocalVector(Vector3(0,0,-8 * _controlat->getVelocitat())),10,20, _controlat->getId(),"puta");
 
 	_controlat->endavant(seconds_elapsed);
 

@@ -19,7 +19,7 @@ bool Bullet::viva() {
 
 void Bullet::update( float elapsed_time ) {
 
-	Vector3 G = Vector3(0,-1,0);
+	Vector3 G = Vector3(0,-50,0);
     _last_position= _position;  ///Per fer colisions raig esfera (bounds)
     _position = _position+_velocity*elapsed_time;
     _velocity = _velocity+G*elapsed_time;

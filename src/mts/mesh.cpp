@@ -217,6 +217,7 @@ bool Mesh::loadASE(char *dir)
 	return 0;
 
 }
+
 void Mesh::render()
 {
 	assert(vertices.size() && "No vertices in this mesh");
@@ -249,9 +250,11 @@ void Mesh::render()
 void Mesh::renderdebug() {
 	if (normals.size() == vertices.size())
 		glColor3d(0, 0, 1);
+
 	else glColor3d(1, 1, 1);
 
 	glPointSize(3);
+
 	glBegin(GL_LINE_STRIP);
 
 	for (unsigned int i = 0; i<vertices.size(); i++)
