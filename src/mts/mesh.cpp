@@ -47,7 +47,7 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 		my_parser.seek("*MESH_VERTEX");
 		my_parser.getint();
 		double x = my_parser.getfloat();
-		double z = -my_parser.getfloat();
+		double z = my_parser.getfloat();
 		double y = my_parser.getfloat();
 		vertex_index.push_back(Vector3(x, y, z));
 
