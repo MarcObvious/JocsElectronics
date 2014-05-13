@@ -23,6 +23,10 @@ void Mesh::clear()
 	bounds.clear();
 }
 
+std::vector<Vector3> Mesh::getBounds() {
+	return bounds;
+}
+
 bool Mesh::meshdefitxer(char *ase, char *bin)
 {
 	text my_parser;
@@ -131,9 +135,11 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 
 	//Bounds
 	bounds.resize(2);
+
+	//Bounds halfsize
 	bounds[0] = (min.length() > max.length()) ? min : max;
 
-
+	//Bounds center
 	bounds[1].x = (min.x + max.x)*0.5;
 	bounds[1].y = (min.y + max.y)*0.5;
 	bounds[1].z = (min.z + max.z)*0.5;
@@ -211,6 +217,7 @@ bool Mesh::loadASE(char *dir)
 	return 0;
 
 }
+
 void Mesh::render()
 {
 	assert(vertices.size() && "No vertices in this mesh");
@@ -243,9 +250,11 @@ void Mesh::render()
 void Mesh::renderdebug() {
 	if (normals.size() == vertices.size())
 		glColor3d(0, 0, 1);
+
 	else glColor3d(1, 1, 1);
 
 	glPointSize(3);
+
 	glBegin(GL_LINE_STRIP);
 
 	for (unsigned int i = 0; i<vertices.size(); i++)
@@ -266,12 +275,12 @@ void Mesh::createPlane(float size)
 
 	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 
-	vertices.push_back( Vector3(size,0,size) );
-	vertices.push_back( Vector3(size,0,-size) );
-	vertices.push_back( Vector3(-size,0,-size) );
-	vertices.push_back( Vector3(-size,0,size) );
-	vertices.push_back( Vector3(size,0,size) );
-	vertices.push_back( Vector3(-size,0,-size) );
+	vertices.push_back( Vector3(size,size,0) );
+	vertices.push_back( Vector3(size,-size,0) );
+	vertices.push_back( Vector3(-size,-size,0) );
+	vertices.push_back( Vector3(-size,size,0) );
+	vertices.push_back( Vector3(size,size,0) );
+	vertices.push_back( Vector3(-size,-size,0) );
 
 	//all of them have the same normal
 	normals.push_back( Vector3(0,1,0) );
@@ -291,6 +300,6 @@ void Mesh::createPlane(float size)
 }
 
 void Mesh::renderBounds(){
-	glutWireSphere(bounds.at(0).distance(bounds.at(1)), 20, 10);
+	glutWireSphere(bounds.at(0).distance(bounds.at(1)) / 1.1, 20, 10);
 }
 
