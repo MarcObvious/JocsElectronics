@@ -24,8 +24,14 @@ public:
 
 	virtual void setParams(std::string mesh_dir, std::string text_dir,
 			bool mipmapping, Vector3 posinicial);
+
+	void setParams(float tamany, std::string text_dir,
+			bool mipmapping, Vector3 posinicial); //per a plans  i altres formes (nubols??).
+
 	void render();
+
 	Matrix44 getMatrix();
+
 	Vector3 getTop();
 
 	Vector3 getCenter();

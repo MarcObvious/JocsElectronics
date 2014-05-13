@@ -275,12 +275,12 @@ void Mesh::createPlane(float size)
 
 	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 
-	vertices.push_back( Vector3(size,0,size) );
-	vertices.push_back( Vector3(size,0,-size) );
-	vertices.push_back( Vector3(-size,0,-size) );
-	vertices.push_back( Vector3(-size,0,size) );
-	vertices.push_back( Vector3(size,0,size) );
-	vertices.push_back( Vector3(-size,0,-size) );
+	vertices.push_back( Vector3(size,size,0) );
+	vertices.push_back( Vector3(size,-size,0) );
+	vertices.push_back( Vector3(-size,-size,0) );
+	vertices.push_back( Vector3(-size,size,0) );
+	vertices.push_back( Vector3(size,size,0) );
+	vertices.push_back( Vector3(-size,-size,0) );
 
 	//all of them have the same normal
 	normals.push_back( Vector3(0,1,0) );

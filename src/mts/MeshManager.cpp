@@ -8,14 +8,22 @@ MeshManager::MeshManager() {
 }
 
 MeshManager::~MeshManager() {
-	    _meshs_loaded->clear();
-	    free(_instance);
+	_meshs_loaded->clear();
+	free(_instance);
 }
 
 MeshManager * MeshManager::getInstance() {
 	if (_instance == NULL)
 		_instance = new MeshManager();
 	return _instance;
+}
+
+Mesh* MeshManager::get(float tamany) {
+	Mesh* mesh_nova = new Mesh();
+	mesh_nova->createPlane(tamany);
+	_meshs_loaded->insert(
+			std::pair<std::string, Mesh*>("pla", mesh_nova));
+	return mesh_nova;
 }
 
 Mesh* MeshManager::get(std::string mesh_dir) {
@@ -28,7 +36,7 @@ Mesh* MeshManager::get(std::string mesh_dir) {
 
 		if (!mesh_nova->loadASE((char*) mesh_dir.c_str())) {
 			std::cout << "ERROR AL LLEGIR MESH: " << mesh_dir.c_str()
-							<< std::endl;
+									<< std::endl;
 			exit(0);
 		}
 

@@ -14,6 +14,14 @@ void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
 		_bounds = (MeshManager::getInstance())->get(mesh_dir)->getBounds();
 }
 
+void EntityMesh::setParams(float tamany, std::string text_dir,
+		bool mipmapping, Vector3 posinicial) {
+
+		Entity::setParams(posinicial);
+		_mesh = (MeshManager::getInstance())->get(tamany);
+		_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
+
+}
 
 void EntityMesh::render() {
 
