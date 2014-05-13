@@ -26,7 +26,7 @@ public:
 	
 	Bullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type);
 
-	bool getTTL();
+	bool viva(); //Si es false, la bullet no es dibuixara
 
 	void update( float elapsed_time );
 

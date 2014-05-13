@@ -17,14 +17,21 @@ protected:
 	Mesh* _mesh = NULL;
 	Texture* _texture = NULL;
 	Vector3 _color ; //per saber quan disparo a algu si faig mal o no. "proves"
+	std::vector<Vector3> _bounds; //bounds, el primer element es el halfsize, el segon center
 public:
 	EntityMesh();
 	virtual ~EntityMesh() {}
 
 	virtual void setParams(std::string mesh_dir, std::string text_dir,
 			bool mipmapping, Vector3 posinicial);
+
+	void setParams(float tamany, std::string text_dir,
+			bool mipmapping, Vector3 posinicial); //per a plans  i altres formes (nubols??).
+
 	void render();
+
 	Matrix44 getMatrix();
+
 	Vector3 getTop();
 
 	Vector3 getCenter();

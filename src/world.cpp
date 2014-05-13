@@ -94,8 +94,8 @@ bool World::llegeixIcarrega(const char *dir) {
 		else if (i+1 < n-fills) {
 			EntityMesh* fill = new EntityMesh();
 			fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
-			Matrix44 mat = fill->getMatrix();
-			fill->setMatrix(mat);
+			//Matrix44 mat = fill->getMatrix(); WTF era això??¿?¿?¿
+			//fill->setMatrix(mat);
 			fill->setParent(_jugador);
 			_jugador->addChild(fill);
 		}
@@ -108,6 +108,21 @@ bool World::llegeixIcarrega(const char *dir) {
 		}
 
 	}
+
+	EntityMesh* punt_mira = new EntityMesh();
+	punt_mira->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20));
+	punt_mira->setParent(_jugador);
+	_jugador->addChild(punt_mira);
+
+	EntityMesh* punt_mira2 = new EntityMesh();
+		punt_mira2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22));
+		punt_mira2->setParent(_jugador);
+		_jugador->addChild(punt_mira2);
+
+		EntityMesh* punt_mira3 = new EntityMesh();
+				punt_mira3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24));
+				punt_mira3->setParent(_jugador);
+				_jugador->addChild(punt_mira3);
 
 	printPositions();
 

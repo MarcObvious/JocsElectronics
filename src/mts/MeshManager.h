@@ -29,6 +29,8 @@ public:
 
 	static MeshManager * getInstance(); 		//Retorna el Meshmanager
 
+	Mesh* get(float tamany); //retorna una mesh plana
+
 	Mesh* get(std::string mesh_dir);//Retorna una mesh del vector, si no hi es la crea.
 
 };
