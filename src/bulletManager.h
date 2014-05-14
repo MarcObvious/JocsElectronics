@@ -22,6 +22,10 @@ private:
 
 	std::vector<Bullet*>* _bullets; //Vector punters totes les bales
 
+	int _pos; //posicio al vector de bales max 1000
+
+	bool _init;
+
 	BulletManager();
 
 	~BulletManager();

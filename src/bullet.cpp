@@ -11,6 +11,15 @@ Bullet::Bullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float 
 	_type = type;
 }
 
+void Bullet::set(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type){
+	_position = position;
+		_last_position = last_position;
+		_velocity = velocity;
+		_ttl = ttl;
+		_power = power;
+		_author_id = author_id;
+		_type = type;
+}
 
 bool Bullet::viva() {
 	if ( _ttl <= 0 ) return false;
