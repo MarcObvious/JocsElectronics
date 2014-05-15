@@ -11,7 +11,7 @@ Game* game = NULL;
 
 SDL_Window* createWindow(const char* caption, int width, int height,
 		bool fullscreen = false) {
-	int bpp = 0;
+	//int bpp = 0;
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 

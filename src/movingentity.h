@@ -60,7 +60,7 @@ public:
 
 	 void endavant(double elapsed_time);
 
-	 virtual void update(double elapsed_time){};
+//	 virtual void update(double elapsed_time){};
 
 };
 
