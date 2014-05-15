@@ -5,10 +5,10 @@ EntityBoard::EntityBoard() {
 		 _name << "board";
 
 	}
-void EntityBoard::setParams(std::string mesh_dir, std::string text_dir,
-		bool mipmapping, Vector3 posinicial, float opt, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel){
+void EntityBoard::setParams(float tamany, std::string text_dir,
+		bool mipmapping, Vector3 posinicial){
 
-	EntityMesh::setParams(mesh_dir, text_dir, mipmapping, posinicial);
+	EntityMesh::setParams(tamany, text_dir, mipmapping, posinicial);
 
 
 }

@@ -8,6 +8,7 @@
 #define ENTITYBOARD_H_
 
 #include "entitymesh.h"
+#include "utils/utils.h"
 #include "utils/framework.h"
 #include <string>
 
@@ -18,10 +19,26 @@ protected:
 public:
 	EntityBoard();
 
-	virtual void setParams(std::string mesh_dir, std::string text_dir,
-			bool mipmapping, Vector3 posinicial, float opt, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel);
+	void setParams(float tamany, std::string text_dir,
+			bool mipmapping, Vector3 posinicial);
 
 	 virtual ~EntityBoard(){};
+
+	 void render(){
+		 glPushMatrix();
+		 	_model.set();
+
+		 	//_mesh->renderBounds();
+		 	glDepthMask(false);
+		 	_texture->bind();
+		 	_mesh->render();
+
+		 	_texture->unbind();
+		 	glDepthMask(true);
+
+		 	glPopMatrix();
+	 }
+
 
 
 
