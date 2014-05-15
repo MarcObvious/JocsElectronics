@@ -5,7 +5,9 @@ BulletManager::BulletManager() {
 	assert(_instance == NULL); //Si no es cumpleix PETA
 	_instance = this;
 	_bullets = new std::vector<Bullet*>();
-	_bullets->reserve(500);
+	_bullets->reserve(1000);
+	_pos = 0;
+	_init = true;
 
 }
 
@@ -39,8 +41,21 @@ void BulletManager::update( float elapsed_time ){
 }
 
 void BulletManager::createBullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type) {
-	//Creem nova bullet
-	Bullet* b = new Bullet( position,  last_position,  velocity , ttl,  power,  author_id,  type);
-	_bullets->push_back(b);
+	if (!_init) { //Si el vector ja ha arribat a 1000, sobreescrivim bullets
+		_bullets->at(_pos)->set(position,  last_position,  velocity , ttl,  power,  author_id,  type);
+		++_pos;
+	}
+	//Creem nova bullet fins a 1000
+	if (_pos < 1000 && _init) {
+		Bullet* b = new Bullet( position,  last_position,  velocity , ttl,  power,  author_id,  type);
+		_bullets->push_back(b);
+		++_pos;
+	}
+	//Si arribem a 1000 tornem a començar el compte
+	if (_pos == 1000) {
+		_pos = 0;
+		_init = false;
+	}
+
 
 }
