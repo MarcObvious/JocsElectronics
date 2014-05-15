@@ -109,20 +109,26 @@ bool World::llegeixIcarrega(const char *dir) {
 
 	}
 	//HA DE SER UN BILLBOARD!!! IGUAL QUE ELS NUVOLS!!!!!!!!!!!!
+
 	EntityMesh* punt_mira = new EntityBoard();
-	punt_mira->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20));
+	punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0,0,60));
 	punt_mira->setParent(_jugador);
 	_jugador->addChild(punt_mira);
 
-	EntityMesh* punt_mira2 = new EntityBoard();
-		punt_mira2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22));
-		punt_mira2->setParent(_jugador);
-		_jugador->addChild(punt_mira2);
+	EntityMesh* foc = new EntityBoard();
+	foc->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20));
+	foc->setParent(_jugador);
+	_jugador->addChild(foc);
 
-		EntityMesh* punt_mira3 = new EntityBoard();
-				punt_mira3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24));
-				punt_mira3->setParent(_jugador);
-				_jugador->addChild(punt_mira3);
+	EntityMesh* foc2 = new EntityBoard();
+		foc2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22));
+		foc2->setParent(_jugador);
+		_jugador->addChild(foc2);
+
+		EntityMesh* foc3 = new EntityBoard();
+				foc3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24));
+				foc3->setParent(_jugador);
+				_jugador->addChild(foc3);
 
 	printPositions();
 
