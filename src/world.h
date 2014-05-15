@@ -16,6 +16,7 @@
 #include "jugador.h"
 #include "enemic.h"
 
+#include "entityboard.h"
 #include "movingentity.h"
 #include "entitymesh.h"
 #include "entity.h"

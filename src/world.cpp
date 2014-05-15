@@ -109,17 +109,17 @@ bool World::llegeixIcarrega(const char *dir) {
 
 	}
 	//HA DE SER UN BILLBOARD!!! IGUAL QUE ELS NUVOLS!!!!!!!!!!!!
-	EntityMesh* punt_mira = new EntityMesh();
+	EntityMesh* punt_mira = new EntityBoard();
 	punt_mira->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20));
 	punt_mira->setParent(_jugador);
 	_jugador->addChild(punt_mira);
 
-	EntityMesh* punt_mira2 = new EntityMesh();
+	EntityMesh* punt_mira2 = new EntityBoard();
 		punt_mira2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22));
 		punt_mira2->setParent(_jugador);
 		_jugador->addChild(punt_mira2);
 
-		EntityMesh* punt_mira3 = new EntityMesh();
+		EntityMesh* punt_mira3 = new EntityBoard();
 				punt_mira3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24));
 				punt_mira3->setParent(_jugador);
 				_jugador->addChild(punt_mira3);
