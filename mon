@@ -1,4 +1,4 @@
-#NUM_ELEMENTS 8
+#NUM_ELEMENTS 9
 #TERRENY
      #MESH assets/meshes/terreny/island
      #TEXTURA assets/textures/terreny/island_color_luz.tga
@@ -10,7 +10,11 @@
      #TEXTURA assets/textures/cel/cel_dia.tga
      #MIPMAP  1
      #POSICIO 0 0 0
-     
+#NUVOLS
+     #MESH NO
+     #TEXTURA assets/textures/cel/clouds.tga
+     #MIPMAP  1
+     #POSICIO 1000 100 0  Cas especial Numero-Tamanybase-alpha     
 #JUGADOR
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga

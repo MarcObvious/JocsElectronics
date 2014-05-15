@@ -55,6 +55,8 @@ public:
 	
 	std::vector<MovingEntity*> _totes_entyties;
 
+	std::vector<EntityBoard*> _nuvols;
+
 	void printPositions();
 
 	std::vector<Controller*> _enemics;

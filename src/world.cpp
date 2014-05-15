@@ -74,13 +74,20 @@ bool World::llegeixIcarrega(const char *dir) {
 
 		if (i == 0) { //terreny
 			_terreny = new EntityMesh();
-			_terreny->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
+			_terreny->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz),false);
 		}
 		else if (i == 1) {//cel
 			_cel = new EntityMesh();
-			_cel->setParams(mesh_dir, text_dir, mip, Vector3(_camera->center.x,_camera->center.y, _camera->center.z));
+			_cel->setParams(mesh_dir, text_dir, mip, Vector3(_camera->center.x,_camera->center.y, _camera->center.z),false);
 		}
-		else if (i == 2){ //elements mobils començant per jugador principal
+		else if (i == 2) {
+			for (unsigned int j = 0; j < posx; j++) {
+				EntityBoard* nuvol = new EntityBoard();
+				nuvol->setParams(posy, text_dir, mip, Vector3(posx, posy, posz),true);
+				_nuvols.push_back(nuvol);
+			}
+		}
+		else if (i == 3){ //elements mobils començant per jugador principal
 			my_parser.seek("##");
 			_jugador = new MovingEntity();
 			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
@@ -93,7 +100,7 @@ bool World::llegeixIcarrega(const char *dir) {
 		}
 		else if (i+1 < n-fills) {
 			EntityMesh* fill = new EntityMesh();
-			fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz));
+			fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz),false);
 			//Matrix44 mat = fill->getMatrix(); WTF era això??¿?¿?¿
 			//fill->setMatrix(mat);
 			fill->setParent(_jugador);
@@ -110,25 +117,26 @@ bool World::llegeixIcarrega(const char *dir) {
 	}
 	//HA DE SER UN BILLBOARD!!! IGUAL QUE ELS NUVOLS!!!!!!!!!!!!
 
-	EntityMesh* punt_mira = new EntityBoard();
-	punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0,0,60));
-	punt_mira->setParent(_jugador);
-	_jugador->addChild(punt_mira);
+	//HAURIA DE SER FILL DE CAMERA; DEPEN NOMES DEL PUNT DE VISTA
+	EntityMesh* punt_mira = new EntityMesh();
+		punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0,0,60), true);
+		punt_mira->setParent(_jugador);
+		_jugador->addChild(punt_mira);
 
 	EntityMesh* foc = new EntityBoard();
-	foc->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20));
-	foc->setParent(_jugador);
-	_jugador->addChild(foc);
+		foc->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20), true);
+		foc->setParent(_jugador);
+		_jugador->addChild(foc);
 
 	EntityMesh* foc2 = new EntityBoard();
-		foc2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22));
+		foc2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22),true);
 		foc2->setParent(_jugador);
 		_jugador->addChild(foc2);
 
-		EntityMesh* foc3 = new EntityBoard();
-				foc3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24));
-				foc3->setParent(_jugador);
-				_jugador->addChild(foc3);
+	EntityMesh* foc3 = new EntityBoard();
+		foc3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24),true);
+		foc3->setParent(_jugador);
+		_jugador->addChild(foc3);
 
 	printPositions();
 

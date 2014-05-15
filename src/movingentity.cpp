@@ -19,7 +19,7 @@ MovingEntity::MovingEntity() {
 void MovingEntity::setParams(std::string mesh_dir, std::string text_dir,
 		bool mipmapping, Vector3 posinicial, float opt, float aZY, float aZX, float aXY, float min, float max, float decc, float acc, float vel){
 
-	EntityMesh::setParams(mesh_dir, text_dir, mipmapping, posinicial);
+	EntityMesh::setParams(mesh_dir, text_dir, mipmapping, posinicial,false);
 
 	_velocitat = vel;
 	_acceleraccio = acc;

@@ -20,29 +20,13 @@ public:
 	EntityBoard();
 
 	void setParams(float tamany, std::string text_dir,
-			bool mipmapping, Vector3 posinicial);
+			bool mipmapping, Vector3 posinicial, bool alpha);
 
 	 virtual ~EntityBoard(){};
 
-	 void render(){
-		 glPushMatrix();
-		 	_model.set();
-
-		 	//_mesh->renderBounds();
-
-		 	glEnable(GL_BLEND);
-		 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			//glDepthMask(true);
-		 	glBlendFunc(GL_SRC_ALPHA, GL_ONE); //FREAKING FIRE
-		 	_texture->bind();
-		 	_mesh->render();
-
-		 	_texture->unbind();
-		 	//glDepthMask(false);
-		 	glDisable(GL_BLEND);
-
-		 	glPopMatrix();
-	 }
+//	 void render(){
+//
+//	 }
 
 
 
