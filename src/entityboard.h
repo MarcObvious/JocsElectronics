@@ -29,16 +29,16 @@ public:
 		 	_model.set();
 
 		 	//_mesh->renderBounds();
-		// 	glDepthMask(false);
+
 		 	glEnable(GL_BLEND);
 		 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+			//glDepthMask(true);
+		 	glBlendFunc(GL_SRC_ALPHA, GL_ONE); //FREAKING FIRE
 		 	_texture->bind();
 		 	_mesh->render();
 
 		 	_texture->unbind();
-		 	//glDepthMask(true);
+		 	//glDepthMask(false);
 		 	glDisable(GL_BLEND);
 
 		 	glPopMatrix();

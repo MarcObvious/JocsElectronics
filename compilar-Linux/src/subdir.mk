@@ -11,6 +11,7 @@ CPP_SRCS += \
 ../src/movingentity.cpp \
 ../src/world.cpp \
 ../src/enemic.cpp \
+../src/entityboard.cpp \
 ../src/jugador.cpp
 
 OBJS += \
@@ -25,6 +26,7 @@ OBJS += \
 ./src/movingentity.o \
 ./src/world.o \
 ./src/enemic.o \
+./src/entityboard.o \
 ./src/jugador.o
 
 CPP_DEPS += \
@@ -39,6 +41,7 @@ CPP_DEPS += \
 ./src/movingentity.d \
 ./src/world.d \
 ./src/enemic.d \
+./src/entityboard.d \
 ./src/jugador.d
 
 
