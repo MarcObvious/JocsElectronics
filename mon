@@ -12,9 +12,9 @@
      #POSICIO 0 0 0
 #NUVOLS
      #MESH NO
-     #TEXTURA assets/textures/cel/clouds.tga
+     #TEXTURA assets/textures/cel/cloud.tga
      #MIPMAP  1
-     #POSICIO 1000 100 0  Cas especial Numero-Tamanybase-alpha     
+     #POSICIO 1000 1000 10000  Cas especial Numero-Tamanybase-Rang on estaran     
 #JUGADOR
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga

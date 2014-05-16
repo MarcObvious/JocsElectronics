@@ -1,6 +1,5 @@
 #include "mesh.h"
-#include <cassert>
-#include "../includes.h"
+
 
 
 Mesh::Mesh()
@@ -279,8 +278,42 @@ void Mesh::createPlane(float size)
 	vertices.push_back( Vector3(size,-size,0) );
 	vertices.push_back( Vector3(-size,-size,0) );
 	vertices.push_back( Vector3(-size,size,0) );
+
 	vertices.push_back( Vector3(size,size,0) );
 	vertices.push_back( Vector3(-size,-size,0) );
+
+	//all of them have the same normal
+	normals.push_back( Vector3(0,1,0) );
+	normals.push_back( Vector3(0,1,0) );
+	normals.push_back( Vector3(0,1,0) );
+	normals.push_back( Vector3(0,1,0) );
+	normals.push_back( Vector3(0,1,0) );
+	normals.push_back( Vector3(0,1,0) );
+
+	//texture coordinates
+	uvs.push_back( Vector2(1,1) );
+	uvs.push_back( Vector2(1,0) );
+	uvs.push_back( Vector2(0,0) );
+	uvs.push_back( Vector2(0,1) );
+
+	uvs.push_back( Vector2(1,1) );
+	uvs.push_back( Vector2(0,0) );
+}
+
+void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
+	vertices.clear();
+	normals.clear();
+	uvs.clear();
+
+	//create six vertices (3 for upperleft triangle and 3 for lowerright)
+
+	vertices.push_back (pos + (top      +      right)* size);
+	vertices.push_back (pos + (top      + (right*-1))* size);
+	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
+	vertices.push_back (pos + ((top*-1) +      right)* size);
+
+	vertices.push_back (pos + (top      +      right)* size);
+	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
 
 	//all of them have the same normal
 	normals.push_back( Vector3(0,1,0) );

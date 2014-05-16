@@ -9,10 +9,12 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include <cassert>
 #include <vector>
 #include "../includes.h"
 #include "../utils/text.h"
 #include "../utils/framework.h"
+
 
 class Mesh
 {
@@ -44,6 +46,8 @@ public:
 	void renderBounds();
 
 	void createPlane(float size);
+
+	void createPlane(float size, Vector3 pos, Vector3 top, Vector3 right);
 };
 
 #endif

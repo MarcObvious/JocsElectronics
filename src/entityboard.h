@@ -1,8 +1,8 @@
 /*  entityboard.h
-*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
-*	Classe hereva de EntityMesh. Basicament defineix
-*	les funcions que ha de tenir una classe billboard
-*/
+ *   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+ *	Classe hereva de EntityMesh. Basicament defineix
+ *	les funcions que ha de tenir una classe billboard
+ */
 
 #ifndef ENTITYBOARD_H_
 #define ENTITYBOARD_H_
@@ -22,16 +22,29 @@ public:
 	void setParams(float tamany, std::string text_dir,
 			bool mipmapping, Vector3 posinicial, bool alpha);
 
-	 virtual ~EntityBoard(){};
+	virtual ~EntityBoard(){};
 
-//	 void render(){
-//
-//	 }
+	void render(){
+		glPushMatrix();
+		_model.set();
+
+		glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glDepthMask(false);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		_texture->bind();
+		_mesh->render();
+		_texture->unbind();
+		glDepthMask(true);
+		glDisable(GL_BLEND);
+
+		glPopMatrix();
+	}
 
 
 
 
-	 virtual void update(double elapsed_time){};
+	virtual void update(double elapsed_time){};
 
 };
 

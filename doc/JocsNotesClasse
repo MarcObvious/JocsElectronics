@@ -100,7 +100,8 @@ if (alpha) {
  
  
  
- com ferho sense que els nubols no toquin el depth basfer
+ com ferho sense que els nubols no toquin el depth buffer
+
  gldepthmask(false)
  plane->render();
  gldepthmask(true) 
