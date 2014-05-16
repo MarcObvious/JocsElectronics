@@ -18,6 +18,7 @@ MeshManager * MeshManager::getInstance() {
 	return _instance;
 }
 
+//FOTUDAMENT MALAMENT. MILLORAR ELS PLANS!!!!!!!!!!!!!!!!!!
 Mesh* MeshManager::get(float tamany) {
 	Mesh* mesh_nova = new Mesh();
 	mesh_nova->createPlane(tamany);
