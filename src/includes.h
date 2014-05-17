@@ -19,6 +19,8 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 #include <stdlib.h>
+#include "coldet/box.h"
+#include "coldet/coldet.h"
 
 //used to access opengl extensions
 //void* getGLProcAddress(const char*);

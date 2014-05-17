@@ -22,6 +22,7 @@ World::World() {
 		std::cout << "Mon ... NO OK" << std::endl;
 
 
+	CollisionModel3D* collision_model = newCollisionModel3D();
 	//_camera->center = _jugador->getCenter();
 	//_camera->up = _jugador->getTop();
 	//_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);
