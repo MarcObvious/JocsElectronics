@@ -91,7 +91,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				float nx =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
 				float ny =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
 				float nz =   static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
-				nuvol->setParams(t , text_dir, mip, Vector3(nx, ny,nz),true);
+				nuvol->setParams(t , text_dir, mip, Vector3(nx,ny,nz),true);
 				_nuvols.push_back(nuvol);
 			}
 		}
