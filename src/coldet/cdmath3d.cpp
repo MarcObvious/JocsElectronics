@@ -40,8 +40,7 @@ MINOR(const Matrix3D& m, const int r0, const int r1, const int r2, const int c0,
 }
 
 
-Matrix3D
-Matrix3D::Adjoint() const
+Matrix3D Matrix3D::Adjoint() const
 {
    return Matrix3D( MINOR(*this, 1, 2, 3, 1, 2, 3),
                    -MINOR(*this, 0, 2, 3, 1, 2, 3),
