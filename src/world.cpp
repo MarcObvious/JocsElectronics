@@ -16,6 +16,7 @@ World::World() {
 	else
 		std::cout << "Mon ... NO OK" << std::endl;
 
+	//collision_model->addTriangle()
 	//_camera->center = _jugador->getCenter();
 	//_camera->up = _jugador->getTop();
 	//_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);

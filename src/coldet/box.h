@@ -1,5 +1,5 @@
 /*   ColDet - C++ 3D Collision Detection Library
- *   Copyright (C) 2000-2013   Amir Geva
+ *   Copyright (C) 2000   Amir Geva
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,15 +17,15 @@
  * Boston, MA  02111-1307, USA.
  *
  * Any comments, questions and bug reports send to:
- *   amirgeva@gmail.com
+ *   photon@photoneffect.com
  *
- * Or visit the home page: http://sourceforge.net/projects/coldet/
+ * Or visit the home page: http://photoneffect.com/coldet/
  */
 #ifndef H_BOX
 #define H_BOX
 
 #include <vector>
-#include "cdmath3d.h"
+#include "math3d.h"
 #include "sysdep.h"
 
 __CD__BEGIN
@@ -147,7 +147,7 @@ class BoxTreeInnerNode : public BoxTreeNode
 {
 public:
   BoxTreeInnerNode(const Vector3D& pos, const Vector3D& size, int logdepth) 
-    : BoxTreeNode(pos,size), m_First(NULL), m_Second(NULL), 
+    : BoxTreeNode(pos,size), m_First(0), m_Second(0),
       m_logdepth(logdepth), m_OwnFirst(true), m_OwnSecond(true) {}
   ~BoxTreeInnerNode()
   {
@@ -168,8 +168,8 @@ public:
   int getSonsNumber()
   {
     int n=0;
-    if (m_First!=NULL) n++;
-    if (m_Second!=NULL) n++;
+    if (m_First!=0) n++;
+    if (m_Second!=0) n++;
     return n;
   }
 
@@ -180,7 +180,7 @@ public:
   {
     if (which==0) return m_First;
     if (which==1) return m_Second;
-    return NULL;
+    return 0;
   }
 
   BoxTreeNode*                m_First;
@@ -198,12 +198,12 @@ public:
   BoxedTriangle(const Vector3D& _1, const Vector3D& _2, const Vector3D& _3);
   virtual bool isLeaf() const { return true; }
   int getSonsNumber() { return 0; }
-  BoxTreeNode* getSon(int which) { return NULL; }
+  BoxTreeNode* getSon(int which) { return 0; }
   int getTrianglesNumber() { return 1; }
   BoxedTriangle* getTriangle(int which)
   {
     if (which==0) return this;
-    return NULL;
+    return 0;
   }
 
 };

@@ -1,5 +1,5 @@
 /*   ColDet - C++ 3D Collision Detection Library
- *   Copyright (C) 2000-2013   Amir Geva
+ *   Copyright (C) 2000   Amir Geva
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,16 +17,14 @@
  * Boston, MA  02111-1307, USA.
  *
  * Any comments, questions and bug reports send to:
- *   amirgeva@gmail.com
+ *   photon@photoneffect.com
  *
- * Or visit the home page: http://sourceforge.net/projects/coldet/
+ * Or visit the home page: http://photoneffect.com/coldet/
  */
 #ifndef H_MYTRITRI
 #define H_MYTRITRI
 
 #include "box.h"
-
-__CD__BEGIN
 
 /** A slower triangle-triangle intersection test, that returns the
     point of intersection. */
@@ -93,6 +91,6 @@ public:
   int i1,i2;
 };
 
-__CD__END
+
 
 #endif // H_MYTRITRI

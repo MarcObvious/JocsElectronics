@@ -1,5 +1,5 @@
 /*   ColDet - C++ 3D Collision Detection Library
- *   Copyright (C) 2000-2013   Amir Geva
+ *   Copyright (C) 2000   Amir Geva
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,9 +17,9 @@
  * Boston, MA  02111-1307, USA.
  *
  * Any comments, questions and bug reports send to:
- *   amirgeva@gmail.com
+ *   photon@photoneffect.com
  *
- * Or visit the home page: http://sourceforge.net/projects/coldet/
+ * Or visit the home page: http://photoneffect.com/coldet/
  */
 #include "sysdep.h"
 #include "box.h"
@@ -131,7 +131,7 @@ int BoxTreeInnerNode::divide(int p_depth)
 #ifdef _DEBUG
   int fnum=0;
 #endif
-  for(int i=0;i<bnum;i++)
+  for(unsigned i=0;i<bnum;i++)
   {
     BoxedTriangle* bt=m_Boxes[i];
     if (bt->center[longest]<center[longest])
@@ -151,13 +151,13 @@ int BoxTreeInnerNode::divide(int p_depth)
   int b2num=s->m_Boxes.size();
   if ((b1num==bnum  ||  b2num==bnum))// && p_depth>m_logdepth)
   {
-    delete m_First;  m_First=NULL;
-    delete m_Second; m_Second=NULL;
+    delete m_First;  m_First=0;
+    delete m_Second; m_Second=0;
     return depth+1;
   }
   
   m_Boxes.clear();
-  if (f->m_Boxes.empty()) { delete m_First; m_First=NULL; }
+  if (f->m_Boxes.empty()) { delete m_First; m_First=0; }
   else
   if (f->m_Boxes.size()==1)
   {
@@ -166,7 +166,7 @@ int BoxTreeInnerNode::divide(int p_depth)
     m_OwnFirst=false;
     m_First=bt;
   } else depth=f->divide(p_depth+1);
-  if (s->m_Boxes.empty()) { delete m_Second; m_Second=NULL; }
+  if (s->m_Boxes.empty()) { delete m_Second; m_Second=0; }
   else
   if (s->m_Boxes.size()==1)
   {
