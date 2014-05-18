@@ -45,6 +45,9 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 
 	std::vector< Vector3 > vertex_index; //Vector amb l'index de vertex utilitzats
 
+	_collision_model = newCollisionModel3D();
+	int auxcoldet[3];
+
 	for (int i = 0; i<num_vertex; i++)
 	{
 		my_parser.seek("*MESH_VERTEX");
@@ -75,19 +78,28 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 		}
 	}
 
-	for (int i = 0; i<num_faces; i++) //Vector final amb tots els vertex de 3
+	for (int i = 0; i<num_faces; i++) //Vector final amb tots els vertex de 3 en 3 + Collision model
 	{
 		my_parser.seek("*MESH_FACE");
 
 		my_parser.seek("A:");
-		vertices.push_back(vertex_index[my_parser.getint()]);
+		auxcoldet[0] = my_parser.getint();
+		vertices.push_back( vertex_index[ auxcoldet[0] ] );
 
 		my_parser.seek("B:");
-		vertices.push_back(vertex_index[my_parser.getint()]);
+		auxcoldet[1] = my_parser.getint();
+		vertices.push_back( vertex_index[ auxcoldet[1] ] );
 
 		my_parser.seek("C:");
-		vertices.push_back(vertex_index[my_parser.getint()]);
+		auxcoldet[2] = my_parser.getint();
+		vertices.push_back( vertex_index[ auxcoldet[2] ] );
+
+		_collision_model->addTriangle(
+				vertex_index[auxcoldet[0]].x, vertex_index[auxcoldet[0]].y, vertex_index[auxcoldet[0]].z,
+				vertex_index[auxcoldet[1]].x, vertex_index[auxcoldet[1]].y, vertex_index[auxcoldet[1]].z,
+				vertex_index[auxcoldet[2]].x, vertex_index[auxcoldet[2]].y, vertex_index[auxcoldet[2]].z);
 	}
+	_collision_model->finalize();
 
 	//Carrega Textures+Cares
 	my_parser.seek("*MESH_NUMTVERTEX");
@@ -107,7 +119,7 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 	my_parser.seek("*MESH_NUMTVFACES");
 	int num_tvfaces = my_parser.getint();
 
-	for (int i = 0; i<num_tvfaces; i++) //Vector final amb tots els vertex de 3 en tres
+	for (int i = 0; i<num_tvfaces; i++) //Vector final amb tots els vertex de 3 en tres !!!!
 	{
 		my_parser.seek("*MESH_TFACE");
 		my_parser.getint();
@@ -216,6 +228,8 @@ bool Mesh::loadASE(char *dir)
 	return 0;
 
 }
+
+
 
 void Mesh::render()
 {

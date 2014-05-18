@@ -23,9 +23,9 @@ public:
 	std::vector< Vector3 > normals;	 //here we store the normals
 	std::vector< Vector2 > uvs;	 //here we store the texture coordinates
 
-	std::vector< Vector3 > bounds; //here we store the bounds, it will be usefull later 
+	std::vector< Vector3 > bounds; //here we store the bounds
 
-	CollisionModel3D* _collision_model;
+	CollisionModel3D* _collision_model; //Here we store the collision model for coldet.
 
 
 
@@ -37,6 +37,7 @@ public:
 	void clear();
 
 	void render();
+
 
 	void renderdebug();
 
