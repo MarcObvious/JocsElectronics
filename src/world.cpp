@@ -182,7 +182,7 @@ void World::update(double elapsed_time) {
 	bool test = _jugador->tecolisions()->collision(_terreny->tecolisions(), -1,0,_terreny->getGlobalMatrix().m);
 
    //bool test = _jugador->_mesh->_collision_model->collision(  _totes_entyties.at(5)->_mesh->_collision_model, -1,0,_totes_entyties.at(5)->getMatrix().m );
-    if (test) std::cout << "PUTAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
+    if (test) std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
 }
 
 void World::render() {
