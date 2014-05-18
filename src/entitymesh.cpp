@@ -9,19 +9,13 @@ void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
 		bool mipmapping, Vector3 posinicial, bool alpha) {
 
 	Entity::setParams(posinicial);
-	_mesh = (MeshManager::getInstance())->get(mesh_dir);
+	if (mesh_dir.compare("NULL") != 0) {
+		_mesh = (MeshManager::getInstance())->get(mesh_dir);
+		_bounds.resize(2);
+		_bounds = (MeshManager::getInstance())->get(mesh_dir)->getBounds();
+	}
 	_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
-	_bounds.resize(2);
-	_bounds = (MeshManager::getInstance())->get(mesh_dir)->getBounds();
-	_alpha = alpha;
-}
 
-void EntityMesh::setParams(float tamany, std::string text_dir,
-		bool mipmapping, Vector3 posinicial, bool alpha) {
-
-	Entity::setParams(posinicial);
-	_mesh = (MeshManager::getInstance())->get(tamany);
-	_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
 	_alpha = alpha;
 }
 
@@ -30,12 +24,8 @@ CollisionModel3D* EntityMesh::tecolisions(){
 	return _mesh->getcollisionmodel();
 }
 
-void EntityMesh::transform(){
-
-//	Matrix44 mat;
-//	mat.setIdentity();
+void EntityMesh::transform() {
 	_mesh->getcollisionmodel()->setTransform(getGlobalMatrix().m);
-
 }
 
 void EntityMesh::render() {

@@ -19,9 +19,9 @@ MeshManager * MeshManager::getInstance() {
 }
 
 //FOTUDAMENT MALAMENT. MILLORAR ELS PLANS!!!!!!!!!!!!!!!!!!
-Mesh* MeshManager::get(float tamany) {
+Mesh* MeshManager::get(float tamany, Vector3 pos, Vector3 top, Vector3 right) {
 	Mesh* mesh_nova = new Mesh();
-	mesh_nova->createPlane(tamany);
+	mesh_nova->createPlane(tamany,  pos,  top,  right);
 	_meshs_loaded->insert(
 			std::pair<std::string, Mesh*>("pla", mesh_nova));
 	return mesh_nova;

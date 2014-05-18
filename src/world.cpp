@@ -93,7 +93,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				float nx =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
 				float ny =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
 				float nz =   static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
-				nuvol->setParams(t , text_dir, mip, Vector3(nx,ny,nz),true);
+				nuvol->setParamss(t , text_dir, mip, Vector3(nx,ny,nz),true, _camera->getLocalVector(Vector3(0,1,0)),_camera->getLocalVector(Vector3(1,0,0)) );
 				_nuvols.push_back(nuvol);
 			}
 		}
@@ -131,25 +131,25 @@ bool World::llegeixIcarrega(const char *dir) {
 	//HA DE SER UN BILLBOARD!!! IGUAL QUE ELS NUVOLS!!!!!!!!!!!!
 
 	//HAURIA DE SER FILL DE CAMERA; DEPEN NOMES DEL PUNT DE VISTA
-	EntityMesh* punt_mira = new EntityMesh();
-		punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0,0,60), true);
-		punt_mira->setParent(_jugador);
-		_jugador->addChild(punt_mira);
-
-	EntityMesh* foc = new EntityMesh();
-		foc->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20), true);
-		foc->setParent(_jugador);
-		_jugador->addChild(foc);
-
-	EntityMesh* foc2 = new EntityMesh();
-		foc2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22),true);
-		foc2->setParent(_jugador);
-		_jugador->addChild(foc2);
-
-	EntityMesh* foc3 = new EntityMesh();
-		foc3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24),true);
-		foc3->setParent(_jugador);
-		_jugador->addChild(foc3);
+//	EntityMesh* punt_mira = new EntityMesh();
+//		punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0,0,60), true);
+//		punt_mira->setParent(_jugador);
+//		_jugador->addChild(punt_mira);
+//
+//	EntityMesh* foc = new EntityMesh();
+//		foc->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-20), true);
+//		foc->setParent(_jugador);
+//		_jugador->addChild(foc);
+//
+//	EntityMesh* foc2 = new EntityMesh();
+//		foc2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-22),true);
+//		foc2->setParent(_jugador);
+//		_jugador->addChild(foc2);
+//
+//	EntityMesh* foc3 = new EntityMesh();
+//		foc3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0,-1,-24),true);
+//		foc3->setParent(_jugador);
+//		_jugador->addChild(foc3);
 
 	printPositions();
 
@@ -183,6 +183,9 @@ void World::update(double elapsed_time) {
 
    //bool test = _jugador->_mesh->_collision_model->collision(  _totes_entyties.at(5)->_mesh->_collision_model, -1,0,_totes_entyties.at(5)->getMatrix().m );
     if (test) std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
+
+    for(unsigned int i = 0; i < _nuvols.size(); ++i)
+    		_nuvols.at(i)->update(_camera->getLocalVector(Vector3(0,1,0)),_camera->getLocalVector(Vector3(1,0,0)));
 }
 
 void World::render() {

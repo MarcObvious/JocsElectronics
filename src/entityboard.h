@@ -10,17 +10,19 @@
 #include "entitymesh.h"
 #include "utils/utils.h"
 #include "utils/framework.h"
+#include "mts/mesh.h"
+#include "mts/MeshManager.h"
 #include <string>
 
 class EntityBoard: public EntityMesh {
 protected:
-
+	int _tamany;
 
 public:
 	EntityBoard();
 
-	void setParams(float tamany, std::string text_dir,
-			bool mipmapping, Vector3 posinicial, bool alpha);
+	void setParamss(float tamany, std::string text_dir,
+			bool mipmapping, Vector3 posinicial, bool alpha, Vector3 top, Vector3 right);
 
 	virtual ~EntityBoard(){};
 
@@ -44,7 +46,7 @@ public:
 
 
 
-	virtual void update(double elapsed_time){};
+	 void update(Vector3 top, Vector3 right);
 
 };
 

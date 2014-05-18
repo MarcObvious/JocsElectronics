@@ -29,7 +29,7 @@ public:
 			bool mipmapping, Vector3 posinicial, bool alpha);
 
 	void setParams(float tamany, std::string text_dir,
-			bool mipmapping, Vector3 posinicial, bool alpha); //per a plans  i altres formes (nubols??).
+			bool mipmapping, Vector3 posinicial, bool alpha); //per a plans  i altres formes (nuvols??).
 
 	void render();
 

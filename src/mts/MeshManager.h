@@ -21,6 +21,8 @@ private:
 
 	std::map<std::string, Mesh*>* _meshs_loaded; //Vector punters totes les mesh
 
+	std::map<std::string, Mesh*>* _plans_loaded; //Vector punter a tots els plans (per a billboards).
+
 	MeshManager();
 
 	~MeshManager();
@@ -29,7 +31,7 @@ public:
 
 	static MeshManager * getInstance(); 		//Retorna el Meshmanager
 
-	Mesh* get(float tamany); //retorna una mesh plana
+	Mesh* get(float tamany, Vector3 pos, Vector3 top, Vector3 right); //retorna una mesh plana en la direcció correcta.
 
 	Mesh* get(std::string mesh_dir);//Retorna una mesh del vector, si no hi es la crea.
 
