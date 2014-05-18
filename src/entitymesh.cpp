@@ -24,6 +24,12 @@ void EntityMesh::setParams(float tamany, std::string text_dir,
 	_alpha = alpha;
 }
 
+void EntityMesh::tecolisions(){
+	_mesh->_collision_model= newCollisionModel3D( );
+	_mesh->_collision_model->setTransform(_model.m);
+	_mesh->_collision_model->finalize();
+}
+
 void EntityMesh::render() {
 	glPushMatrix();
 	_model.set();

@@ -25,6 +25,9 @@ public:
 
 	std::vector< Vector3 > bounds; //here we store the bounds, it will be usefull later 
 
+	CollisionModel3D* _collision_model;
+
+
 
 
 	int primitive; //used to tell which primitive to use when rendering (quad, points, lines)

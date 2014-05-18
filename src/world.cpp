@@ -22,7 +22,8 @@ World::World() {
 		std::cout << "Mon ... NO OK" << std::endl;
 
 
-	CollisionModel3D* collision_model = newCollisionModel3D();
+
+
 	//_camera->center = _jugador->getCenter();
 	//_camera->up = _jugador->getTop();
 	//_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);
@@ -101,7 +102,9 @@ bool World::llegeixIcarrega(const char *dir) {
 			_jugador = new MovingEntity();
 			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 
+			_jugador->tecolisions();
 			_totes_entyties.push_back(_jugador);
+
 
 			my_parser.seek("#FILLS");
 			fills = my_parser.getint();
@@ -120,6 +123,7 @@ bool World::llegeixIcarrega(const char *dir) {
 			MovingEntity* enemy = new MovingEntity();
 			enemy->setParams( mesh_dir, text_dir, mip, Vector3(posx, posy, posz),my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat());
 			//_enemics.push_back(_enemy );
+			enemy->tecolisions();
 			_totes_entyties.push_back(enemy);
 		}
 
@@ -149,6 +153,8 @@ bool World::llegeixIcarrega(const char *dir) {
 
 	printPositions();
 
+
+
 	return true;
 }
 
@@ -172,6 +178,8 @@ void World::update(double elapsed_time) {
 
     BulletManager::getInstance()->update(elapsed_time);
 
+    bool test = _jugador->_mesh->_collision_model->collision(  _totes_entyties.at(5)->_mesh->_collision_model, -1,0,_totes_entyties.at(5)->getMatrix().m );
+    if (test) std::cout << "PUTAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
 }
 
 void World::render() {

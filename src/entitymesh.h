@@ -14,12 +14,13 @@
 
 class EntityMesh : public Entity {
 protected:
-	Mesh* _mesh = NULL;
-	Texture* _texture = NULL;
-	Vector3 _color ; //per saber quan disparo a algu si faig mal o no. "proves"
-	bool _alpha;
-	std::vector<Vector3> _bounds; //bounds, el primer element es el halfsize, el segon center
+
 public:
+	Mesh* _mesh = NULL;
+		Texture* _texture = NULL;
+		Vector3 _color ; //per saber quan disparo a algu si faig mal o no. "proves"
+		bool _alpha;
+		std::vector<Vector3> _bounds; //bounds, el primer element es el halfsize, el segon center
 	EntityMesh();
 	virtual ~EntityMesh() {}
 
@@ -30,6 +31,8 @@ public:
 			bool mipmapping, Vector3 posinicial, bool alpha); //per a plans  i altres formes (nubols??).
 
 	void render();
+
+	void tecolisions();
 
 	Matrix44 getMatrix();
 
