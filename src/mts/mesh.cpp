@@ -27,6 +27,21 @@ std::vector<Vector3> Mesh::getBounds() {
 	return bounds;
 }
 
+CollisionModel3D* Mesh::getcollisionmodel() {
+	return _collision_model;
+}
+
+bool Mesh::coldetmodel(){
+	for (unsigned int i = 0; i < vertices.size()-3; i+=3 ){
+		_collision_model->addTriangle(
+						vertices[i].x,vertices[i].y,vertices[i].z,
+						vertices[i+1].x,vertices[i+1].y,vertices[i+1].z,
+						vertices[i+2].x,vertices[i+2].y,vertices[i+2].z);
+	}
+	_collision_model->finalize();
+	return true;
+}
+
 bool Mesh::meshdefitxer(char *ase, char *bin)
 {
 	text my_parser;
@@ -94,13 +109,14 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 		my_parser.seek("C:");
 		auxcoldet[2] = my_parser.getint();
 		vertices.push_back( vertex_index[ auxcoldet[2] ] );
+
 		//afegim els 3 vertex que formen un triangle al model de colisions
-		_collision_model->addTriangle(
-				vertex_index[auxcoldet[0]].x, vertex_index[auxcoldet[0]].y, vertex_index[auxcoldet[0]].z,
-				vertex_index[auxcoldet[1]].x, vertex_index[auxcoldet[1]].y, vertex_index[auxcoldet[1]].z,
-				vertex_index[auxcoldet[2]].x, vertex_index[auxcoldet[2]].y, vertex_index[auxcoldet[2]].z);
+//		_collision_model->addTriangle(
+//				vertex_index[auxcoldet[0]].x, -vertex_index[auxcoldet[0]].y, vertex_index[auxcoldet[0]].z,
+//				vertex_index[auxcoldet[1]].x, -vertex_index[auxcoldet[1]].y, vertex_index[auxcoldet[1]].z,
+//				vertex_index[auxcoldet[2]].x, -vertex_index[auxcoldet[2]].y, vertex_index[auxcoldet[2]].z);
 	}
-	_collision_model->finalize(); //creem el model de colisions "otpimitzat"
+//	_collision_model->finalize(); //creem el model de colisions "otpimitzat"
 
 	//Carrega Textures+Cares
 	my_parser.seek("*MESH_NUMTVERTEX");
@@ -174,11 +190,14 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 
 	fwrite(&normals[0], sizeof(Vector3), normals.size(), f1);
 
-	fwrite(&bounds[0], sizeof(Vector3), bounds.size(), f1);
+	//fwrite(&bounds[0], sizeof(Vector3), bounds.size(), f1);
 
-	fwrite( &_collision_model, sizeof(CollisionModel3D), 1, f1);
+//	fwrite( &_collision_model, sizeof(CollisionModel3D), 10, f1);
+
 
 	fclose(f1);
+
+	coldetmodel();
 
 	return 1;
 }
@@ -214,7 +233,8 @@ bool Mesh::loadASE(char *dir)
 		bounds.resize(data.size_bounds);
 		fread(&bounds[0], sizeof(Vector3), data.size_bounds, f1);
 
-		fread(&_collision_model, sizeof(CollisionModel3D), 1, f1);
+//		fread(&_collision_model, sizeof(CollisionModel3D), 1, f1);
+		coldetmodel();
 
 		fclose(f1);
 		return 1;
@@ -225,13 +245,13 @@ bool Mesh::loadASE(char *dir)
 
 	strcat(ase, ".ASE");
 
+
+
 	if (meshdefitxer(ase, bin) != 0)
 		return 1;
 	return 0;
 
 }
-
-
 
 void Mesh::render()
 {

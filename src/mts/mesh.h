@@ -43,6 +43,16 @@ public:
 
 	std::vector<Vector3> getBounds();
 
+	CollisionModel3D* getcollisionmodel();
+
+	void settrans(){
+		Matrix44 mat;
+		mat.setIdentity();
+		_collision_model->setTransform(mat.m);
+	}
+
+	bool coldetmodel(); //Hem de carregar manualment cada cop que creem una mesh l'arbre de coldet.
+
 	bool meshdefitxer(char *ase, char *bin); //Si el binari del ase no existeix, crea el binari
 
 	bool loadASE(char *dir); //Carrega ase a partir d'un binari

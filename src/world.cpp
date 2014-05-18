@@ -153,8 +153,7 @@ bool World::llegeixIcarrega(const char *dir) {
 
 	printPositions();
 
-
-
+	_jugador->transform();
 	return true;
 }
 
@@ -177,9 +176,15 @@ void World::update(double elapsed_time) {
 		_totes_entyties.at(i)-> update(elapsed_time);
 
     BulletManager::getInstance()->update(elapsed_time);
+//std::cout << "MERDA" << std::endl;
+    //_jugador->transform();
+//	for(unsigned int i = 0; i < _totes_entyties.size(); ++i)
+//		_totes_entyties.at(i)->tecolisions();
 
-    bool test = _jugador->_mesh->_collision_model->collision(  _totes_entyties.at(5)->_mesh->_collision_model, -1,0,_totes_entyties.at(5)->getMatrix().m );
-    if (test) std::cout << "PUTAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
+//	bool test = _jugador->tecolisions()->collision(_totes_entyties.at(5)->tecolisions(), -1,0,_totes_entyties.at(5)->getGlobalMatrix().m);
+
+   //bool test = _jugador->_mesh->_collision_model->collision(  _totes_entyties.at(5)->_mesh->_collision_model, -1,0,_totes_entyties.at(5)->getMatrix().m );
+    //if (test) std::cout << "PUTAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
 }
 
 void World::render() {

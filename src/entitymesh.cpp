@@ -2,6 +2,7 @@
 
 EntityMesh::EntityMesh() {
 	_name << "Mesh";
+	_alpha = false;
 }
 
 void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
@@ -12,7 +13,7 @@ void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
 	_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
 	_bounds.resize(2);
 	_bounds = (MeshManager::getInstance())->get(mesh_dir)->getBounds();
-	_alpha = false;
+	_alpha = alpha;
 }
 
 void EntityMesh::setParams(float tamany, std::string text_dir,
@@ -24,10 +25,17 @@ void EntityMesh::setParams(float tamany, std::string text_dir,
 	_alpha = alpha;
 }
 
-void EntityMesh::tecolisions(){
-	_mesh->_collision_model= newCollisionModel3D( );
-	_mesh->_collision_model->setTransform(_model.m);
-	_mesh->_collision_model->finalize();
+CollisionModel3D* EntityMesh::tecolisions(){
+	//_mesh->_collision_model->setTransform(_model.m);
+	return _mesh->getcollisionmodel();
+}
+
+void EntityMesh::transform(){
+
+//	Matrix44 mat;
+//	mat.setIdentity();
+	_mesh->settrans();
+
 }
 
 void EntityMesh::render() {

@@ -1,8 +1,8 @@
 /*  entitymesh.h
-*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
-*	Classe que defineix objectes que tenen mesh i textura, 
-*   hereva de Entity.
-*/
+ *   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+ *	Classe que defineix objectes que tenen mesh i textura,
+ *   hereva de Entity.
+ */
 #ifndef ENTITYMESH_H_
 #define ENTITYMESH_H_
 
@@ -14,13 +14,14 @@
 
 class EntityMesh : public Entity {
 protected:
+	Mesh* _mesh = NULL;
+	Texture* _texture = NULL;
+	Vector3 _color ; //per saber quan disparo a algu si faig mal o no. "proves"
+	bool _alpha;
+	std::vector<Vector3> _bounds; //bounds, el primer element es el halfsize, el segon center
 
 public:
-	Mesh* _mesh = NULL;
-		Texture* _texture = NULL;
-		Vector3 _color ; //per saber quan disparo a algu si faig mal o no. "proves"
-		bool _alpha;
-		std::vector<Vector3> _bounds; //bounds, el primer element es el halfsize, el segon center
+
 	EntityMesh();
 	virtual ~EntityMesh() {}
 
@@ -32,7 +33,9 @@ public:
 
 	void render();
 
-	void tecolisions();
+	void transform();
+
+	CollisionModel3D* tecolisions();
 
 	Matrix44 getMatrix();
 
