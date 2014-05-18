@@ -34,7 +34,7 @@ void EntityMesh::transform(){
 
 //	Matrix44 mat;
 //	mat.setIdentity();
-	_mesh->settrans();
+	_mesh->getcollisionmodel()->setTransform(getGlobalMatrix().m);
 
 }
 
