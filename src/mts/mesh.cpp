@@ -5,6 +5,7 @@
 Mesh::Mesh()
 {
 	primitive = GL_TRIANGLES;
+	_collision_model = newCollisionModel3D();
 }
 
 typedef struct {
@@ -45,7 +46,7 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 
 	std::vector< Vector3 > vertex_index; //Vector amb l'index de vertex utilitzats
 
-	_collision_model = newCollisionModel3D();
+
 	int auxcoldet[3];
 
 	for (int i = 0; i<num_vertex; i++)
@@ -53,7 +54,7 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 		my_parser.seek("*MESH_VERTEX");
 		my_parser.getint();
 		double x = my_parser.getfloat();
-		double z = my_parser.getfloat();
+		double z = -my_parser.getfloat();
 		double y = my_parser.getfloat();
 		vertex_index.push_back(Vector3(x, y, z));
 
@@ -93,13 +94,13 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 		my_parser.seek("C:");
 		auxcoldet[2] = my_parser.getint();
 		vertices.push_back( vertex_index[ auxcoldet[2] ] );
-
+		//afegim els 3 vertex que formen un triangle al model de colisions
 		_collision_model->addTriangle(
 				vertex_index[auxcoldet[0]].x, vertex_index[auxcoldet[0]].y, vertex_index[auxcoldet[0]].z,
 				vertex_index[auxcoldet[1]].x, vertex_index[auxcoldet[1]].y, vertex_index[auxcoldet[1]].z,
 				vertex_index[auxcoldet[2]].x, vertex_index[auxcoldet[2]].y, vertex_index[auxcoldet[2]].z);
 	}
-	_collision_model->finalize();
+	_collision_model->finalize(); //creem el model de colisions "otpimitzat"
 
 	//Carrega Textures+Cares
 	my_parser.seek("*MESH_NUMTVERTEX");
@@ -175,6 +176,8 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 
 	fwrite(&bounds[0], sizeof(Vector3), bounds.size(), f1);
 
+	fwrite( &_collision_model, sizeof(CollisionModel3D), 1, f1);
+
 	fclose(f1);
 
 	return 1;
@@ -183,10 +186,7 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 bool Mesh::loadASE(char *dir)
 {
 	//Neteja
-	vertices.clear();
-	normals.clear();
-	uvs.clear();
-	bounds.clear();
+	clear();
 
 	char bin[80];
 	strcpy(bin, dir);
@@ -201,7 +201,7 @@ bool Mesh::loadASE(char *dir)
 		DataMesh data;
 		fread(&data, sizeof(DataMesh), 1, f1);
 
-		//carrega del fitxer bin vertices, uvs, normals
+		//carrega del fitxer bin vertices, uvs, normals i collision model
 		vertices.resize(data.size_vertices);
 		fread(&vertices[0], sizeof(Vector3), data.size_vertices, f1);
 
@@ -213,6 +213,8 @@ bool Mesh::loadASE(char *dir)
 
 		bounds.resize(data.size_bounds);
 		fread(&bounds[0], sizeof(Vector3), data.size_bounds, f1);
+
+		fread(&_collision_model, sizeof(CollisionModel3D), 1, f1);
 
 		fclose(f1);
 		return 1;

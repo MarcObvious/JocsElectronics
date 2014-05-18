@@ -33,7 +33,7 @@ void Bullet::update( float elapsed_time ) {
 
 void Bullet::render() {
 
-	glPointSize(10);
+	glPointSize(5);
 	glColor3f(1,0,0);
 
 	glBegin(GL_POINTS);

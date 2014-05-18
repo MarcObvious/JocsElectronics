@@ -24,22 +24,22 @@ public:
 
 	virtual ~EntityBoard(){};
 
-	void render(){
-		glPushMatrix();
-		_model.set();
-
-		glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glDepthMask(false);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		_texture->bind();
-		_mesh->render();
-		_texture->unbind();
-		glDepthMask(true);
-		glDisable(GL_BLEND);
-
-		glPopMatrix();
-	}
+//	void render(){
+//		glPushMatrix();
+//		_model.set();
+//
+//		glEnable(GL_BLEND);
+//		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//		glDepthMask(false);
+//		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+//		_texture->bind();
+//		_mesh->render();
+//		_texture->unbind();
+//		glDepthMask(true);
+//		glDisable(GL_BLEND);
+//
+//		glPopMatrix();
+//	}
 
 
 
