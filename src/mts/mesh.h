@@ -22,7 +22,7 @@ public:
 	std::vector< Vector3 > vertices; //here we store the vertices
 	std::vector< Vector3 > normals;	 //here we store the normals
 	std::vector< Vector2 > uvs;	 //here we store the texture coordinates
-	std::vector< Vector2 > colors;	 //here we store the texture coordinates
+	std::vector< Vector2 > colors;	 //here we store the colors
 
 	std::vector< Vector3 > bounds; //here we store the bounds
 
@@ -48,7 +48,9 @@ public:
 	CollisionModel3D* getcollisionmodel();
 
 	void setcolors(){
-
+		colors.resize(2);
+		colors.push_back(Vector2(0,0));
+		colors.push_back(Vector2(255,255));
 	}
 
 

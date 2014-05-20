@@ -23,6 +23,6 @@ void Nau::setParams(std::string mesh_dir, std::string text_dir, bool mipmapping,
 
 void Nau::tocat(int dany) {
 	_dany -= dany;
-	_mesh->colors = Vector2(200,200);
+	_mesh->setcolors();
 }
 
