@@ -13,7 +13,7 @@ void Bullet::set(Vector3 position, Vector3 last_position, Vector3 velocity ,floa
 		_power = power;
 		_author_id = author_id;
 		_type = type;
-		_mesh->createLine(Vector3(0,0,0), position);
+		//_mesh->createLine(_position, _last_position);
 }
 
 bool Bullet::viva() {
@@ -29,13 +29,23 @@ void Bullet::update( float elapsed_time ) {
 	_velocity = _velocity+G*elapsed_time;
 	_velocity = _velocity-_velocity*0.1*elapsed_time;
 	_ttl -= elapsed_time;
-	_mesh->createLine(Vector3(0,0,0),_position);
+	//_mesh->createLine(_last_position,_position);
 
 }
 
 void Bullet::render() {
 
-	_mesh->render();
+	//_mesh->render();
+
+
+	glLineWidth(6.5);
+	glColor3f(1.0, 0.0, 0.0);
+	glBegin(GL_LINES);
+	glVertex3f(_position.x, _position.y, _position.z);
+	glVertex3f(_position.x, _position.y,_last_position.z + 40);
+	glColor3f(1,1,1);
+	glEnd();
+
 //	glPointSize(5);
 //	glColor3f(1,0,0);
 //
