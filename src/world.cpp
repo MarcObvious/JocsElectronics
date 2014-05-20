@@ -30,8 +30,10 @@ World::~World() {
 	free(_camera);
 	free(_terreny);
 	free(_cel);
+
 	for (unsigned int i = 0; i < _totes_entyties.size(); i++)
 		free(_totes_entyties.at(i));
+
 	for (unsigned int i = 0; i < _nuvols.size(); i++)
 		free(_nuvols.at(i));
 
@@ -170,30 +172,23 @@ void World::printPositions() {
 void World::update(double elapsed_time) {
 
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
-	//Vector3 cel = _cel->getPosition(); //Hauria de ser mes suau, per alguna rao no acaba de funcionar ok.
-	//_cel->setPosition(Vector3( (_camera->center.x*0.05 + cel.x*0.95) ,( (_camera->center.y-500 )*0.05 + cel.y*0.95) , (_camera->center.z*0.05 + cel.z*0.95)));
 
 	for (unsigned int i = 0; i < _totes_entyties.size(); ++i) {
 		_totes_entyties.at(i)->update(elapsed_time);
-		if ( BulletManager::getInstance()->comprova(_totes_entyties.at(i)->tecolisions() ) )
+		_totes_entyties.at(i)->transform();
+		if (BulletManager::getInstance()->comprova(_totes_entyties.at(i)->tecolisions()))
 			_totes_entyties.at(i)->tocat(10);
+		_totes_entyties.at(i)->transform();
+		if (_totes_entyties.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
+				_terreny->getGlobalMatrix().m)) {
+
+			std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
+			_totes_entyties.at(i)->tocat(10);
+
+		}
 	}
 
 	BulletManager::getInstance()->update(elapsed_time);
-	//std::cout << "MERDA" << std::endl;
-	_jugador->transform();
-
-	bool test = _jugador->tecolisions()->collision(_terreny->tecolisions(), -1, 0, _terreny->getGlobalMatrix().m);
-
-	//bool test = _jugador->tecolisions()->collision(  _totes_entyties.at(4)->tecolisions(), -1,0,_totes_entyties.at(5)->getGlobalMatrix().m );
-	if (test) {
-		std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
-		_jugador->tocat(10);
-
-	}
-
-
-
 
 	for (unsigned int i = 0; i < _nuvols.size(); ++i)
 		_nuvols.at(i)->update(_camera->getLocalVector(Vector3(0, 1, 0)), _camera->getLocalVector(Vector3(1, 0, 0)));
