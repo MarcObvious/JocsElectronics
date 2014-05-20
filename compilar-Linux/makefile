@@ -1,7 +1,3 @@
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 -include ../makefile.init
 
 RM := rm -rf
@@ -10,6 +6,7 @@ RM := rm -rf
 -include sources.mk
 -include src/utils/subdir.mk
 -include src/mts/subdir.mk
+-include src/coldet/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk

@@ -1,48 +1,50 @@
-# Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/bullet.cpp \
 ../src/bulletManager.cpp \
 ../src/camera.cpp \
 ../src/controller.cpp \
+../src/enemic.cpp \
 ../src/entity.cpp \
+../src/entityboard.cpp \
 ../src/entitymesh.cpp \
 ../src/game.cpp \
+../src/jugador.cpp \
 ../src/main.cpp \
 ../src/movingentity.cpp \
-../src/world.cpp \
-../src/enemic.cpp \
-../src/entityboard.cpp \
-../src/jugador.cpp
+../src/nau.cpp \
+../src/world.cpp 
 
 OBJS += \
 ./src/bullet.o \
 ./src/bulletManager.o \
 ./src/camera.o \
 ./src/controller.o \
+./src/enemic.o \
 ./src/entity.o \
+./src/entityboard.o \
 ./src/entitymesh.o \
 ./src/game.o \
+./src/jugador.o \
 ./src/main.o \
 ./src/movingentity.o \
-./src/world.o \
-./src/enemic.o \
-./src/entityboard.o \
-./src/jugador.o
+./src/nau.o \
+./src/world.o 
 
 CPP_DEPS += \
 ./src/bullet.d \
 ./src/bulletManager.d \
 ./src/camera.d \
 ./src/controller.d \
+./src/enemic.d \
 ./src/entity.d \
+./src/entityboard.d \
 ./src/entitymesh.d \
 ./src/game.d \
+./src/jugador.d \
 ./src/main.d \
 ./src/movingentity.d \
-./src/world.d \
-./src/enemic.d \
-./src/entityboard.d \
-./src/jugador.d
+./src/nau.d \
+./src/world.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
