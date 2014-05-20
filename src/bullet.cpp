@@ -36,31 +36,5 @@ void Bullet::update( float elapsed_time ) {
 void Bullet::render() {
 
 	_mesh->render();
-//	Matrix44 maux = matrix_;
-//		aux = maux*Vector3(0,0,1);
-//		maux.traslateLocal(0,0,5);
-//		auxb= maux*Vector3(0,0,1);
-//		glBegin(GL_LINE_STRIP);
-//			glColor3f(255,255,255);
-//			glVertex3f (_position.x,  _position.y,  _position.z);
-//			_position.
-//			glColor3f(190,190,0);
-//			glVertex3f (auxb.x, auxb.y, auxb.z);
-//		glEnd();
 
-//	glLineWidth(6.5);
-//	glColor3f(1.0, 0.0, 0.0);
-//	glBegin(GL_LINES);
-//	glVertex3f(_position.x, _position.y, _position.z);
-//	glVertex3f(_position.x, _position.y,_last_position.z + 40);
-//	glColor3f(1,1,1);
-//	glEnd();
-
-//	glPointSize(5);
-//	glColor3f(1,0,0);
-//
-//	glBegin(GL_POINTS);
-//	glVertex3f(_position.x, _position.y, _position.z);
-//	glColor3f(1,1,1);
-//	glEnd();
 }

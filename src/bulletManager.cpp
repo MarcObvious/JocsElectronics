@@ -40,6 +40,14 @@ void BulletManager::update( float elapsed_time ){
 	}
 }
 
+bool BulletManager::comprova(CollisionModel3D* collision_model) {
+	for (unsigned int i = 0; i < _bullets->size(); i++) {
+		if (collision_model->rayCollision( _bullets->at(i)->_last_position.v, (_bullets->at(i)->_position - _bullets->at(i)->_last_position ) .v, false) == true)
+		return true;
+	}
+	return false;
+}
+
 void BulletManager::createBullet(Vector3 position, Vector3 last_position, Vector3 velocity ,float ttl, float power, float author_id, std::string type) {
 	if (!_init) { //Si el vector ja ha arribat a 1000, sobreescrivim bullets
 		_bullets->at(_pos)->set(position,  last_position,  velocity , ttl,  power,  author_id,  type);

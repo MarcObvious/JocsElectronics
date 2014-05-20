@@ -10,6 +10,7 @@
 #include <string>
 #include <cassert>
 
+#include "utils/utils.h"
 #include "utils/framework.h"
 
 #include "bullet.h"
@@ -39,6 +40,8 @@ public:
 	void render();
 
 	void update( float elapsed_time);
+
+	bool comprova(CollisionModel3D* _collision_model);
 
 
 
