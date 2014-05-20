@@ -1,9 +1,6 @@
 #include "mesh.h"
 
-
-
-Mesh::Mesh()
-{
+Mesh::Mesh() {
 	primitive = GL_TRIANGLES;
 	_collision_model = newCollisionModel3D();
 }
@@ -15,8 +12,7 @@ typedef struct {
 	unsigned int size_bounds;
 } DataMesh;
 
-void Mesh::clear()
-{
+void Mesh::clear() {
 	vertices.clear();
 	normals.clear();
 	uvs.clear();
@@ -31,19 +27,16 @@ CollisionModel3D* Mesh::getcollisionmodel() {
 	return _collision_model;
 }
 
-bool Mesh::coldetmodel(){
-	for (unsigned int i = 0; i < vertices.size()-3; i+=3 ){
-		_collision_model->addTriangle(
-				vertices[i].x,vertices[i].y,vertices[i].z,
-				vertices[i+1].x,vertices[i+1].y,vertices[i+1].z,
-				vertices[i+2].x,vertices[i+2].y,vertices[i+2].z);
+bool Mesh::coldetmodel() {
+	for (unsigned int i = 0; i < vertices.size() - 3; i += 3) {
+		_collision_model->addTriangle(vertices[i].x, vertices[i].y, vertices[i].z, vertices[i + 1].x, vertices[i + 1].y,
+				vertices[i + 1].z, vertices[i + 2].x, vertices[i + 2].y, vertices[i + 2].z);
 	}
 	_collision_model->finalize();
 	return true;
 }
 
-bool Mesh::meshdefitxer(char *ase, char *bin)
-{
+bool Mesh::meshdefitxer(char *ase, char *bin) {
 	text my_parser;
 	if (!my_parser.create(ase))
 		return 0;
@@ -59,10 +52,9 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 	my_parser.seek("*MESH_NUMFACES");
 	int num_faces = my_parser.getint();
 
-	std::vector< Vector3 > vertex_index; //Vector amb l'index de vertex utilitzats
+	std::vector<Vector3> vertex_index; //Vector amb l'index de vertex utilitzats
 
-	for (int i = 0; i<num_vertex; i++)
-	{
+	for (int i = 0; i < num_vertex; i++) {
 		my_parser.seek("*MESH_VERTEX");
 		my_parser.getint();
 		double x = my_parser.getfloat();
@@ -79,42 +71,45 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 			min.x = x;
 			min.y = y;
 			min.z = z;
-		}
-		else {
-			if (x > max.x) max.x = x;
-			if (y > max.y) max.y = y;
-			if (z > max.z) max.z = z;
+		} else {
+			if (x > max.x)
+				max.x = x;
+			if (y > max.y)
+				max.y = y;
+			if (z > max.z)
+				max.z = z;
 
-			if (x < min.x) min.x = x;
-			if (y < min.y) min.y = y;
-			if (z < min.z) min.z = z;
+			if (x < min.x)
+				min.x = x;
+			if (y < min.y)
+				min.y = y;
+			if (z < min.z)
+				min.z = z;
 		}
 	}
 
-	for (int i = 0; i<num_faces; i++) //Vector final amb tots els vertex de 3 en 3
-	{
+	for (int i = 0; i < num_faces; i++) //Vector final amb tots els vertex de 3 en 3
+			{
 		my_parser.seek("*MESH_FACE");
 
 		my_parser.seek("A:");
-		vertices.push_back( vertex_index[ my_parser.getint() ] );
+		vertices.push_back(vertex_index[my_parser.getint()]);
 
 		my_parser.seek("B:");
-		vertices.push_back( vertex_index[ my_parser.getint() ] );
+		vertices.push_back(vertex_index[my_parser.getint()]);
 
 		my_parser.seek("C:");
-		vertices.push_back( vertex_index[ my_parser.getint() ] );
+		vertices.push_back(vertex_index[my_parser.getint()]);
 
 	}
-
 
 	//Carrega Textures+Cares
 	my_parser.seek("*MESH_NUMTVERTEX");
 	int num_tvertex = my_parser.getint();
 
-	std::vector< Vector2 > vertex_tindex; //Vector amb l'index de vertex utilitzats
+	std::vector<Vector2> vertex_tindex; //Vector amb l'index de vertex utilitzats
 
-	for (int i = 0; i<num_tvertex; i++)
-	{
+	for (int i = 0; i < num_tvertex; i++) {
 		my_parser.seek("*MESH_TVERT");
 		my_parser.getint();
 		double x = my_parser.getfloat();
@@ -125,8 +120,8 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 	my_parser.seek("*MESH_NUMTVFACES");
 	int num_tvfaces = my_parser.getint();
 
-	for (int i = 0; i<num_tvfaces; i++) //Vector final amb tots els vertex de 3 en tres !!!!
-	{
+	for (int i = 0; i < num_tvfaces; i++) //Vector final amb tots els vertex de 3 en tres !!!!
+			{
 		my_parser.seek("*MESH_TFACE");
 		my_parser.getint();
 		uvs.push_back(vertex_tindex[my_parser.getint()]);
@@ -137,10 +132,9 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 	//Carrega Normals per cares a pel
 	my_parser.seek("*MESH_NORMALS");
 
-	for (int i = 0; i<num_faces; i++) //Vector final amb la normal de cara i la dels 3 vertex
-	{
-		for (int j = 0; j<3; j++)
-		{
+	for (int i = 0; i < num_faces; i++) //Vector final amb la normal de cara i la dels 3 vertex
+			{
+		for (int j = 0; j < 3; j++) {
 			my_parser.seek("*MESH_VERTEXNORMAL");
 			my_parser.getint();
 			float x = my_parser.getfloat();
@@ -157,9 +151,9 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 	bounds[0] = (min.length() > max.length()) ? min : max;
 
 	//Bounds center
-	bounds[1].x = (min.x + max.x)*0.5;
-	bounds[1].y = (min.y + max.y)*0.5;
-	bounds[1].z = (min.z + max.z)*0.5;
+	bounds[1].x = (min.x + max.x) * 0.5;
+	bounds[1].y = (min.y + max.y) * 0.5;
+	bounds[1].z = (min.z + max.z) * 0.5;
 
 	//Crear el binari 
 	DataMesh data;
@@ -179,7 +173,6 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 
 	fwrite(&normals[0], sizeof(Vector3), normals.size(), f1);
 
-
 	fclose(f1);
 
 	coldetmodel();
@@ -187,8 +180,7 @@ bool Mesh::meshdefitxer(char *ase, char *bin)
 	return 1;
 }
 
-bool Mesh::loadASE(char *dir)
-{
+bool Mesh::loadASE(char *dir) {
 	//Neteja
 	clear();
 
@@ -235,32 +227,28 @@ bool Mesh::loadASE(char *dir)
 
 }
 
-void Mesh::render()
-{
+void Mesh::render() {
 	assert(vertices.size() && "No vertices in this mesh");
 
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, &vertices[0] );
+	glVertexPointer(3, GL_FLOAT, 0, &vertices[0]);
 
-	if (normals.size())
-	{
+	if (normals.size()) {
 		glEnableClientState(GL_NORMAL_ARRAY);
-		glNormalPointer(GL_FLOAT, 0, &normals[0] );
+		glNormalPointer(GL_FLOAT, 0, &normals[0]);
 	}
 
-	if (uvs.size())
-	{
+	if (uvs.size()) {
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glTexCoordPointer(2,GL_FLOAT, 0, &uvs[0] );
+		glTexCoordPointer(2, GL_FLOAT, 0, &uvs[0]);
 	}
 
-	if (colors.size())
-	{
+	if (colors.size()) {
 		glEnableClientState(GL_COLOR_ARRAY);
-		glColorPointer(4,GL_FLOAT, 0, &colors[0] );
+		glColorPointer(4, GL_FLOAT, 0, &colors[0]);
 	}
 
-	glDrawArrays(primitive, 0, vertices.size() );
+	glDrawArrays(primitive, 0, vertices.size());
 	glDisableClientState(GL_VERTEX_ARRAY);
 
 	if (normals.size())
@@ -276,14 +264,14 @@ void Mesh::renderdebug() {
 	if (normals.size() == vertices.size())
 		glColor3d(0, 0, 1);
 
-	else glColor3d(1, 1, 1);
+	else
+		glColor3d(1, 1, 1);
 
 	glPointSize(3);
 
 	glBegin(GL_LINE_STRIP);
 
-	for (unsigned int i = 0; i<vertices.size(); i++)
-	{
+	for (unsigned int i = 0; i < vertices.size(); i++) {
 		glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
 		glColor3f(normals[i].x, normals[i].y, normals[i].z);
 
@@ -292,38 +280,37 @@ void Mesh::renderdebug() {
 
 }
 
-void Mesh::createPlane(float size)
-{
+void Mesh::createPlane(float size) {
 	vertices.clear();
 	normals.clear();
 	uvs.clear();
 
 	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 
-	vertices.push_back( Vector3(size,size,0) );
-	vertices.push_back( Vector3(size,-size,0) );
-	vertices.push_back( Vector3(-size,-size,0) );
-	vertices.push_back( Vector3(-size,size,0) );
+	vertices.push_back(Vector3(size, size, 0));
+	vertices.push_back(Vector3(size, -size, 0));
+	vertices.push_back(Vector3(-size, -size, 0));
+	vertices.push_back(Vector3(-size, size, 0));
 
-	vertices.push_back( Vector3(size,size,0) );
-	vertices.push_back( Vector3(-size,-size,0) );
+	vertices.push_back(Vector3(size, size, 0));
+	vertices.push_back(Vector3(-size, -size, 0));
 
 	//all of them have the same normal
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
+	normals.push_back(Vector3(0, 1, 0));
+	normals.push_back(Vector3(0, 1, 0));
+	normals.push_back(Vector3(0, 1, 0));
+	normals.push_back(Vector3(0, 1, 0));
+	normals.push_back(Vector3(0, 1, 0));
+	normals.push_back(Vector3(0, 1, 0));
 
 	//texture coordinates
-	uvs.push_back( Vector2(1,1) );
-	uvs.push_back( Vector2(1,0) );
-	uvs.push_back( Vector2(0,0) );
-	uvs.push_back( Vector2(0,1) );
+	uvs.push_back(Vector2(1, 1));
+	uvs.push_back(Vector2(1, 0));
+	uvs.push_back(Vector2(0, 0));
+	uvs.push_back(Vector2(0, 1));
 
-	uvs.push_back( Vector2(1,1) );
-	uvs.push_back( Vector2(0,0) );
+	uvs.push_back(Vector2(1, 1));
+	uvs.push_back(Vector2(0, 0));
 }
 
 void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
@@ -333,35 +320,34 @@ void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
 
 	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 
+	vertices.push_back(pos + (top + right) * size);
+	vertices.push_back(pos + (top + (right * -1)) * size);
+	vertices.push_back(pos + ((top * -1) + (right * -1)) * size);
 
-	vertices.push_back (pos + (top      +      right)* size);
-	vertices.push_back (pos + (top      + (right*-1))* size);
-	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
-
-	vertices.push_back (pos + ((top*-1) +      right)* size);
+	vertices.push_back(pos + ((top * -1) + right) * size);
 
 //	vertices.push_back (pos + (top      +      right)* size);
 //	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
 
-	Vector3 front =  top.cross(right);
+	Vector3 front = top.cross(right);
 	//all of them have the same normal
-	normals.push_back( front );
-	normals.push_back( front );
-	normals.push_back( front );
-	normals.push_back( front );
+	normals.push_back(front);
+	normals.push_back(front);
+	normals.push_back(front);
+	normals.push_back(front);
 //	normals.push_back( front );
 //	normals.push_back( front );
 
 	//texture coordinates
-	uvs.push_back( Vector2(1,1) );
-	uvs.push_back( Vector2(1,0) );
-	uvs.push_back( Vector2(0,0) );
-	uvs.push_back( Vector2(0,1) );
+	uvs.push_back(Vector2(1, 1));
+	uvs.push_back(Vector2(1, 0));
+	uvs.push_back(Vector2(0, 0));
+	uvs.push_back(Vector2(0, 1));
 //	uvs.push_back( Vector2(1,1) );
 //	uvs.push_back( Vector2(0,0) );
 }
 
-void Mesh::renderBounds(){
+void Mesh::renderBounds() {
 	glutWireSphere(bounds.at(0).distance(bounds.at(1)) / 1.1, 20, 10);
 }
 

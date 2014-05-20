@@ -47,11 +47,10 @@ public:
 
 	CollisionModel3D* getcollisionmodel();
 
-//	void settrans(){
-//		Matrix44 mat;
-//		mat.setIdentity();
-//		_collision_model->setTransform(mat.m);
-//	}
+	void setcolors(){
+
+	}
+
 
 	bool coldetmodel(); //Hem de carregar manualment cada cop que creem una mesh l'arbre de coldet.
 

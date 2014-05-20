@@ -17,6 +17,7 @@
 #include "enemic.h"
 
 #include "entityboard.h"
+#include "nau.h"
 #include "movingentity.h"
 #include "entitymesh.h"
 #include "entity.h"
@@ -53,7 +54,7 @@ public:
 
 	Camera* _camera;
 	
-	std::vector<MovingEntity*> _totes_entyties;
+	std::vector<Nau*> _totes_entyties;
 
 	std::vector<EntityBoard*> _nuvols;
 
@@ -61,7 +62,7 @@ public:
 
 	std::vector<Controller*> _enemics;
 
-	MovingEntity* _jugador;
+	Nau* _jugador;
 
 	static World* getInstance();
 
