@@ -22,6 +22,7 @@ public:
 	std::vector< Vector3 > vertices; //here we store the vertices
 	std::vector< Vector3 > normals;	 //here we store the normals
 	std::vector< Vector2 > uvs;	 //here we store the texture coordinates
+	std::vector< Vector2 > colors;	 //here we store the texture coordinates
 
 	std::vector< Vector3 > bounds; //here we store the bounds
 
@@ -38,6 +39,7 @@ public:
 
 	void render();
 
+	void change_primitive(std::string prim);
 
 	void renderdebug();
 

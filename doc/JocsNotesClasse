@@ -201,3 +201,40 @@ Grid de triangles //mirar la pagina web tamat. Estas fotut
 World-machine 
 
 
+Seguiments i enemics, ja ho tinc prou b
+
+Aicontroller
+-entity* controlled
+-entity* target
+int team
+
+
+producte escalar del front i el vector quw apunta al target = angle
+                vectorial = eixos de rotació 
+fer la diferencia amb del
+
+
+Ai update
+
+Vector3 pos pos=spitfire->model.gettransation();
+Vector3 front spitfire->model.rotatevector(vector3(0,0,1))
+
+
+vector3 to_target = target_pos -pos;
+
+to_target.normalize();
+
+float angle = 1 - to _target.dot(front)
+
+vecto3 axis to target.cross (front)
+axis.normalize()
+
+//fer copia de la model,  inv=model
+                          inv.invert
+                          
+fer inversa, i multiplicar, i convertira coordenades de mon a coordenades locals
+inv.rotatelocal (angle * dt*0.5, axis)
+
+
+array de colors a mesh
+

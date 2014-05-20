@@ -21,9 +21,6 @@ World::World() {
 	else
 		std::cout << "Mon ... NO OK" << std::endl;
 
-
-
-
 	_camera->center = _jugador->getCenter();
 	_camera->up = _jugador->getTop();
 	_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);
@@ -36,6 +33,8 @@ World::~World() {
 	free(_cel);
 	for (unsigned int i = 0; i < _totes_entyties.size(); i++)
 		free(_totes_entyties.at(i));
+	for (unsigned int i = 0; i < _nuvols.size(); i++)
+			free(_nuvols.at(i));
 
 	free(_instance);
 }
@@ -89,7 +88,7 @@ bool World::llegeixIcarrega(const char *dir) {
 		else if (i == 2) {
 			for (unsigned int j = 0; j < posx; j++) {
 				EntityBoard* nuvol = new EntityBoard();
-				float t =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/posx));
+				float t =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/posy));
 				float nx =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
 				float ny =  static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
 				float nz =   static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(posz - (-1*posz))));
@@ -179,9 +178,9 @@ void World::update(double elapsed_time) {
     _jugador->transform();
 
 
-	//bool test = _jugador->tecolisions()->collision(_terreny->tecolisions(), -1,0,_terreny->getGlobalMatrix().m);
+	bool test = _jugador->tecolisions()->collision(_terreny->tecolisions(), -1,0,_terreny->getGlobalMatrix().m);
 
-   bool test = _jugador->tecolisions()->collision(  _totes_entyties.at(4)->tecolisions(), -1,0,_totes_entyties.at(5)->getGlobalMatrix().m );
+   //bool test = _jugador->tecolisions()->collision(  _totes_entyties.at(4)->tecolisions(), -1,0,_totes_entyties.at(5)->getGlobalMatrix().m );
     if (test) std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
 
     for(unsigned int i = 0; i < _nuvols.size(); ++i)

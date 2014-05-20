@@ -34,9 +34,9 @@ CollisionModel3D* Mesh::getcollisionmodel() {
 bool Mesh::coldetmodel(){
 	for (unsigned int i = 0; i < vertices.size()-3; i+=3 ){
 		_collision_model->addTriangle(
-						vertices[i].x,vertices[i].y,vertices[i].z,
-						vertices[i+1].x,vertices[i+1].y,vertices[i+1].z,
-						vertices[i+2].x,vertices[i+2].y,vertices[i+2].z);
+				vertices[i].x,vertices[i].y,vertices[i].z,
+				vertices[i+1].x,vertices[i+1].y,vertices[i+1].z,
+				vertices[i+2].x,vertices[i+2].y,vertices[i+2].z);
 	}
 	_collision_model->finalize();
 	return true;
@@ -254,6 +254,12 @@ void Mesh::render()
 		glTexCoordPointer(2,GL_FLOAT, 0, &uvs[0] );
 	}
 
+	if (colors.size())
+	{
+		glEnableClientState(GL_COLOR_ARRAY);
+		glColorPointer(4,GL_FLOAT, 0, &colors[0] );
+	}
+
 	glDrawArrays(primitive, 0, vertices.size() );
 	glDisableClientState(GL_VERTEX_ARRAY);
 
@@ -261,6 +267,8 @@ void Mesh::render()
 		glDisableClientState(GL_NORMAL_ARRAY);
 	if (uvs.size())
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	if (colors.size())
+		glDisableClientState(GL_COLOR_ARRAY);
 
 }
 
@@ -329,10 +337,11 @@ void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
 	vertices.push_back (pos + (top      +      right)* size);
 	vertices.push_back (pos + (top      + (right*-1))* size);
 	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
+
 	vertices.push_back (pos + ((top*-1) +      right)* size);
 
-	vertices.push_back (pos + (top      +      right)* size);
-	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
+//	vertices.push_back (pos + (top      +      right)* size);
+//	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
 
 	Vector3 front =  top.cross(right);
 	//all of them have the same normal
@@ -340,16 +349,16 @@ void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
 	normals.push_back( front );
 	normals.push_back( front );
 	normals.push_back( front );
-	normals.push_back( front );
-	normals.push_back( front );
+//	normals.push_back( front );
+//	normals.push_back( front );
 
 	//texture coordinates
 	uvs.push_back( Vector2(1,1) );
 	uvs.push_back( Vector2(1,0) );
 	uvs.push_back( Vector2(0,0) );
 	uvs.push_back( Vector2(0,1) );
-	uvs.push_back( Vector2(1,1) );
-	uvs.push_back( Vector2(0,0) );
+//	uvs.push_back( Vector2(1,1) );
+//	uvs.push_back( Vector2(0,0) );
 }
 
 void Mesh::renderBounds(){
