@@ -325,6 +325,7 @@ void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
 
 	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 
+
 	vertices.push_back (pos + (top      +      right)* size);
 	vertices.push_back (pos + (top      + (right*-1))* size);
 	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
@@ -333,13 +334,14 @@ void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
 	vertices.push_back (pos + (top      +      right)* size);
 	vertices.push_back (pos + ((top*-1) + (right*-1))* size);
 
+	Vector3 front =  top.cross(right);
 	//all of them have the same normal
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
-	normals.push_back( Vector3(0,1,0) );
+	normals.push_back( front );
+	normals.push_back( front );
+	normals.push_back( front );
+	normals.push_back( front );
+	normals.push_back( front );
+	normals.push_back( front );
 
 	//texture coordinates
 	uvs.push_back( Vector2(1,1) );

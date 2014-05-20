@@ -19,6 +19,17 @@ void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
 	_alpha = alpha;
 }
 
+void EntityMesh::setParams(float tamany, std::string text_dir,
+		bool mipmapping, Vector3 posinicial, bool alpha) {
+	Entity::setParams(posinicial);
+
+	_mesh = (MeshManager::getInstance())->get(tamany);
+
+	_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
+
+	_alpha = alpha;
+}
+
 CollisionModel3D* EntityMesh::tecolisions(){
 	//_mesh->_collision_model->setTransform(_model.m);
 	return _mesh->getcollisionmodel();
