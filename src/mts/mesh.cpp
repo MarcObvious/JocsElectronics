@@ -259,7 +259,6 @@ void Mesh::render() {
 	if (colors.size())
 		glDisableClientState(GL_COLOR_ARRAY);
 
-
 	colors.clear(); //No es una bona practica. De moment es queda aixi :)
 	glColor3f(1.0, 1.0, 1.0);
 
@@ -319,7 +318,6 @@ void Mesh::createPlane(float size) {
 void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
 	clear();
 
-	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 	primitive = GL_QUADS;
 
 	vertices.push_back(pos + (top + right) * size);
