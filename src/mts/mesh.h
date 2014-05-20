@@ -64,6 +64,8 @@ public:
 
 	void createPlane(float size);
 
+	void createLine (Vector3 pos1, Vector3 pos2);
+
 	void createPlane(float size, Vector3 pos, Vector3 top, Vector3 right);
 };
 

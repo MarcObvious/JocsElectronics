@@ -244,10 +244,10 @@ void Mesh::render() {
 		glTexCoordPointer(2, GL_FLOAT, 0, &uvs[0]);
 	}
 
-	if (colors.size()) {
-		glEnableClientState(GL_COLOR_ARRAY);
-		glColorPointer(4, GL_FLOAT, 0, &colors[0]);
-	}
+//	if (colors.size()) {
+//		glEnableClientState(GL_COLOR_ARRAY);
+//		glColorPointer(4, GL_FLOAT, 0, &colors[0]);
+//	}
 
 	glDrawArrays(primitive, 0, vertices.size());
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -256,9 +256,9 @@ void Mesh::render() {
 		glDisableClientState(GL_NORMAL_ARRAY);
 	if (uvs.size())
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	if (colors.size())
-		glDisableClientState(GL_COLOR_ARRAY);
-	colors.clear();
+//	if (colors.size())
+//		glDisableClientState(GL_COLOR_ARRAY);
+//	colors.clear();
 
 }
 
@@ -343,6 +343,25 @@ void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
 	uvs.push_back(Vector2(0, 1));
 //	uvs.push_back( Vector2(1,1) );
 //	uvs.push_back( Vector2(0,0) );
+}
+
+void Mesh::createLine(Vector3 pos1, Vector3 pos2){
+	clear();
+
+	primitive = GL_LINE_STRIP;
+
+	vertices.push_back(Vector3(0,0,0));
+	vertices.push_back(Vector3(0,100,0));
+
+	normals.push_back(Vector3(0,1,0));
+	normals.push_back(Vector3(0,1,0));
+
+	uvs.push_back(Vector2(1, 1));
+	uvs.push_back(Vector2(1, 0));
+
+	colors.push_back(Vector2(0,0));
+	colors.push_back(Vector2(1,1));
+
 }
 
 void Mesh::renderBounds() {

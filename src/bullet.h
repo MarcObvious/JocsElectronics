@@ -8,12 +8,13 @@
 
 #include <string>
 #include "utils/framework.h"
+#include "mts/mesh.h"
 
 class Bullet
 {
 
 private:
-
+	Mesh * _mesh;
 	Vector3 _position;
 	Vector3 _last_position;
 	Vector3 _velocity;
