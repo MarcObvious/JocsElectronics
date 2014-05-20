@@ -17,6 +17,7 @@ void Mesh::clear() {
 	normals.clear();
 	uvs.clear();
 	bounds.clear();
+	colors.clear();
 }
 
 std::vector<Vector3> Mesh::getBounds() {
@@ -257,6 +258,7 @@ void Mesh::render() {
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (colors.size())
 		glDisableClientState(GL_COLOR_ARRAY);
+	colors.clear();
 
 }
 
@@ -281,9 +283,7 @@ void Mesh::renderdebug() {
 }
 
 void Mesh::createPlane(float size) {
-	vertices.clear();
-	normals.clear();
-	uvs.clear();
+	clear();
 
 	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 
@@ -314,9 +314,7 @@ void Mesh::createPlane(float size) {
 }
 
 void Mesh::createPlane(float size, Vector3 pos, Vector3 top, Vector3 right) {
-	vertices.clear();
-	normals.clear();
-	uvs.clear();
+	clear();
 
 	//create six vertices (3 for upperleft triangle and 3 for lowerright)
 
