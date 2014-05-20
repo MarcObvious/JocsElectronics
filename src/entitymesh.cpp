@@ -5,8 +5,8 @@ EntityMesh::EntityMesh() {
 	_alpha = false;
 }
 
-void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
-		bool mipmapping, Vector3 posinicial, bool alpha) {
+void EntityMesh::setParams(std::string mesh_dir, std::string text_dir, bool mipmapping, Vector3 posinicial,
+		bool alpha) {
 
 	Entity::setParams(posinicial);
 	if (mesh_dir.compare("NULL") != 0) {
@@ -19,8 +19,7 @@ void EntityMesh::setParams(std::string mesh_dir, std::string text_dir,
 	_alpha = alpha;
 }
 
-void EntityMesh::setParams(float tamany, std::string text_dir,
-		bool mipmapping, Vector3 posinicial, bool alpha) {
+void EntityMesh::setParams(float tamany, std::string text_dir, bool mipmapping, Vector3 posinicial, bool alpha) {
 	Entity::setParams(posinicial);
 
 	_mesh = (MeshManager::getInstance())->get(tamany);
@@ -30,7 +29,7 @@ void EntityMesh::setParams(float tamany, std::string text_dir,
 	_alpha = alpha;
 }
 
-CollisionModel3D* EntityMesh::tecolisions(){
+CollisionModel3D* EntityMesh::tecolisions() {
 	//_mesh->_collision_model->setTransform(_model.m);
 	return _mesh->getcollisionmodel();
 }
@@ -44,8 +43,7 @@ void EntityMesh::render() {
 	_model.set();
 
 	//_mesh->renderBounds();
-	if (_alpha ) {
-
+	if (_alpha) {
 
 		glEnable(GL_BLEND);
 		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -57,8 +55,7 @@ void EntityMesh::render() {
 		//glDepthMask(false);
 		glDisable(GL_BLEND);
 
-	}
-	else {
+	} else {
 
 		_texture->bind();
 		_mesh->render();
@@ -72,11 +69,11 @@ void EntityMesh::render() {
 	glPopMatrix();
 }
 
-Vector3 EntityMesh::getTop(){
+Vector3 EntityMesh::getTop() {
 	return _model.topVector();
 }
 
-Vector3 EntityMesh::getCenter(){
+Vector3 EntityMesh::getCenter() {
 	return _model * Vector3(0, 1, 1);
 }
 

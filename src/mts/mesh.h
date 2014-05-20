@@ -15,21 +15,16 @@
 #include "../utils/text.h"
 #include "../utils/framework.h"
 
-
-class Mesh
-{
+class Mesh {
 public:
-	std::vector< Vector3 > vertices; //here we store the vertices
-	std::vector< Vector3 > normals;	 //here we store the normals
-	std::vector< Vector2 > uvs;	 //here we store the texture coordinates
-	std::vector< Vector2 > colors;	 //here we store the colors
+	std::vector<Vector3> vertices; //here we store the vertices
+	std::vector<Vector3> normals;	 //here we store the normals
+	std::vector<Vector2> uvs;	 //here we store the texture coordinates
+	std::vector<Vector2> colors;	 //here we store the colors
 
-	std::vector< Vector3 > bounds; //here we store the bounds
+	std::vector<Vector3> bounds; //here we store the bounds
 
 	CollisionModel3D* _collision_model; //Here we store the collision model for coldet.
-
-
-
 
 	int primitive; //used to tell which primitive to use when rendering (quad, points, lines)
 
@@ -47,12 +42,13 @@ public:
 
 	CollisionModel3D* getcollisionmodel();
 
-	void setcolors(){
-		colors.resize(2);
-		colors.push_back(Vector2(0,0));
-		colors.push_back(Vector2(255,255));
+	void setcolors(Vector2 col) {
+		colors.resize(4);
+		colors.push_back(col);
+		colors.push_back(col);
+		colors.push_back(col);
+		colors.push_back(col);
 	}
-
 
 	bool coldetmodel(); //Hem de carregar manualment cada cop que creem una mesh l'arbre de coldet.
 
@@ -64,7 +60,7 @@ public:
 
 	void createPlane(float size);
 
-	void createLine (Vector3 pos1, Vector3 pos2);
+	void createLine(Vector3 pos1, Vector3 pos2);
 
 	void createPlane(float size, Vector3 pos, Vector3 top, Vector3 right);
 };

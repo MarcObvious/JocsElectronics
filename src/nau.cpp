@@ -1,5 +1,5 @@
 #include "nau.h"
-
+#include "mts/MeshManager.h"
 Nau::Nau() {
 	_dany = 0;
 	_cadencia = 0;
@@ -23,6 +23,7 @@ void Nau::setParams(std::string mesh_dir, std::string text_dir, bool mipmapping,
 
 void Nau::tocat(int dany) {
 	_dany -= dany;
-	_mesh->setcolors();
+	glColor3f(1.0, 0.0, 0.0);
+
 }
 

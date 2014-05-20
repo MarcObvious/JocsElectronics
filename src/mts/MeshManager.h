@@ -1,9 +1,9 @@
 /*  entitymesh.h
-*   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
-*  MeshManager que conte el vector de meshs, segueix
-*   un patró singleton
-*/
- 
+ *   Marc Mateu nia 146756 2014 UPF  cat166@gmail.com
+ *  MeshManager que conte el vector de meshs, segueix
+ *   un patró singleton
+ */
+
 #ifndef MESHMANAGER_H_
 #define MESHMANAGER_H_
 
@@ -31,11 +31,14 @@ public:
 
 	static MeshManager * getInstance(); 		//Retorna el Meshmanager
 
+
+	Mesh* getLine(Vector3 pos1, Vector3 pos2);
+
 	Mesh* get(float tamany); //retorna una mesh plana en la direccio normal.
 
 	Mesh* get(float tamany, std::string name, Vector3 pos, Vector3 top, Vector3 right); //retorna una mesh plana en la direcció correcta.
 
-	Mesh* get(std::string mesh_dir);//Retorna una mesh del vector, si no hi es la crea.
+	Mesh* get(std::string mesh_dir); //Retorna una mesh del vector, si no hi es la crea.
 
 };
 

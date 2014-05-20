@@ -20,26 +20,30 @@ MeshManager * MeshManager::getInstance() {
 	return _instance;
 }
 
-Mesh* MeshManager::get(float tamany) {//Poc efectiu. Ho se.
+Mesh* MeshManager::get(float tamany) { //Poc efectiu. Ho se.
 	Mesh* mesh_nova = new Mesh();
 	mesh_nova->createPlane(tamany);
 
 	return mesh_nova;
 }
 
+Mesh* MeshManager::getLine(Vector3 pos1, Vector3 pos2) {
+	Mesh * mesh_nova = new Mesh();
+	mesh_nova->createLine(pos1, pos2);
+	return mesh_nova;
+}
 
 Mesh* MeshManager::get(float tamany, std::string name, Vector3 pos, Vector3 top, Vector3 right) {
 	std::map<std::string, Mesh*>::iterator it = _plans_loaded->find(name);
 
 	if (it != _plans_loaded->end()) {    //La mesh ja existia
-		it->second->createPlane(tamany,  pos,  top,  right);
+		it->second->createPlane(tamany, pos, top, right);
 		return (it->second);
 
 	} else {
 		Mesh* mesh_nova = new Mesh();
-		mesh_nova->createPlane(tamany,  pos,  top,  right);
-		_plans_loaded->insert(
-						std::pair<std::string, Mesh*>(name, mesh_nova));
+		mesh_nova->createPlane(tamany, pos, top, right);
+		_plans_loaded->insert(std::pair<std::string, Mesh*>(name, mesh_nova));
 		return mesh_nova;
 	}
 }
@@ -53,13 +57,11 @@ Mesh* MeshManager::get(std::string mesh_dir) {
 		Mesh* mesh_nova = new Mesh();
 
 		if (!mesh_nova->loadASE((char*) mesh_dir.c_str())) {
-			std::cout << "ERROR AL LLEGIR MESH: " << mesh_dir.c_str()
-											<< std::endl;
+			std::cout << "ERROR AL LLEGIR MESH: " << mesh_dir.c_str() << std::endl;
 			exit(0);
 		}
 
-		_meshs_loaded->insert(
-				std::pair<std::string, Mesh*>(mesh_dir, mesh_nova));
+		_meshs_loaded->insert(std::pair<std::string, Mesh*>(mesh_dir, mesh_nova));
 		return mesh_nova;
 	}
 }

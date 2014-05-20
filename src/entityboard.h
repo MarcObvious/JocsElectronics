@@ -21,12 +21,14 @@ protected:
 public:
 	EntityBoard();
 
-	void setParams(float tamany, std::string text_dir,
-			bool mipmapping, Vector3 posinicial, bool alpha, Vector3 top, Vector3 right);
+	void setParams(float tamany, std::string text_dir, bool mipmapping, Vector3 posinicial, bool alpha, Vector3 top,
+			Vector3 right);
 
-	virtual ~EntityBoard(){};
+	virtual ~EntityBoard() {
+	}
+	;
 
-	void render(){
+	void render() {
 		glPushMatrix();
 		_model.set();
 
@@ -44,10 +46,7 @@ public:
 		glPopMatrix();
 	}
 
-
-
-
-	 void update(Vector3 top, Vector3 right);
+	void update(Vector3 top, Vector3 right);
 
 };
 

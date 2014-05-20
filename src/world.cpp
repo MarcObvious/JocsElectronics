@@ -177,7 +177,7 @@ void World::update(double elapsed_time) {
 		_totes_entyties.at(i)->update(elapsed_time);
 
 	BulletManager::getInstance()->update(elapsed_time);
-//std::cout << "MERDA" << std::endl;
+	//std::cout << "MERDA" << std::endl;
 	_jugador->transform();
 
 	bool test = _jugador->tecolisions()->collision(_terreny->tecolisions(), -1, 0, _terreny->getGlobalMatrix().m);
@@ -185,28 +185,28 @@ void World::update(double elapsed_time) {
 	//bool test = _jugador->tecolisions()->collision(  _totes_entyties.at(4)->tecolisions(), -1,0,_totes_entyties.at(5)->getGlobalMatrix().m );
 	if (test) {
 		std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
-	_jugador->tocat(10);
+		_jugador->tocat(10);
 
-}
+	}
 
-for (unsigned int i = 0; i < _nuvols.size(); ++i)
-	_nuvols.at(i)->update(_camera->getLocalVector(Vector3(0, 1, 0)), _camera->getLocalVector(Vector3(1, 0, 0)));
+	for (unsigned int i = 0; i < _nuvols.size(); ++i)
+		_nuvols.at(i)->update(_camera->getLocalVector(Vector3(0, 1, 0)), _camera->getLocalVector(Vector3(1, 0, 0)));
 }
 
 void World::render() {
-_camera->set();
+	_camera->set();
 
-glDisable(GL_DEPTH_TEST); //Z buffer desactivat
-_cel->render();
-glEnable(GL_DEPTH_TEST);  //Altre cop activat
+	glDisable(GL_DEPTH_TEST); //Z buffer desactivat
+	_cel->render();
+	glEnable(GL_DEPTH_TEST);  //Altre cop activat
 
-_terreny->render();
+	_terreny->render();
 
-for (unsigned int i = 0; i < _totes_entyties.size(); ++i)
-	_totes_entyties.at(i)->render();
+	for (unsigned int i = 0; i < _totes_entyties.size(); ++i)
+		_totes_entyties.at(i)->render();
 
-for (unsigned int i = 0; i < _nuvols.size(); ++i)
-	_nuvols.at(i)->render();
+	for (unsigned int i = 0; i < _nuvols.size(); ++i)
+		_nuvols.at(i)->render();
 
-BulletManager::getInstance()->render();
+	BulletManager::getInstance()->render();
 }

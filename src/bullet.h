@@ -8,6 +8,7 @@
 
 #include <string>
 #include "utils/framework.h"
+#include "mts/MeshManager.h"
 #include "mts/mesh.h"
 
 class Bullet

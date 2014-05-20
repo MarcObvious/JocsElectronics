@@ -12,24 +12,23 @@
 #include "mts/MeshManager.h"
 #include "mts/TextureManager.h"
 
-class EntityMesh : public Entity {
+class EntityMesh: public Entity {
 protected:
 	Mesh* _mesh = NULL;
 	Texture* _texture = NULL;
-	Vector3 _color ; //per saber quan disparo a algu si faig mal o no. "proves"
+	Vector3 _color; //per saber quan disparo a algu si faig mal o no. "proves"
 	bool _alpha;
 	std::vector<Vector3> _bounds; //bounds, el primer element es el halfsize, el segon center
 
 public:
 
 	EntityMesh();
-	virtual ~EntityMesh() {}
+	virtual ~EntityMesh() {
+	}
 
-	virtual void setParams(std::string mesh_dir, std::string text_dir,
-			bool mipmapping, Vector3 posinicial, bool alpha);
+	virtual void setParams(std::string mesh_dir, std::string text_dir, bool mipmapping, Vector3 posinicial, bool alpha);
 
-	void setParams(float tamany, std::string text_dir,
-			bool mipmapping, Vector3 posinicial, bool alpha); //per a plans  i altres formes (nuvols??).
+	void setParams(float tamany, std::string text_dir, bool mipmapping, Vector3 posinicial, bool alpha); //per a plans  i altres formes (nuvols??).
 
 	void render();
 
@@ -43,7 +42,9 @@ public:
 
 	Vector3 getCenter();
 
-	virtual void update(double elapsed_time){};
+	virtual void update(double elapsed_time) {
+	}
+	;
 
 };
 
