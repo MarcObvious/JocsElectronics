@@ -44,6 +44,8 @@ private:
 
 	EntityMesh* _cel;
 
+	EntityMesh* _aigua;
+
 	World();
 
 	~World();
