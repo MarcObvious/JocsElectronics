@@ -88,11 +88,10 @@ bool World::llegeixIcarrega(const char *dir) {
 		} else if (i == 2) {
 			for (unsigned int j = 0; j < posx; j++) {
 				EntityBoard* nuvol = new EntityBoard();
+				Vector3 posaux;
+				posaux.random(posz);
 				float t = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / posy));
-				float nx = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (posz - (-1 * posz))));
-				float ny = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (posz - (-1 * posz))));
-				float nz = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (posz - (-1 * posz))));
-				nuvol->setParams(t, text_dir, mip, Vector3(nx, ny, nz), true, _camera->getLocalVector(Vector3(0, 1, 0)),
+				nuvol->setParams(t, text_dir, mip, posaux, true, _camera->getLocalVector(Vector3(0, 1, 0)),
 						_camera->getLocalVector(Vector3(1, 0, 0)));
 				_nuvols.push_back(nuvol);
 			}
@@ -132,13 +131,12 @@ bool World::llegeixIcarrega(const char *dir) {
 		}
 
 	}
-	//HA DE SER UN BILLBOARD!!! IGUAL QUE ELS NUVOLS!!!!!!!!!!!!
 
 	//HAURIA DE SER FILL DE CAMERA; DEPEN NOMES DEL PUNT DE VISTA
 	EntityMesh* punt_mira = new EntityMesh();
 	punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0, 0, 60), true);
-	//punt_mira->setParent(_jugador);
-	//jugador->addChild(punt_mira);
+	punt_mira->setParent(_jugador);
+	_jugador->addChild(punt_mira);
 
 	EntityMesh* foc = new EntityMesh();
 	foc->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0, -1, -20), true);
@@ -180,7 +178,7 @@ void World::update(double elapsed_time) {
 		if ((BulletManager::getInstance())->comprova(_totes_entyties.at(i)->tecolisions()))
 			_totes_entyties.at(i)->tocat(10);
 
-		_totes_entyties.at(i)->transform();
+		//_totes_entyties.at(i)->transform();
 		if (_totes_entyties.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
 				_terreny->getGlobalMatrix().m)) {
 

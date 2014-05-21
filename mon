@@ -14,7 +14,7 @@
      #MESH NO
      #TEXTURA assets/textures/cel/cloud.tga
      #MIPMAP  1
-     #POSICIO 10 1000 500  Cas especial Numero-Tamanybase-Rang on estaran     
+     #POSICIO 200 1000 200  Cas especial Numero-Tamanybase-Rang on estaran     
 #JUGADOR
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga

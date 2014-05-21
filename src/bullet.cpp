@@ -39,7 +39,6 @@ void Bullet::update( float elapsed_time ) {
 }
 
 void Bullet::render() {
-
 	_mesh->render();
 
 }

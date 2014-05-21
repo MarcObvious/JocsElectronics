@@ -36,7 +36,7 @@ void BulletManager::update( float elapsed_time ){
 
 	for(unsigned int i = 0; i < _bullets->size(); i++) {
 		if ( _bullets->at(i)->viva() )
-		_bullets->at(i)->update( elapsed_time );
+			_bullets->at(i)->update( elapsed_time );
 
 	}
 }
@@ -65,8 +65,9 @@ void BulletManager::createBullet(Vector3 position, Vector3 last_position, Vector
 
 bool BulletManager::comprova(CollisionModel3D* collision_model) {
 	for (unsigned int i = 0; i < _bullets->size(); i++) {
-		if (collision_model->rayCollision( _bullets->at(i)->_last_position.v, (_bullets->at(i)->_position - _bullets->at(i)->_last_position ) .v, false) == true)
-		return true;
+		if ( _bullets->at(i)->viva() )
+			if (collision_model->rayCollision( _bullets->at(i)->_last_position.v, (_bullets->at(i)->_position - _bullets->at(i)->_last_position ) .v, false) == true)
+				return true;
 	}
 	return false;
 }
