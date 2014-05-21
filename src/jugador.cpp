@@ -1,6 +1,6 @@
 #include "jugador.h"
 Jugador::Jugador(MovingEntity* contr) :
-Controller(contr) {
+		Controller(contr) {
 	_apunta = 0;
 	_controlat = contr;
 	//_name << " i es jugador";
@@ -62,14 +62,21 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 		_controlat->decelera(seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_SPACE])
-		BulletManager::getInstance()->createBullet(_controlat->getCenter()+Vector3(0,0,-200),_controlat->getCenter()+Vector3(0,0,-200), World::getInstance()->_camera->getLocalVector(Vector3(0,0,-10 * _controlat->getVelocitat())),10,20, _controlat->getId(),"puta");
+//		BulletManager::getInstance()->createBullet(_controlat->getCenter() + Vector3(0, 0, -200),
+//				_controlat->getCenter() + Vector3(0, 0, -200),
+//				World::getInstance()->_camera->getLocalVector(Vector3(0, 0, -10 * _controlat->getVelocitat())), 10, 20,
+//				_controlat->getId(), "puta");
+		BulletManager::getInstance()->createBullet(World::getInstance()->_camera->eye + World::getInstance()->_camera->getLocalVector(Vector3(0, 0, -120)),
+				World::getInstance()->_camera->eye + World::getInstance()->_camera->getLocalVector(Vector3(0, 0, -100)),
+						World::getInstance()->_camera->getLocalVector(Vector3(0, 0, -10 * _controlat->getVelocitat())), 10, 20,
+						_controlat->getId(), "puta");
 
 	_controlat->endavant(seconds_elapsed);
 
 	World::getInstance()->_camera->center = _controlat->getCenter();
 	World::getInstance()->_camera->up = _controlat->getTop();
-	World::getInstance()->_camera->eye = (World::getInstance()->_camera->eye
-			- World::getInstance()->_camera->center).normalize()
-			* _controlat->getDistOpt() + World::getInstance()->_camera->center;
+	World::getInstance()->_camera->eye =
+			(World::getInstance()->_camera->eye - World::getInstance()->_camera->center).normalize()
+					* _controlat->getDistOpt() + World::getInstance()->_camera->center;
 }
 
