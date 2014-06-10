@@ -13,9 +13,7 @@ void Bullet::set(Vector3 position, Vector3 last_position, Vector3 velocity ,floa
 		_power = power;
 		_author_id = author_id;
 		_type = type;
-	//	if (_mesh == NULL)
 		_mesh = (MeshManager::getInstance())->getLine(_position, _position);
-		//else _mesh->createLine(_last_position, _position);
 }
 
 bool Bullet::viva() {
@@ -27,9 +25,9 @@ void Bullet::update( float elapsed_time ) {
 
 	Vector3 G = Vector3(0,-70,0);
 	_last_position = _position;  ///Per fer colisions raig esfera (bounds)
-	_position = _position+_velocity*elapsed_time;
+	_position = _position +_velocity*elapsed_time;
 	_velocity = _velocity+G*elapsed_time;
-	_velocity = _velocity-_velocity*0.1*elapsed_time;
+	_velocity = _velocity - _velocity*0.1*elapsed_time;
 
 	_mesh->createLine(_position, _last_position);
 	_ttl -= elapsed_time;

@@ -59,7 +59,6 @@ void BulletManager::createBullet(Vector3 position, Vector3 last_position, Vector
 		_pos = 0;
 		_init = false;
 	}
-	std::cout << _pos<< std::endl;
 
 }
 
