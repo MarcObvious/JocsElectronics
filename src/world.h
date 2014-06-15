@@ -56,7 +56,11 @@ public:
 
 	Camera* _camera;
 	
-	std::vector<Nau*> _totes_entyties;
+	std::vector<Nau*> _naus_aliades;
+
+	std::vector<Nau*> _naus_enemigues;
+
+	std::vector<EntityMesh*> _elements_fixos;
 
 	std::vector<EntityBoard*> _nuvols;
 

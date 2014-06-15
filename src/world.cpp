@@ -31,8 +31,14 @@ World::~World() {
 	free(_terreny);
 	free(_cel);
 
-	for (unsigned int i = 0; i < _totes_entyties.size(); i++)
-		free(_totes_entyties.at(i));
+	for (unsigned int i = 0; i < _naus_aliades.size(); i++)
+		free(_naus_aliades.at(i));
+
+	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
+		free(_naus_enemigues.at(i));
+
+	for (unsigned int i = 0; i < _elements_fixos.size(); i++)
+		free(_elements_fixos.at(i));
 
 	for (unsigned int i = 0; i < _nuvols.size(); i++)
 		free(_nuvols.at(i));
@@ -105,7 +111,7 @@ bool World::llegeixIcarrega(const char *dir) {
 					my_parser.getfloat());
 
 			_jugador->tecolisions();
-			_totes_entyties.push_back(_jugador);
+			_naus_aliades.push_back(_jugador);
 
 			my_parser.seek("#FILLS");
 			fills = my_parser.getint();
@@ -127,7 +133,7 @@ bool World::llegeixIcarrega(const char *dir) {
 					my_parser.getfloat());
 			//_enemics.push_back(_enemy );
 			enemy->tecolisions();
-			_totes_entyties.push_back(enemy);
+			_naus_enemigues.push_back(enemy);
 		}
 
 	}
@@ -153,11 +159,16 @@ bool World::llegeixIcarrega(const char *dir) {
 	foc3->setParent(_jugador);
 	_jugador->addChild(foc3);
 
-	_aigua = new EntityMesh();
-	_aigua->setParams(1000, "assets/textures/terreny/agua.tga", 0, Vector3(0, -1205, 0), false);
-	Matrix44 aux = _aigua->getMatrix();
-	aux.rotateLocal(90*DEG2RAD, Vector3(-1,0,0));
-	_aigua->setMatrix(aux);
+	EntityMesh* galaxy = new EntityMesh();
+	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true);
+	galaxy->setParent(_jugador);
+	_jugador->addChild(galaxy);
+
+	//	_aigua = new EntityMesh();
+	//	_aigua->setParams(1000, "assets/textures/terreny/agua.tga", 0, Vector3(0, -1205, 0), false);
+	//	Matrix44 aux = _aigua->getMatrix();
+	//	aux.rotateLocal(90*DEG2RAD, Vector3(-1,0,0));
+	//	_aigua->setMatrix(aux);
 	//_aigua->setParams("assets/meshes/terreny/agua", "assets/textures/terreny/agua.tga", true, Vector3(0, -1200, 0), false);
 
 	printPositions();
@@ -169,29 +180,38 @@ void World::printPositions() {
 	//Recorrer totes les entitats treient posicions
 	_terreny->printPosition();
 	_cel->printPosition();
-	for (unsigned int i = 0; i < _totes_entyties.size(); ++i)
-		_totes_entyties.at(i)->printPosition();
+
+	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
+		_naus_enemigues.at(i)->printPosition();
+
+	for (unsigned int i = 0; i < _naus_aliades.size(); i++)
+		_naus_aliades.at(i)->printPosition();
+
+	for (unsigned int i = 0; i < _elements_fixos.size(); i++)
+		_elements_fixos.at(i)->printPosition();
 
 }
 
 void World::update(double elapsed_time) {
 
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
-	_aigua->setPosition(Vector3(_camera->center.x, _camera->center.y-1205, _camera->center.z));
+	//_aigua->setPosition(Vector3(_camera->center.x, _camera->center.y-1205, _camera->center.z));
 
-	for (unsigned int i = 0; i < _totes_entyties.size(); ++i) {
-		_totes_entyties.at(i)->update(elapsed_time);
-		_totes_entyties.at(i)->transform();
 
-		if ((BulletManager::getInstance())->comprova(_totes_entyties.at(i)->tecolisions()))
-			_totes_entyties.at(i)->tocat(10);
+	//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
+	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
+		_naus_aliades.at(i)->update(elapsed_time);
+		_naus_aliades.at(i)->transform();
+
+		if ((BulletManager::getInstance())->comprova(_naus_aliades.at(i)->tecolisions()))
+			_naus_aliades.at(i)->tocat(10);
 
 		//_totes_entyties.at(i)->transform();
-		if (_totes_entyties.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
+		if (_naus_aliades.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
 				_terreny->getGlobalMatrix().m)) {
 
 			std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
-			_totes_entyties.at(i)->tocat(10);
+			_naus_aliades.at(i)->tocat(10);
 
 		}
 	}
@@ -207,11 +227,17 @@ void World::render() {
 	glDisable(GL_DEPTH_TEST); //Z buffer desactivat
 	_cel->render();
 	glEnable(GL_DEPTH_TEST);  //Altre cop activat
-	_aigua->render();
+	//_aigua->render();
 	_terreny->render();
 
-	for (unsigned int i = 0; i < _totes_entyties.size(); ++i)
-		_totes_entyties.at(i)->render();
+	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
+			_naus_enemigues.at(i)->render();
+
+		for (unsigned int i = 0; i < _naus_aliades.size(); i++)
+			_naus_aliades.at(i)->render();
+
+		for (unsigned int i = 0; i < _elements_fixos.size(); i++)
+			_elements_fixos.at(i)->render();
 
 	for (unsigned int i = 0; i < _nuvols.size(); ++i)
 		_nuvols.at(i)->render();

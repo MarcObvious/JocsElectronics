@@ -8,10 +8,10 @@ Jugador::Jugador(MovingEntity* contr) :
 
 void Jugador::canvia_control() {
 	std::cout << "Estic controlant a: " << _apunta << std::endl;
-	if (_apunta >= World::getInstance()->_totes_entyties.size())
+	if (_apunta >= World::getInstance()->_naus_aliades.size())
 		_apunta = 0;
 	else {
-		_controlat = World::getInstance()->_totes_entyties[_apunta];
+		_controlat = World::getInstance()->_naus_aliades[_apunta];
 		++_apunta;
 	}
 }
@@ -60,6 +60,9 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 
 	if (keystate[SDL_SCANCODE_M])
 		_controlat->decelera(seconds_elapsed);
+
+	//if (keystate[SDL_SCANCODE_Z]) //Forats negres. Oh shit baby
+
 
 	if (keystate[SDL_SCANCODE_SPACE])
 //		BulletManager::getInstance()->createBullet(_controlat->getCenter() + Vector3(0, 0, -200),
