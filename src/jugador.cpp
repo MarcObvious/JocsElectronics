@@ -61,7 +61,8 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 	if (keystate[SDL_SCANCODE_M])
 		_controlat->decelera(seconds_elapsed);
 
-	//if (keystate[SDL_SCANCODE_Z]) //Forats negres. Oh shit baby
+	if (keystate[SDL_SCANCODE_Z]) //Forats negres. Oh shit baby
+		World::getInstance()->afegeixfixmon (50, "res","assets/textures/galaxy.tga", 1, World::getInstance()->_camera->eye, true);
 
 
 	if (keystate[SDL_SCANCODE_SPACE])

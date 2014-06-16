@@ -222,6 +222,16 @@ bool World::llegeixIcarrega(const char *dir) {
 	return true;
 }
 
+void World::afegeixfixmon(float mida, std::string mesh_dir, std::string text_dir, bool mipmapping, Vector3 posinicial,
+			bool alpha ){
+	EntityMesh* nova_entitat = new EntityMesh();
+	if (mida != 0)
+		nova_entitat->setParams(mida, text_dir, mipmapping,posinicial, alpha);
+	else
+		nova_entitat->setParams(mesh_dir, text_dir, mipmapping,posinicial, alpha);
+	_elements_fixos.push_back(nova_entitat);
+}
+
 void World::printPositions() {
 	//Recorrer totes les entitats treient posicions
 	_terreny->printPosition();
