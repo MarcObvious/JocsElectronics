@@ -1,21 +1,28 @@
-#NUM_ELEMENTS 9
+#NUM_ELEMENTS 15
+
+#NUM_ELEMENTS_FIXOS 3  //Afegir bunkers o elements de terra interactius 
+
 #TERRENY
      #MESH assets/meshes/terreny/island
      #TEXTURA assets/textures/terreny/island_color_luz.tga
      #MIPMAP  1
      #POSICIO 0 -1000 0
-     
+
 #CEL
      #MESH assets/meshes/cel/cel_dia
      #TEXTURA assets/textures/cel/cel_dia.tga
      #MIPMAP  1
      #POSICIO 0 0 0
+
 #NUVOLS
      #MESH NO
      #TEXTURA assets/textures/cel/cloud.tga
      #MIPMAP  1
-     #POSICIO 1 1000 200  Cas especial Numero-Tamanybase-Rang on estaran     
-#JUGADOR
+     #POSICIO 1 1000 200  Cas especial Numero-Tamanybase-Rang on estaran    
+ 
+#NUM_ALIATS 6   
+
+#JUGADOR1
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
@@ -44,7 +51,7 @@
              #MIPMAP  1
              #POSICIO 22.5 -1.9 -3  
      
-#ALIAT1
+#JUGADOR2
      #MESH assets/meshes/x3_fighter
      #TEXTURA assets/textures/x3_fighter.tga
      #MIPMAP  1
@@ -52,8 +59,46 @@
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##  500           100             50              1000              100               3         3               3            30             200     90          -1     500   1
      #FILLS 0
-    
-#ENEMIC2
+
+#JUGADOR3
+     #MESH assets/meshes/x3_fighter
+     #TEXTURA assets/textures/x3_fighter.tga
+     #MIPMAP  1
+     #POSICIO 200 200 200
+     #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
+     ##  500           100             50              1000              100               3         3               3            30             200     90          -1     500   1
+     #FILLS 0
+
+#JUGADOR4
+     #MESH assets/meshes/x3_fighter
+     #TEXTURA assets/textures/x3_fighter.tga
+     #MIPMAP  1
+     #POSICIO 200 200 200
+     #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
+     ##  500           100             50              1000              100               3         3               3            30             200     90          -1     500   1
+     #FILLS 0
+
+#JUGADOR5
+     #MESH assets/meshes/x3_fighter
+     #TEXTURA assets/textures/x3_fighter.tga
+     #MIPMAP  1
+     #POSICIO 200 200 200
+     #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
+     ##  500           100             50              1000              100               3         3               3            30             200     90          -1     500   1
+     #FILLS 0
+
+#JUGADOR6
+     #MESH assets/meshes/x3_fighter
+     #TEXTURA assets/textures/x3_fighter.tga
+     #MIPMAP  1
+     #POSICIO 200 200 200
+     #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
+     ##  500           100             50              1000              100               3         3               3            30             200     90          -1     500   1
+     #FILLS 0
+
+#NUM_ENEMICS 6
+
+#ENEMIC1
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
@@ -62,7 +107,7 @@
      ##  200           100             2               600              100               2             2             2             50            200     100          -1      500    10
      #FILLS 0
     
-#ENEMIC3
+#ENEMIC2
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
      #MIPMAP  1
@@ -71,7 +116,7 @@
      ##  400           10             2               700              10              0.2            0.2              0.2         600           500      10          -1      500     10
      #FILLS 0
     
-#ENEMIC4
+#ENEMIC3
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
      #MIPMAP  1
@@ -80,7 +125,25 @@
      ##  200           10             2               700              10               0.2           0.2             0.2        600            500      10          -1       500   10
      #FILLS 0
     
+#ENEMIC4
+     #MESH assets/meshes/space_tank
+     #TEXTURA assets/textures/tank1.tga
+     #MIPMAP  1
+     #POSICIO 0 500 1500 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
+     ##  1000           10             2               200              10             0.2             0.2             0.2        600            500      10          -1      500   10
+     #FILLS 0
+
 #ENEMIC5
+     #MESH assets/meshes/space_tank
+     #TEXTURA assets/textures/tank1.tga
+     #MIPMAP  1
+     #POSICIO 0 500 1500 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
+     ##  1000           10             2               200              10             0.2             0.2             0.2        600            500      10          -1      500   10
+     #FILLS 0
+
+#ENEMIC6
      #MESH assets/meshes/space_tank
      #TEXTURA assets/textures/tank1.tga
      #MIPMAP  1
