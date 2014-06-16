@@ -58,14 +58,28 @@ bool World::llegeixIcarrega(const char *dir) {
 	if (!my_parser.create(dir))
 		return 0;
 
-	int fills = 0;
-	my_parser.seek("#NUM_ELEMENTS");
-	int n = my_parser.getint();
+	//Elements necessaris, els declarema bans dels for
+	std::string mesh_dir;
+	std::string text_dir;
+	bool mip;
+	float posx, posy, posz;
+	int num = 0; //numero d'arrays que estem creant.
 
-	for (int i = 0; i < n; i++) {
-		std::string mesh_dir;
-		std::string text_dir;
-		bool mip;
+	my_parser.seek("#NUM_ELEMENTS");
+	int num_elements = my_parser.getint();
+
+	my_parser.seek("#NUM_ELEMENTS_FIXOS");
+	int num_elements_fixos = my_parser.getint();
+
+	my_parser.seek("#NUM_ALIATS");
+	int num_aliats = my_parser.getint();
+
+	my_parser.seek("#NUM_ENEMICS");
+	int num_enemics = my_parser.getint();
+
+	//Primer for, TOTS ELS ELEMENTS
+	for (int num_elements = my_parser.getint(); num_elements > 0; num_elements-- ) {
+
 		my_parser.seek("#MESH");
 		mesh_dir = my_parser.getword();
 		my_parser.seek("#TEXTURA");
@@ -80,28 +94,60 @@ bool World::llegeixIcarrega(const char *dir) {
 		std::transform(text_dir.begin(), text_dir.end(), text_dir.begin(), ::tolower);
 
 		my_parser.seek("#POSICIO");
-		float posx = my_parser.getfloat();
-		float posy = my_parser.getfloat();
-		float posz = my_parser.getfloat();
+		posx = my_parser.getfloat();
+		posy = my_parser.getfloat();
+		posz = my_parser.getfloat();
 
-		if (i == 0) { //terreny
-			_terreny = new EntityMesh();
-			_terreny->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
-		} else if (i == 1) { //cel
-			_cel = new EntityMesh();
-			_cel->setParams(mesh_dir, text_dir, mip, Vector3(_camera->center.x, _camera->center.y, _camera->center.z),
-					false);
-		} else if (i == 2) {
-			for (unsigned int j = 0; j < posx; j++) {
-				EntityBoard* nuvol = new EntityBoard();
-				Vector3 posaux;
-				posaux.random(posz);
-				float t = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / posy));
-				nuvol->setParams(t, text_dir, mip, posaux, true, _camera->getLocalVector(Vector3(0, 1, 0)),
-						_camera->getLocalVector(Vector3(1, 0, 0)));
-				_nuvols.push_back(nuvol);
+		//Carreguem, ELEMENTS_FIXOS
+		if (num_elements_fixos != 0) {
+			if (num_elements_fixos == 3) { //terreny
+				_terreny = new EntityMesh();
+				_terreny->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
+
+			} else if (num_elements_fixos == 2) { //cel
+				_cel = new EntityMesh();
+				_cel->setParams(mesh_dir, text_dir, mip,
+						Vector3(_camera->center.x, _camera->center.y, _camera->center.z), false);
+
+			} else if (num_elements_fixos == 1) { //Nuvols
+				for (unsigned int j = 0; j < posx; j++) {
+					EntityBoard* nuvol = new EntityBoard();
+					Vector3 posaux;
+					posaux.random(posz);
+					float t = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / posy));
+					nuvol->setParams(t, text_dir, mip, posaux, true, _camera->getLocalVector(Vector3(0, 1, 0)),
+							_camera->getLocalVector(Vector3(1, 0, 0)));
+					_nuvols.push_back(nuvol);
+				}
 			}
-		} else if (i == 3) { //elements mobils començant per jugador principal
+			--num_elements_fixos;
+		}
+		else if (num_aliats != 0){
+			my_parser.seek("##");
+			_jugador = new Nau();  //MILLORAR
+			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
+					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+					my_parser.getfloat());
+
+			_jugador->tecolisions();
+			_naus_aliades.push_back(_jugador);
+
+			int fills;
+			my_parser.seek("#FILLS");
+			fills = my_parser.getint();
+			num_elements += fills;
+
+		}
+
+
+		int fills = 0;
+
+		for (int i = 0; i < n; i++) {
+
+		}
+		else if (i == 3) { //elements mobils començant per jugador principal
 			my_parser.seek("##");
 			_jugador = new Nau();
 			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
@@ -197,7 +243,6 @@ void World::update(double elapsed_time) {
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
 	//_aigua->setPosition(Vector3(_camera->center.x, _camera->center.y-1205, _camera->center.z));
 
-
 	//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
 	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
 		_naus_aliades.at(i)->update(elapsed_time);
@@ -226,18 +271,18 @@ void World::render() {
 	_camera->set();
 	glDisable(GL_DEPTH_TEST); //Z buffer desactivat
 	_cel->render();
-	glEnable(GL_DEPTH_TEST);  //Altre cop activat
+	glEnable(GL_DEPTH_TEST);//Altre cop activat
 	//_aigua->render();
 	_terreny->render();
 
 	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
-			_naus_enemigues.at(i)->render();
+		_naus_enemigues.at(i)->render();
 
-		for (unsigned int i = 0; i < _naus_aliades.size(); i++)
-			_naus_aliades.at(i)->render();
+	for (unsigned int i = 0; i < _naus_aliades.size(); i++)
+		_naus_aliades.at(i)->render();
 
-		for (unsigned int i = 0; i < _elements_fixos.size(); i++)
-			_elements_fixos.at(i)->render();
+	for (unsigned int i = 0; i < _elements_fixos.size(); i++)
+		_elements_fixos.at(i)->render();
 
 	for (unsigned int i = 0; i < _nuvols.size(); ++i)
 		_nuvols.at(i)->render();
