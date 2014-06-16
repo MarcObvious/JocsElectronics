@@ -63,7 +63,9 @@ bool World::llegeixIcarrega(const char *dir) {
 	std::string text_dir;
 	bool mip;
 	float posx, posy, posz;
-	int num = 0; //numero d'arrays que estem creant.
+	//int num = 0; //numero d'arrays que estem creant.
+
+	Nau* enemy; //arreglar despres.
 
 	my_parser.seek("#NUM_ELEMENTS");
 	int num_elements = my_parser.getint();
@@ -77,13 +79,19 @@ bool World::llegeixIcarrega(const char *dir) {
 	my_parser.seek("#NUM_ENEMICS");
 	int num_enemics = my_parser.getint();
 
+	int num_fills = 0;
+
 	//Primer for, TOTS ELS ELEMENTS
-	for (int num_elements = my_parser.getint(); num_elements > 0; num_elements-- ) {
+	for (; num_elements > 0; num_elements-- ) {
+
+		std::cout << num_elements << " elements " << num_elements_fixos << " fixos " << num_aliats << " aliats " << num_enemics << " enemics" <<std::endl;
 
 		my_parser.seek("#MESH");
 		mesh_dir = my_parser.getword();
+
 		my_parser.seek("#TEXTURA");
 		text_dir = my_parser.getword();
+
 		my_parser.seek("#MIPMAP");
 		if (my_parser.getfloat() == 1)
 			mip = true;
@@ -123,92 +131,84 @@ bool World::llegeixIcarrega(const char *dir) {
 			--num_elements_fixos;
 		}
 		else if (num_aliats != 0){
-			my_parser.seek("##");
-			_jugador = new Nau();  //MILLORAR
-			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat());
+			if (num_fills == 0) {
+				my_parser.seek("##");
+				_jugador = new Nau();  //MILLORAR
+				_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
+						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+						my_parser.getfloat());
 
-			_jugador->tecolisions();
-			_naus_aliades.push_back(_jugador);
+				_jugador->tecolisions();
+				_naus_aliades.push_back(_jugador);
 
-			int fills;
-			my_parser.seek("#FILLS");
-			fills = my_parser.getint();
-			num_elements += fills;
-
+				my_parser.seek("#FILLS");
+				num_fills = my_parser.getint();
+				num_elements += num_fills;
+				num_aliats += num_fills;
+			}
+			else {
+				EntityMesh* fill = new EntityMesh();
+				my_parser.seek("#PLA");
+				float pla = my_parser.getfloat();
+				if (pla != 0)
+					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true);
+				else
+					fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
+				fill->setParent(_jugador);
+				_jugador->addChild(fill);
+				--num_fills;
+			}
+			--num_aliats;
+			std::cout << num_fills << " fills" << std::endl;
 		}
+		else if (num_enemics != 0) {
+			if (num_fills == 0) {
+				my_parser.seek("##");
+				enemy = new Nau();
+				enemy->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
+						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
+						my_parser.getfloat());
+				//_enemics.push_back(_enemy );
+				enemy->tecolisions();
+				_naus_enemigues.push_back(enemy);
 
-
-		int fills = 0;
-
-		for (int i = 0; i < n; i++) {
-
+				my_parser.seek("#FILLS");
+				num_fills = my_parser.getint();
+				num_elements += num_fills;
+				num_aliats += num_fills;
+			}
+			else {
+				EntityMesh* fill = new EntityMesh();
+				my_parser.seek("#PLA");
+				float pla = my_parser.getfloat();
+				if (pla != 0)
+					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true);
+				else
+					fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
+				fill->setParent(enemy);
+				enemy->addChild(fill);
+				--num_fills;
+			}
+			--num_enemics;
 		}
-		else if (i == 3) { //elements mobils començant per jugador principal
-			my_parser.seek("##");
-			_jugador = new Nau();
-			_jugador->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat());
-
-			_jugador->tecolisions();
-			_naus_aliades.push_back(_jugador);
-
-			my_parser.seek("#FILLS");
-			fills = my_parser.getint();
-			n += fills;
-		} else if (i + 1 < n - fills) {
-			EntityMesh* fill = new EntityMesh();
-			fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
-			//Matrix44 mat = fill->getMatrix(); WTF era això??¿?¿?¿
-			//fill->setMatrix(mat);
-			fill->setParent(_jugador);
-			_jugador->addChild(fill);
-		} else {
-			my_parser.seek("##");
-			Nau* enemy = new Nau();
-			enemy->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
-					my_parser.getfloat());
-			//_enemics.push_back(_enemy );
-			enemy->tecolisions();
-			_naus_enemigues.push_back(enemy);
-		}
-
 	}
 
-	//HAURIA DE SER FILL DE CAMERA; DEPEN NOMES DEL PUNT DE VISTA
-	EntityMesh* punt_mira = new EntityMesh();
-	punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0, 0, 60), true);
-	punt_mira->setParent(_jugador);
-	_jugador->addChild(punt_mira);
 
-	EntityMesh* foc = new EntityMesh();
-	foc->setParams(2, "assets/textures/rainbow.tga", 1, Vector3(0, -1, -20), true);
-	foc->setParent(_jugador);
-	_jugador->addChild(foc);
 
-	EntityMesh* foc2 = new EntityMesh();
-	foc2->setParams(1, "assets/textures/rainbow.tga", 1, Vector3(0, -1, -22), true);
-	foc2->setParent(_jugador);
-	_jugador->addChild(foc2);
+	//	//HAURIA DE SER FILL DE CAMERA; DEPEN NOMES DEL PUNT DE VISTA
+	//	EntityMesh* punt_mira = new EntityMesh();
+	//	punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0, 0, 60), true);
+	//	punt_mira->setParent(_jugador);
+	//	_jugador->addChild(punt_mira);
 
-	EntityMesh* foc3 = new EntityMesh();
-	foc3->setParams(0.5, "assets/textures/rainbow.tga", 1, Vector3(0, -1, -24), true);
-	foc3->setParent(_jugador);
-	_jugador->addChild(foc3);
-
-	EntityMesh* galaxy = new EntityMesh();
-	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true);
-	galaxy->setParent(_jugador);
-	_jugador->addChild(galaxy);
+		EntityMesh* galaxy = new EntityMesh();
+		galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true);
+		galaxy->setParent(_jugador);
+		_jugador->addChild(galaxy);
 
 	//	_aigua = new EntityMesh();
 	//	_aigua->setParams(1000, "assets/textures/terreny/agua.tga", 0, Vector3(0, -1205, 0), false);

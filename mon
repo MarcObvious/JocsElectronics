@@ -31,37 +31,76 @@
      #POSICIO 0 0 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          -1       500  2
-     #FILLS 4
+     #FILLS 7
         #FILLSJUGADOR
              #MESH assets/meshes/misil  
              #TEXTURA assets/textures/misil.tga
              #MIPMAP  1
              #POSICIO 10.5 0.8 0
+             #PLA 0
         #FILLSJUGADOR
              #MESH assets/meshes/misil  
              #TEXTURA assets/textures/misil.tga
              #MIPMAP  1
              #POSICIO 14.5 0 -1
+             #PLA 0
         #FILLSJUGADOR
              #MESH assets/meshes/misil  
              #TEXTURA assets/textures/misil.tga
              #MIPMAP  1
              #POSICIO 18.5 -0.8 -2
+             #PLA 0
         #FILLSJUGADOR
              #MESH assets/meshes/misil  
              #TEXTURA assets/textures/misil.tga
              #MIPMAP  1
-             #POSICIO 22.5 -1.9 -3  
-     
+             #POSICIO 22.5 -1.9 -3
+             #PLA 0
+        #FILLSJUGADOR
+             #MESH CAP  
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -20
+             #PLA 2
+        #FILLSJUGADOR
+             #MESH CAP
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -22
+             #PLA 1
+        #FILLSJUGADOR
+             #MESH CAP  
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -24
+             #PLA 0.5
+	
 #JUGADOR2
-     #MESH assets/meshes/x3_fighter
-     #TEXTURA assets/textures/x3_fighter.tga
+     #MESH assets/meshes/bomber
+     #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 200 200 200
-     #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
-     ##  500           100             50              1000              100               3         3               3            30             200     90          -1     500   1
-     #FILLS 0
-
+     #POSICIO 0 0 0
+     #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
+     ##   300           80           80            900            0               2               2               2               50             200     100          -1       500  2
+     #FILLS 3
+        #FILLSJUGADOR
+             #MESH assets/meshes/misil  
+             #TEXTURA assets/textures/misil.tga
+             #MIPMAP  1
+             #POSICIO 10.5 0.8 0
+             #PLA 0
+        #FILLSJUGADOR
+             #MESH assets/meshes/misil  
+             #TEXTURA assets/textures/misil.tga
+             #MIPMAP  1
+             #POSICIO 14.5 0 -1
+             #PLA 0
+        #FILLSJUGADOR
+             #MESH assets/meshes/misil  
+             #TEXTURA assets/textures/misil.tga
+             #MIPMAP  1
+             #POSICIO 18.5 -0.8 -2
+             #PLA 0
 #JUGADOR3
      #MESH assets/meshes/x3_fighter
      #TEXTURA assets/textures/x3_fighter.tga
