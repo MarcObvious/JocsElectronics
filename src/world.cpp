@@ -125,6 +125,7 @@ bool World::llegeixIcarrega(const char *dir) {
 					float t = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / posy));
 					nuvol->setParams(t, text_dir, mip, posaux, true, _camera->getLocalVector(Vector3(0, 1, 0)),
 							_camera->getLocalVector(Vector3(1, 0, 0)));
+
 					_nuvols.push_back(nuvol);
 				}
 			}
@@ -205,10 +206,10 @@ bool World::llegeixIcarrega(const char *dir) {
 	//	punt_mira->setParent(_jugador);
 	//	_jugador->addChild(punt_mira);
 
-		EntityMesh* galaxy = new EntityMesh();
-		galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true);
-		galaxy->setParent(_jugador);
-		_jugador->addChild(galaxy);
+	EntityMesh* galaxy = new EntityMesh();
+	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true);
+	galaxy->setParent(_jugador);
+	_jugador->addChild(galaxy);
 
 	//	_aigua = new EntityMesh();
 	//	_aigua->setParams(1000, "assets/textures/terreny/agua.tga", 0, Vector3(0, -1205, 0), false);
@@ -223,13 +224,21 @@ bool World::llegeixIcarrega(const char *dir) {
 }
 
 void World::afegeixfixmon(float mida, std::string mesh_dir, std::string text_dir, bool mipmapping, Vector3 posinicial,
-			bool alpha ){
-	EntityMesh* nova_entitat = new EntityMesh();
-	if (mida != 0)
-		nova_entitat->setParams(mida, text_dir, mipmapping,posinicial, alpha);
-	else
-		nova_entitat->setParams(mesh_dir, text_dir, mipmapping,posinicial, alpha);
-	_elements_fixos.push_back(nova_entitat);
+		bool alpha, bool board ){
+	if (!board) {
+		EntityMesh* nova_entitat = new EntityMesh();
+		if (mida != 0)
+			nova_entitat->setParams(mida, text_dir, mipmapping,posinicial, alpha);
+		else
+			nova_entitat->setParams(mesh_dir, text_dir, mipmapping, posinicial, alpha);
+		_elements_fixos.push_back(nova_entitat);
+	}
+	else {
+		EntityBoard* nuvol = new EntityBoard();
+		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->eye ,_camera->up);
+		_nuvols.push_back(nuvol);
+	}
+
 }
 
 void World::printPositions() {

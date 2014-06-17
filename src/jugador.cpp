@@ -61,9 +61,12 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 	if (keystate[SDL_SCANCODE_M])
 		_controlat->decelera(seconds_elapsed);
 
-	if (keystate[SDL_SCANCODE_Z]) //Forats negres. Oh shit baby
-		World::getInstance()->afegeixfixmon (50, "res","assets/textures/galaxy.tga", 1, World::getInstance()->_camera->eye, true);
+	if (keystate[SDL_SCANCODE_Z]) { //Forats negres. Oh shit baby
+		Vector3 pos = _controlat->getPosition();
+		pos.z += 100;
 
+		World::getInstance()->afegeixfixmon (50, "res","assets/textures/galaxy.tga", 1, pos, true, true);
+	}
 
 	if (keystate[SDL_SCANCODE_SPACE])
 //		BulletManager::getInstance()->createBullet(_controlat->getCenter() + Vector3(0, 0, -200),

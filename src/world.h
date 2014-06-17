@@ -73,7 +73,7 @@ public:
 	static World* getInstance();
 
 	void afegeixfixmon(float mida, std::string mesh_dir, std::string text_dir, bool mipmapping, Vector3 posinicial,
-			bool alpha );
+			bool alpha, bool board);
 
 	void update(double elapsed_time);
 
