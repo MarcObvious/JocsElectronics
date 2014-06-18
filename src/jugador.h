@@ -9,7 +9,7 @@
 
 #include "controller.h"
 #include "utils/framework.h"
-#include "movingentity.h"
+#include "nau.h"
 #include "world.h"
 #include "bulletManager.h"
 
@@ -19,7 +19,7 @@ class Jugador : public Controller {
 protected:
 	unsigned int _apunta;
 public:
-	Jugador(MovingEntity* contr);
+	Jugador(Nau* contr);
 
 	~Jugador(){};
 

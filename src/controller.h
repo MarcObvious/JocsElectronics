@@ -7,13 +7,13 @@
 #ifndef CONTROLLER_H_
 #define CONTROLLER_H_
 
-#include "movingentity.h"
+#include "nau.h"
 
 class Controller {
 protected:
-	MovingEntity* _controlat;
+	Nau* _controlat;
 public:
-	Controller(MovingEntity* contr);
+	Controller(Nau* contr);
 	~Controller(){};
 	//virtual void update(double elapsed_time, const Uint8* keystate);
 };

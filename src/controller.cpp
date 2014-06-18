@@ -1,5 +1,5 @@
 #include "controller.h"
 
-Controller::Controller(MovingEntity* contr) {
+Controller::Controller(Nau* contr) {
 	_controlat = contr;
 }

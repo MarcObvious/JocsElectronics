@@ -1,5 +1,5 @@
 #include "jugador.h"
-Jugador::Jugador(MovingEntity* contr) :
+Jugador::Jugador(Nau* contr) :
 		Controller(contr) {
 	_apunta = 0;
 	_controlat = contr;
@@ -66,6 +66,10 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 		std::cout << pos.x << " x " << pos.y << " y "<< pos.z << " z NAU"<< std::endl;
 		World::getInstance()->afegeixfixmon (50, "res","assets/textures/galaxy.tga", 1, pos, true, false);
 	}
+	if (keystate[SDL_SCANCODE_X])
+			_controlat->dispara_missil(seconds_elapsed);
+
+
 
 	if (keystate[SDL_SCANCODE_SPACE])
 //		BulletManager::getInstance()->createBullet(_controlat->getCenter() + Vector3(0, 0, -200),

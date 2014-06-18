@@ -27,3 +27,9 @@ void Nau::tocat(int dany) {
 
 }
 
+void Nau::dispara_missil(float econds_elapsed) {
+	if (_num_bales != -1) {
+	Entity* misil = this->removeChid();
+	}
+}
+

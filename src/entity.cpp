@@ -44,8 +44,10 @@ void Entity::addChild(Entity* ent){
 	_children.push_back(ent);
 }
 
-void Entity::removeChid(Entity* ent){
+Entity* Entity::removeChid(){
+	Entity* deleted = _children.at(_children.size());
 	_children.pop_back();
+	return deleted;
 }
 
 void Entity::setParent(Entity* ent){

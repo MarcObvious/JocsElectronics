@@ -29,6 +29,8 @@ public:
 
 	void tocat(int dany);
 
+	void dispara_missil(float seconds_elapsed);
+
 };
 
 #endif /* NAU_H_ */

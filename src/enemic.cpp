@@ -1,6 +1,6 @@
 #include "enemic.h"
 
-Enemic::Enemic(MovingEntity* contr) : Controller(contr){
+Enemic::Enemic(Nau* contr) : Controller(contr){
 	//_name<<" i es enemic";
 }
 

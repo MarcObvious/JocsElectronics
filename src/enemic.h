@@ -7,7 +7,7 @@
 #ifndef ENEMIC_H_
 #define ENEMIC_H_
 
-#include "movingentity.h"
+#include "nau.h"
 #include "controller.h"
 #include "utils/framework.h"
 #include <string>
@@ -16,7 +16,7 @@ class Enemic: public Controller {
 protected:
 
 public:
-	Enemic(MovingEntity* contr);
+	Enemic(Nau* contr);
 
 	 ~Enemic(){};
 
