@@ -151,7 +151,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				my_parser.seek("#PLA");
 				float pla = my_parser.getfloat();
 				if (pla != 0)
-					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true);
+					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true,Vector3(1,0,0), Vector3(0,1,0));
 				else
 					fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
 				fill->setParent(_jugador);
@@ -181,7 +181,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				my_parser.seek("#PLA");
 				float pla = my_parser.getfloat();
 				if (pla != 0)
-					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true);
+					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true,Vector3(1,0,0), Vector3(0,1,0));
 				else
 					fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
 				fill->setParent(enemy);
@@ -199,7 +199,7 @@ bool World::llegeixIcarrega(const char *dir) {
 	//	_jugador->addChild(punt_mira);
 
 	EntityMesh* galaxy = new EntityMesh();
-	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true);
+	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true, Vector3(1,0,0), Vector3(0,1,0));
 	galaxy->setParent(_jugador);
 	_jugador->addChild(galaxy);
 
@@ -220,15 +220,19 @@ void World::afegeixfixmon(float mida, std::string mesh_dir, std::string text_dir
 	if (!board) {
 		EntityMesh* nova_entitat = new EntityMesh();
 		if (mida != 0)
-			nova_entitat->setParams(mida, text_dir, mipmapping, posinicial, alpha);
+			nova_entitat->setParams(mida, text_dir, mipmapping, posinicial, alpha,_camera->up, Vector3(0,1,0));
 		else
 			nova_entitat->setParams(mesh_dir, text_dir, mipmapping, posinicial, alpha);
 		_elements_fixos.push_back(nova_entitat);
+
+		Vector3 pos = nova_entitat->getPosition();
+		std::cout << pos.x << " x " << pos.y << " y "<< pos.z << " z GALAXIA"<< std::endl;
 	} else {
-		EntityBoard* nuvol = new EntityBoard();
-		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->eye, _camera->up);
-		_nuvols.push_back(nuvol);
+//		EntityBoard* nuvol = new EntityBoard();
+//		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->up, );
+//		_nuvols.push_back(nuvol);
 	}
+
 
 }
 

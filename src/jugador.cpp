@@ -63,9 +63,8 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 
 	if (keystate[SDL_SCANCODE_Z]) { //Forats negres. Oh shit baby
 		Vector3 pos = _controlat->getPosition();
-		pos.z += 100;
-
-		World::getInstance()->afegeixfixmon (50, "res","assets/textures/galaxy.tga", 1, pos, true, true);
+		std::cout << pos.x << " x " << pos.y << " y "<< pos.z << " z NAU"<< std::endl;
+		World::getInstance()->afegeixfixmon (50, "res","assets/textures/galaxy.tga", 1, pos, true, false);
 	}
 
 	if (keystate[SDL_SCANCODE_SPACE])

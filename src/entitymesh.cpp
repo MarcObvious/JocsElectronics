@@ -19,10 +19,10 @@ void EntityMesh::setParams(std::string mesh_dir, std::string text_dir, bool mipm
 	_alpha = alpha;
 }
 
-void EntityMesh::setParams(float tamany, std::string text_dir, bool mipmapping, Vector3 posinicial, bool alpha) {
+void EntityMesh::setParams(float tamany, std::string text_dir, bool mipmapping, Vector3 posinicial, bool alpha, Vector3 top, Vector3 right) {
 	Entity::setParams(posinicial);
 
-	_mesh = (MeshManager::getInstance())->get(tamany);
+	_mesh = (MeshManager::getInstance())->get(tamany,  _name.str(),posinicial,  top,  right);
 
 	_texture = (TextureManager::getInstance())->get(text_dir, mipmapping);
 

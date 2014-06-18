@@ -60,19 +60,19 @@
              #MESH CAP  
              #TEXTURA assets/textures/rainbow.tga
              #MIPMAP  1
-             #POSICIO 0 -1 -20
+             #POSICIO 0 -1 -10
              #PLA 2
         #FILLSJUGADOR
              #MESH CAP
              #TEXTURA assets/textures/rainbow.tga
              #MIPMAP  1
-             #POSICIO 0 -1 -22
+             #POSICIO 0 -1 -11
              #PLA 1
         #FILLSJUGADOR
              #MESH CAP  
              #TEXTURA assets/textures/rainbow.tga
              #MIPMAP  1
-             #POSICIO 0 -1 -24
+             #POSICIO 0 -1 -12
              #PLA 0.5
 	
 #JUGADOR2
