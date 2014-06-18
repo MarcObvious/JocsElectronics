@@ -33,6 +33,24 @@
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
         #FILLSJUGADOR
+             #MESH CAP  
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -10
+             #PLA 2
+        #FILLSJUGADOR
+             #MESH CAP
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -11
+             #PLA 1
+        #FILLSJUGADOR
+             #MESH CAP  
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -12
+             #PLA 0.5
+        #FILLSJUGADOR
              #MESH assets/meshes/misil  
              #TEXTURA assets/textures/misil.tga
              #MIPMAP  1
@@ -56,24 +74,7 @@
              #MIPMAP  1
              #POSICIO 22.5 -1.9 -3
              #PLA 0
-        #FILLSJUGADOR
-             #MESH CAP  
-             #TEXTURA assets/textures/rainbow.tga
-             #MIPMAP  1
-             #POSICIO 0 -1 -10
-             #PLA 2
-        #FILLSJUGADOR
-             #MESH CAP
-             #TEXTURA assets/textures/rainbow.tga
-             #MIPMAP  1
-             #POSICIO 0 -1 -11
-             #PLA 1
-        #FILLSJUGADOR
-             #MESH CAP  
-             #TEXTURA assets/textures/rainbow.tga
-             #MIPMAP  1
-             #POSICIO 0 -1 -12
-             #PLA 0.5
+
 	
 #JUGADOR2
      #MESH assets/meshes/bomber

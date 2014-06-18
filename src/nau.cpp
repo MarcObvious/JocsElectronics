@@ -1,5 +1,6 @@
 #include "nau.h"
 #include "mts/MeshManager.h"
+#include "world.h"
 Nau::Nau() {
 	_dany = 0;
 	_cadencia = 0;
@@ -19,6 +20,7 @@ void Nau::setParams(std::string mesh_dir, std::string text_dir, bool mipmapping,
 	_cadencia = cadencia;
 	_vida = vida;
 	_resistencia = resistencia;
+	_num_bales = num_bales;
 }
 
 void Nau::tocat(int dany) {
@@ -29,7 +31,12 @@ void Nau::tocat(int dany) {
 
 void Nau::dispara_missil(float econds_elapsed) {
 	if (_num_bales != -1) {
-	Entity* misil = this->removeChid();
+		Entity* misil = this->removeChid();
+		World::getInstance()->_naus_aliades.push_back((Nau*) misil);
+		if (_num_bales-1 != 0)
+			--_num_bales;
+		else
+			_num_bales = -1;
 	}
 }
 

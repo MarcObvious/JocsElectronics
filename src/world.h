@@ -66,7 +66,8 @@ public:
 
 	void printPositions();
 
-	std::vector<Controller*> _enemics;
+	std::vector<Controller*>_ia_aliats;
+ 	std::vector<Enemic*> _ia_enemics;
 
 	Nau* _jugador;
 

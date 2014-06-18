@@ -25,6 +25,16 @@ World::World() {
 	_camera->up = _jugador->getTop();
 	_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);
 
+//  MES ENDEVANT FER ALIATS
+//	for (unsigned int i = 0; i < _naus_aliades.size(); i++) {
+//
+//		_aliats.push_back(new Enemic());
+//
+//	}
+
+	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
+		_ia_enemics.push_back(new Enemic((_naus_enemigues.at(i))));
+
 }
 
 World::~World() {
@@ -228,9 +238,9 @@ void World::afegeixfixmon(float mida, std::string mesh_dir, std::string text_dir
 		Vector3 pos = nova_entitat->getPosition();
 		std::cout << pos.x << " x " << pos.y << " y "<< pos.z << " z GALAXIA"<< std::endl;
 	} else {
-//		EntityBoard* nuvol = new EntityBoard();
-//		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->up, );
-//		_nuvols.push_back(nuvol);
+		//		EntityBoard* nuvol = new EntityBoard();
+		//		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->up, );
+		//		_nuvols.push_back(nuvol);
 	}
 
 
@@ -256,7 +266,8 @@ void World::update(double elapsed_time) {
 
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
 	//_aigua->setPosition(Vector3(_camera->center.x, _camera->center.y-1205, _camera->center.z));
-
+	for (unsigned int i = 0; i < _ia_enemics.size(); i++)
+			_ia_enemics.at(i)->update(elapsed_time);
 	//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
 	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
 		_naus_aliades.at(i)->update(elapsed_time);
