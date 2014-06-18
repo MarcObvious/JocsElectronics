@@ -1,6 +1,7 @@
 #include "world.h"
 #include <stdlib.h>
 #include<ctime>
+
 int Entity::_last_id = 0;  //començem a 0 el cnt d'entitats
 MeshManager* MeshManager::_instance = NULL; //Inicialitzem els Singletons
 TextureManager* TextureManager::_instance = NULL;
@@ -82,9 +83,7 @@ bool World::llegeixIcarrega(const char *dir) {
 	int num_fills = 0;
 
 	//Primer for, TOTS ELS ELEMENTS
-	for (; num_elements > 0; num_elements-- ) {
-
-		std::cout << num_elements << " elements " << num_elements_fixos << " fixos " << num_aliats << " aliats " << num_enemics << " enemics" <<std::endl;
+	for (; num_elements > 0; num_elements--) {
 
 		my_parser.seek("#MESH");
 		mesh_dir = my_parser.getword();
@@ -130,8 +129,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				}
 			}
 			--num_elements_fixos;
-		}
-		else if (num_aliats != 0){
+		} else if (num_aliats != 0) {
 			if (num_fills == 0) {
 				my_parser.seek("##");
 				_jugador = new Nau();  //MILLORAR
@@ -148,8 +146,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				num_fills = my_parser.getint();
 				num_elements += num_fills;
 				num_aliats += num_fills;
-			}
-			else {
+			} else {
 				EntityMesh* fill = new EntityMesh();
 				my_parser.seek("#PLA");
 				float pla = my_parser.getfloat();
@@ -162,9 +159,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				--num_fills;
 			}
 			--num_aliats;
-			std::cout << num_fills << " fills" << std::endl;
-		}
-		else if (num_enemics != 0) {
+		} else if (num_enemics != 0) {
 			if (num_fills == 0) {
 				my_parser.seek("##");
 				enemy = new Nau();
@@ -180,9 +175,8 @@ bool World::llegeixIcarrega(const char *dir) {
 				my_parser.seek("#FILLS");
 				num_fills = my_parser.getint();
 				num_elements += num_fills;
-				num_aliats += num_fills;
-			}
-			else {
+				num_enemics += num_fills;
+			} else {
 				EntityMesh* fill = new EntityMesh();
 				my_parser.seek("#PLA");
 				float pla = my_parser.getfloat();
@@ -197,8 +191,6 @@ bool World::llegeixIcarrega(const char *dir) {
 			--num_enemics;
 		}
 	}
-
-
 
 	//	//HAURIA DE SER FILL DE CAMERA; DEPEN NOMES DEL PUNT DE VISTA
 	//	EntityMesh* punt_mira = new EntityMesh();
@@ -224,18 +216,17 @@ bool World::llegeixIcarrega(const char *dir) {
 }
 
 void World::afegeixfixmon(float mida, std::string mesh_dir, std::string text_dir, bool mipmapping, Vector3 posinicial,
-		bool alpha, bool board ){
+		bool alpha, bool board) {
 	if (!board) {
 		EntityMesh* nova_entitat = new EntityMesh();
 		if (mida != 0)
-			nova_entitat->setParams(mida, text_dir, mipmapping,posinicial, alpha);
+			nova_entitat->setParams(mida, text_dir, mipmapping, posinicial, alpha);
 		else
 			nova_entitat->setParams(mesh_dir, text_dir, mipmapping, posinicial, alpha);
 		_elements_fixos.push_back(nova_entitat);
-	}
-	else {
+	} else {
 		EntityBoard* nuvol = new EntityBoard();
-		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->eye ,_camera->up);
+		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->eye, _camera->up);
 		_nuvols.push_back(nuvol);
 	}
 
@@ -290,7 +281,7 @@ void World::render() {
 	_camera->set();
 	glDisable(GL_DEPTH_TEST); //Z buffer desactivat
 	_cel->render();
-	glEnable(GL_DEPTH_TEST);//Altre cop activat
+	glEnable(GL_DEPTH_TEST); //Altre cop activat
 	//_aigua->render();
 	_terreny->render();
 
