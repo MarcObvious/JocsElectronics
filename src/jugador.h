@@ -18,6 +18,7 @@
 class Jugador : public Controller {
 protected:
 	unsigned int _apunta;
+	unsigned int _espera;
 public:
 	Jugador(Nau* contr);
 
