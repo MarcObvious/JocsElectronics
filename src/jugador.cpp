@@ -90,8 +90,6 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 	}
 
 
-
-
 	if (keystate[SDL_SCANCODE_SPACE])
 		//		BulletManager::getInstance()->createBullet(_controlat->getCenter() + Vector3(0, 0, -200),
 		//				_controlat->getCenter() + Vector3(0, 0, -200),

@@ -18,7 +18,7 @@
 class Jugador : public Controller {
 protected:
 	unsigned int _apunta;
-	unsigned int _espera;
+	unsigned int _espera; //MANERA CUTRE. BUSCAR UN FILTRE
 public:
 	Jugador(Nau* contr);
 
