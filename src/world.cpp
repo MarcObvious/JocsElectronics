@@ -6,12 +6,19 @@ int Entity::_last_id = 0;  //començem a 0 el cnt d'entitats
 MeshManager* MeshManager::_instance = NULL; //Inicialitzem els Singletons
 TextureManager* TextureManager::_instance = NULL;
 BulletManager* BulletManager::_instance = NULL;
+std::vector<Enemic*>_ia_enemics; //NO TINC NI PUTA IDEA DE QUE FALLA
 
 World::World() {
 	assert(_instance == NULL);
 	_instance = this;
 
 	srand(static_cast<unsigned>(time(0))); //seed per poder fer rands.
+
+	for (int i = 0; i < 50; ++i) {
+		Entity* vaux = new Entity();
+		vaux->setParams(Vector3(rand() % 10000 - 5000, rand() % 2000 - 800, rand() % 10000 - 5000));
+		_waypoints.push_back(vaux);
+	}
 
 	_camera = new Camera();
 	_camera->setPerspective(70, WINDOW_WIDTH / (float) WINDOW_HEIGHT, 0.1, 10000); //set the projection, we want to be perspective
@@ -25,15 +32,8 @@ World::World() {
 	_camera->up = _jugador->getTop();
 	_camera->eye = _jugador->getMatrix() * Vector3(0, 50, 50);
 
-//  MES ENDEVANT FER ALIATS
-//	for (unsigned int i = 0; i < _naus_aliades.size(); i++) {
-//
-//		_aliats.push_back(new Enemic());
-//
-//	}
-//
-//	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
-//		_ia_enemics.push_back(new Enemic((_naus_enemigues.at(i))));
+
+
 
 }
 
@@ -151,7 +151,7 @@ bool World::llegeixIcarrega(const char *dir) {
 
 				_jugador->tecolisions();
 				_naus_aliades.push_back(_jugador);
-				_ia_aliats.push_back(new Aliat((_jugador)));
+				_ia_aliats.push_back(new Aliat(_jugador));
 
 				my_parser.seek("#FILLS");
 				num_fills = my_parser.getint();
@@ -162,7 +162,8 @@ bool World::llegeixIcarrega(const char *dir) {
 				my_parser.seek("#PLA");
 				float pla = my_parser.getfloat();
 				if (pla != 0)
-					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true,Vector3(1,0,0), Vector3(0,1,0));
+					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true, Vector3(1, 0, 0),
+							Vector3(0, 1, 0));
 				else
 					fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
 				fill->setParent(_jugador);
@@ -182,7 +183,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				//_enemics.push_back(_enemy );
 				enemy->tecolisions();
 				_naus_enemigues.push_back(enemy);
-				_ia_enemics.push_back(new Enemic((enemy)));
+				_ia_enemics.push_back(new Enemic(enemy));
 				my_parser.seek("#FILLS");
 				num_fills = my_parser.getint();
 				num_elements += num_fills;
@@ -192,7 +193,8 @@ bool World::llegeixIcarrega(const char *dir) {
 				my_parser.seek("#PLA");
 				float pla = my_parser.getfloat();
 				if (pla != 0)
-					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true,Vector3(1,0,0), Vector3(0,1,0));
+					fill->setParams(pla, text_dir, mip, Vector3(posx, posy, posz), true, Vector3(1, 0, 0),
+							Vector3(0, 1, 0));
 				else
 					fill->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
 				fill->setParent(enemy);
@@ -210,7 +212,7 @@ bool World::llegeixIcarrega(const char *dir) {
 	//	_jugador->addChild(punt_mira);
 
 	EntityMesh* galaxy = new EntityMesh();
-	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true, Vector3(1,0,0), Vector3(0,1,0));
+	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true, Vector3(1, 0, 0), Vector3(0, 1, 0));
 	galaxy->setParent(_jugador);
 	_jugador->addChild(galaxy);
 
@@ -231,19 +233,18 @@ void World::afegeixfixmon(float mida, std::string mesh_dir, std::string text_dir
 	if (!board) {
 		EntityMesh* nova_entitat = new EntityMesh();
 		if (mida != 0)
-			nova_entitat->setParams(mida, text_dir, mipmapping, posinicial, alpha,_camera->up, Vector3(0,1,0));
+			nova_entitat->setParams(mida, text_dir, mipmapping, posinicial, alpha, _camera->up, Vector3(0, 1, 0));
 		else
 			nova_entitat->setParams(mesh_dir, text_dir, mipmapping, posinicial, alpha);
 		_elements_fixos.push_back(nova_entitat);
 
 		Vector3 pos = nova_entitat->getPosition();
-		std::cout << pos.x << " x " << pos.y << " y "<< pos.z << " z GALAXIA"<< std::endl;
+		std::cout << pos.x << " x " << pos.y << " y " << pos.z << " z GALAXIA" << std::endl;
 	} else {
 		//		EntityBoard* nuvol = new EntityBoard();
 		//		nuvol->setParams(mida, text_dir, mipmapping, posinicial, true, _camera->up, );
 		//		_nuvols.push_back(nuvol);
 	}
-
 
 }
 
@@ -268,28 +269,28 @@ void World::update(double elapsed_time) {
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
 	//_aigua->setPosition(Vector3(_camera->center.x, _camera->center.y-1205, _camera->center.z));
 	for (unsigned int i = 0; i < _ia_enemics.size(); i++)
-			_ia_enemics.at(i)->update(elapsed_time);
-	for (unsigned int i = 0; i < _ia_aliats.size(); i++){
-		if(!_ia_aliats.at(i)->getControlat()->_lider)
+		_ia_enemics.at(i)->update(elapsed_time);
+	for (unsigned int i = 0; i < _ia_aliats.size(); i++) {
+		if (!_ia_aliats.at(i)->getControlat()->_lider)
 			_ia_aliats.at(i)->update(elapsed_time);
 	}
 	//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
-//	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
-//		_naus_aliades.at(i)->update(elapsed_time);
-//		_naus_aliades.at(i)->transform();
-//
-//		if ((BulletManager::getInstance())->comprova(_naus_aliades.at(i)->tecolisions()))
-//			_naus_aliades.at(i)->tocat(10);
-//
-//		//_totes_entyties.at(i)->transform();
-//		if (_naus_aliades.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
-//				_terreny->getGlobalMatrix().m)) {
-//
-//			std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
-//			_naus_aliades.at(i)->tocat(10);
-//
-//		}
-//	}
+	//	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
+	//		_naus_aliades.at(i)->update(elapsed_time);
+	//		_naus_aliades.at(i)->transform();
+	//
+	//		if ((BulletManager::getInstance())->comprova(_naus_aliades.at(i)->tecolisions()))
+	//			_naus_aliades.at(i)->tocat(10);
+	//
+	//		//_totes_entyties.at(i)->transform();
+	//		if (_naus_aliades.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
+	//				_terreny->getGlobalMatrix().m)) {
+	//
+	//			std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
+	//			_naus_aliades.at(i)->tocat(10);
+	//
+	//		}
+	//	}
 
 	BulletManager::getInstance()->update(elapsed_time);
 
@@ -304,6 +305,14 @@ void World::render() {
 	glEnable(GL_DEPTH_TEST); //Altre cop activat
 	//_aigua->render();
 	_terreny->render();
+
+	for (unsigned int i = 0; i < _waypoints.size(); i++) {
+		glPushMatrix();
+		_waypoints.at(i)->getGlobalMatrix().set();
+		glutWireSphere(10, 20, 20);
+		glPopMatrix();
+
+	}
 
 	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
 		_naus_enemigues.at(i)->render();

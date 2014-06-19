@@ -14,7 +14,8 @@
 #include <algorithm>
 
 #include "jugador.h"
-#include "enemic.h"
+#include "controller.h"
+
 #include "aliat.h"
 
 #include "entityboard.h"
@@ -34,6 +35,8 @@
 
 #include "utils/text.h"
 #include <string>
+
+#include "enemic.h"
 
 class World{
 
@@ -65,10 +68,15 @@ public:
 
 	std::vector<EntityBoard*> _nuvols;
 
+	std::vector<Entity*> _waypoints;
+
 	void printPositions();
 
+
+
 	std::vector<Aliat*>_ia_aliats;
- 	std::vector<Enemic*> _ia_enemics;
+
+
 
 	Nau* _jugador;
 
