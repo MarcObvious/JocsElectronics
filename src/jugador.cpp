@@ -3,6 +3,7 @@ Jugador::Jugador(Nau* contr) :
 Controller(contr) {
 	_apunta = 0;
 	_controlat = contr;
+	_controlat->_lider = true;
 	_espera = 2;
 	//_name << " i es jugador";
 }
@@ -10,11 +11,13 @@ Controller(contr) {
 void Jugador::canvia_control() {
 	std::cout << "Estic controlant a: " << _apunta << std::endl;
 	if (_apunta >= World::getInstance()->_naus_aliades.size())
-		_apunta = 1;
-	else {
-		_controlat = World::getInstance()->_naus_aliades[_apunta];
-		++_apunta;
-	}
+		_apunta = 0;
+	_controlat->_lider = false;
+	_controlat = World::getInstance()->_naus_aliades[_apunta];
+	_controlat->_lider = true;
+	++_apunta;
+
+
 }
 void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 

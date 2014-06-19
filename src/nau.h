@@ -20,6 +20,7 @@ protected:
 	float _resistencia;
 
 public:
+	bool _lider;
 	Nau();
 	virtual ~Nau() {};
 

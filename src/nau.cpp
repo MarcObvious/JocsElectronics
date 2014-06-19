@@ -7,6 +7,7 @@ Nau::Nau() {
 	_num_bales = 0;
 	_vida = 0;
 	_resistencia = 0;
+	_lider = false;
 	_name << "_nau_espacial";
 
 }

@@ -1,10 +1,11 @@
 CPP_SRCS += \
+CPP_SRCS += \
+../src/aliat.cpp \
 ../src/bullet.cpp \
 ../src/bulletManager.cpp \
 ../src/camera.cpp \
 ../src/controller.cpp \
 ../src/enemic.cpp \
-../src/aliat.cpp \
 ../src/entity.cpp \
 ../src/entityboard.cpp \
 ../src/entitymesh.cpp \
@@ -16,12 +17,12 @@ CPP_SRCS += \
 ../src/world.cpp 
 
 OBJS += \
+./src/aliat.o \
 ./src/bullet.o \
 ./src/bulletManager.o \
 ./src/camera.o \
 ./src/controller.o \
 ./src/enemic.o \
-./src/aliat.o \
 ./src/entity.o \
 ./src/entityboard.o \
 ./src/entitymesh.o \
@@ -33,12 +34,12 @@ OBJS += \
 ./src/world.o 
 
 CPP_DEPS += \
+./src/aliat.d \
 ./src/bullet.d \
 ./src/bulletManager.d \
 ./src/camera.d \
 ./src/controller.d \
 ./src/enemic.d \
-./src/aliat.d \
 ./src/entity.d \
 ./src/entityboard.d \
 ./src/entitymesh.d \

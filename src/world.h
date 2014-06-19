@@ -15,6 +15,7 @@
 
 #include "jugador.h"
 #include "enemic.h"
+#include "aliat.h"
 
 #include "entityboard.h"
 #include "nau.h"
@@ -66,7 +67,7 @@ public:
 
 	void printPositions();
 
-	std::vector<Controller*>_ia_aliats;
+	std::vector<Aliat*>_ia_aliats;
  	std::vector<Enemic*> _ia_enemics;
 
 	Nau* _jugador;

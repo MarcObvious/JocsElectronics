@@ -31,9 +31,9 @@ World::World() {
 //		_aliats.push_back(new Enemic());
 //
 //	}
-
-	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
-		_ia_enemics.push_back(new Enemic((_naus_enemigues.at(i))));
+//
+//	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
+//		_ia_enemics.push_back(new Enemic((_naus_enemigues.at(i))));
 
 }
 
@@ -151,6 +151,7 @@ bool World::llegeixIcarrega(const char *dir) {
 
 				_jugador->tecolisions();
 				_naus_aliades.push_back(_jugador);
+				_ia_aliats.push_back(new Aliat((_jugador)));
 
 				my_parser.seek("#FILLS");
 				num_fills = my_parser.getint();
@@ -181,7 +182,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				//_enemics.push_back(_enemy );
 				enemy->tecolisions();
 				_naus_enemigues.push_back(enemy);
-
+				_ia_enemics.push_back(new Enemic((enemy)));
 				my_parser.seek("#FILLS");
 				num_fills = my_parser.getint();
 				num_elements += num_fills;
@@ -268,23 +269,27 @@ void World::update(double elapsed_time) {
 	//_aigua->setPosition(Vector3(_camera->center.x, _camera->center.y-1205, _camera->center.z));
 	for (unsigned int i = 0; i < _ia_enemics.size(); i++)
 			_ia_enemics.at(i)->update(elapsed_time);
-	//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
-	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
-		_naus_aliades.at(i)->update(elapsed_time);
-		_naus_aliades.at(i)->transform();
-
-		if ((BulletManager::getInstance())->comprova(_naus_aliades.at(i)->tecolisions()))
-			_naus_aliades.at(i)->tocat(10);
-
-		//_totes_entyties.at(i)->transform();
-		if (_naus_aliades.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
-				_terreny->getGlobalMatrix().m)) {
-
-			std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
-			_naus_aliades.at(i)->tocat(10);
-
-		}
+	for (unsigned int i = 0; i < _ia_aliats.size(); i++){
+		if(!_ia_aliats.at(i)->getControlat()->_lider)
+			_ia_aliats.at(i)->update(elapsed_time);
 	}
+	//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
+//	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
+//		_naus_aliades.at(i)->update(elapsed_time);
+//		_naus_aliades.at(i)->transform();
+//
+//		if ((BulletManager::getInstance())->comprova(_naus_aliades.at(i)->tecolisions()))
+//			_naus_aliades.at(i)->tocat(10);
+//
+//		//_totes_entyties.at(i)->transform();
+//		if (_naus_aliades.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
+//				_terreny->getGlobalMatrix().m)) {
+//
+//			std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
+//			_naus_aliades.at(i)->tocat(10);
+//
+//		}
+//	}
 
 	BulletManager::getInstance()->update(elapsed_time);
 

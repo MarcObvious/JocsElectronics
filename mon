@@ -80,7 +80,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 0
+     #POSICIO 0 10 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          3       500  2
      #FILLS 3
@@ -106,7 +106,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 0
+     #POSICIO 0 -10 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
@@ -157,7 +157,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 0
+     #POSICIO 0 0 10
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
@@ -208,7 +208,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 0
+     #POSICIO 0 0 -10
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7

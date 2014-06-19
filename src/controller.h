@@ -16,6 +16,7 @@ public:
 	Controller(Nau* contr);
 	~Controller(){};
 	//virtual void update(double elapsed_time, const Uint8* keystate);
+	Nau* getControlat();
 };
 
 
