@@ -216,8 +216,8 @@ bool World::llegeixIcarrega(const char *dir) {
 	galaxy->setParent(_jugador);
 	_jugador->addChild(galaxy);
 
-	//	_aigua = new EntityMesh();
-	//	_aigua->setParams(1000, "assets/textures/terreny/agua.tga", 0, Vector3(0, -1205, 0), false);
+		_aigua = new EntityMesh();
+		_aigua->setParams(10000, "assets/textures/terreny/agua.tga", 1, Vector3(_camera->center.x, -600, _camera->center.z) , true, Vector3(1, 0, 0), Vector3(0, 0,1));
 	//	Matrix44 aux = _aigua->getMatrix();
 	//	aux.rotateLocal(90*DEG2RAD, Vector3(-1,0,0));
 	//	_aigua->setMatrix(aux);
@@ -267,7 +267,9 @@ void World::printPositions() {
 void World::update(double elapsed_time) {
 
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
-	//_aigua->setPosition(Vector3(_camera->center.x, _camera->center.y-1205, _camera->center.z));
+//	_aigua->setParams(1000, "assets/textures/terreny/agua.tga", 0, _jugador->getPosition(), false, Vector3(1, 0, 0), Vector3(0, 0,1));
+
+	_aigua->setPosition(Vector3(_camera->center.x, -600, _camera->center.z));
 	for (unsigned int i = 0; i < _ia_enemics.size(); i++)
 		_ia_enemics.at(i)->update(elapsed_time);
 	for (unsigned int i = 0; i < _ia_aliats.size(); i++) {
@@ -303,7 +305,7 @@ void World::render() {
 	glDisable(GL_DEPTH_TEST); //Z buffer desactivat
 	_cel->render();
 	glEnable(GL_DEPTH_TEST); //Altre cop activat
-	//_aigua->render();
+	_aigua->render();
 	_terreny->render();
 
 	for (unsigned int i = 0; i < _waypoints.size(); i++) {
