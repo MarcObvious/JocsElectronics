@@ -293,7 +293,7 @@ void World::printPositions() {
 
 }
 
-void World::update(double elapsed_time) {
+void World::update(const double elapsed_time) {
 
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
 

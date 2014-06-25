@@ -5,6 +5,8 @@ Enemic::Enemic(Nau* contr) : Controller(contr){
 	//_name<<" i es enemic";
 	_controlat = contr;
 	_objectius = World::getInstance()->_waypoints;  //Els objectius podrien no venir de mon i podrien variar.
+	_objectius_aliats=World::getInstance()->_naus_aliades;
+
 	_proper_objectiu = 0;
 
 }
@@ -12,12 +14,18 @@ Enemic::Enemic(Nau* contr) : Controller(contr){
 void Enemic::update(double seconds_elapsed) {
 
 	//	_controlat->girXY("DRETA", seconds_elapsed);
-
-	segueix(seconds_elapsed);
 	_controlat->endavant(seconds_elapsed);
+	actua(seconds_elapsed);
+
+
 }
 
-void Enemic::segueix(double seconds_elapsed) {
+bool Enemic::distancia_objectiu(Entity* ent){
+        
+}
+
+
+void Enemic::actua(double seconds_elapsed) {
 	Matrix44 _model_controlat = _controlat->getGlobalMatrix();
 
 
@@ -26,7 +34,7 @@ void Enemic::segueix(double seconds_elapsed) {
 	//Matrix44 _model_objectiu = World::getInstance()->_jugador->getGlobalMatrix();
 	Vector3 pos_controlat = _controlat->getPosition();
 
-		Vector3 pos_objectiu = _objectius.at(_proper_objectiu)->getPosition();
+	Vector3 pos_objectiu = _objectius.at(_proper_objectiu)->getPosition();
 
 	//Vector3 pos_objectiu = World::getInstance()->_jugador->getPosition();
 
@@ -39,9 +47,9 @@ void Enemic::segueix(double seconds_elapsed) {
 	loc_proper_objectiu.normalize();
 
 
-	float angleXY = _model_controlat.rightVector().dot(loc_proper_objectiu);
+	float angleXY = _model_controlat.frontVector().normalize().dot(loc_proper_objectiu);
 
-	float angleZX= _model_controlat.topVector()  .dot(loc_proper_objectiu);
+	float angleZX= _model_controlat.topVector() .normalize() .dot(loc_proper_objectiu);
 
 
 	if(angleXY < 0)
@@ -49,7 +57,7 @@ void Enemic::segueix(double seconds_elapsed) {
 	else if (angleXY > 0)
 		_controlat->girXY("ESQUERRA", seconds_elapsed);
 
-	if(angleZX < 0)
+	else if(angleZX < 0)
 		_controlat->girZX("AVALL", seconds_elapsed);
 	else if (angleZX > 0)
 		_controlat->girZX("AMUNT", seconds_elapsed);

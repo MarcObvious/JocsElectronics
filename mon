@@ -1,10 +1,10 @@
-#NUM_ELEMENTS 17
+#NUM_ELEMENTS 20
 
 #NUM_ELEMENTS_FIXOS 5  //Afegir bunkers o elements de terra interactius 
 
 #NUM_ALIATS 6
 
-#NUM_ENEMICS 6
+#NUM_ENEMICS 9
 
 #TERRENY
      #MESH assets/meshes/terreny/island
@@ -342,6 +342,32 @@
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales  #_vida #_resistencia
      ##  200           100             2               600              100               2             2             2             50            200     100          -1      500    10
      #FILLS 0
+#ENEMIC1a
+     #MESH assets/meshes/hunter
+     #TEXTURA assets/textures/hunter.tga
+     #MIPMAP  1
+     #POSICIO 150 -100 150 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales  #_vida #_resistencia
+     ##  200           100             2               600              100               2             2             2             50            200     100          -1      500    10
+     #FILLS 0
+     
+#ENEMIC1b
+     #MESH assets/meshes/hunter
+     #TEXTURA assets/textures/hunter.tga
+     #MIPMAP  1
+     #POSICIO 150 100 -150 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales  #_vida #_resistencia
+     ##  200           100             2               600              100               2             2             2             50            200     100          -1      500    10
+     #FILLS 0
+     
+#ENEMIC1c
+     #MESH assets/meshes/hunter
+     #TEXTURA assets/textures/hunter.tga
+     #MIPMAP  1
+     #POSICIO -150 100 150 
+     #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales  #_vida #_resistencia
+     ##  200           100             2               600              100               2             2             2             50            200     100          -1      500    10
+     #FILLS 0
     
 #ENEMIC2
      #MESH assets/meshes/space_tank
@@ -371,8 +397,8 @@
      #FILLS 0
 
 #ENEMIC5
-     #MESH assets/meshes/x3_interceptor
-     #TEXTURA assets/textures/x3_interceptor_spec.tga
+     #MESH assets/meshes/space_tank
+     #TEXTURA assets/textures/tank2.tga
      #MIPMAP  1
      #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
