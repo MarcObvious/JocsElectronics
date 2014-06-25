@@ -1,4 +1,5 @@
 #include "world.h"
+#include "game.h"
 #include <stdlib.h>
 #include<ctime>
 
@@ -230,15 +231,12 @@ bool World::llegeixIcarrega(const char *dir) {
 	}
 
 	//	//HAURIA DE SER FILL DE CAMERA; DEPEN NOMES DEL PUNT DE VISTA
-	//	EntityMesh* punt_mira = new EntityMesh();
-	//	punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0, 0, 60), true);
-	//	punt_mira->setParent(_jugador);
-	//	_jugador->addChild(punt_mira);
 
-//	EntityMesh* galaxy = new EntityMesh();
-//	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true, Vector3(1, 0, 0), Vector3(0, 1, 0));
-//	galaxy->setParent(_jugador);
-//	_jugador->addChild(galaxy);
+
+	//	EntityMesh* galaxy = new EntityMesh();
+	//	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true, Vector3(1, 0, 0), Vector3(0, 1, 0));
+	//	galaxy->setParent(_jugador);
+	//	_jugador->addChild(galaxy);
 
 
 	//	Matrix44 aux = _aigua->getMatrix();
@@ -246,6 +244,14 @@ bool World::llegeixIcarrega(const char *dir) {
 	//	_aigua->setMatrix(aux);
 	//_aigua->setParams("assets/meshes/terreny/agua", "assets/textures/terreny/agua.tga", true, Vector3(0, -1200, 0), false);
 
+	for (int i = 0; i < 40; i++) {
+		EntityBoard* nuvol = new EntityBoard();
+
+		nuvol->setParams(100, "assets/textures/cel/cloud.tga", true, Vector3(i,0,-1000), true, _camera->getLocalVector(Vector3(0, 1, 0)),
+				_camera->getLocalVector(Vector3(1, 0, 0)));
+
+		_nuvols2.push_back(nuvol);
+	}
 	printPositions();
 
 	return true;
@@ -322,6 +328,11 @@ void World::update(double elapsed_time) {
 
 	for (unsigned int i = 0; i < _nuvols.size(); ++i)
 		_nuvols.at(i)->update(_camera->getLocalVector(Vector3(0, 1, 0)), _camera->getLocalVector(Vector3(1, 0, 0)));
+
+	for (unsigned int i = 0; i < _nuvols2.size(); ++i) {
+		//_nuvols2.at(i)->update(_camera->getLocalVector(Vector3(0, 1, 0)), _camera->getLocalVector(Vector3(1, 0, 0)));
+		_nuvols2.at(i)->setPosition(Vector3(_camera->center.x+i*100, _camera->center.y, _camera->center.z+10));
+	}
 }
 
 void World::render() {
@@ -340,18 +351,18 @@ void World::render() {
 
 	_aigua->render();
 
-//	glEnable(GL_FOG);
-//	glFogi(GL_FOG_MODE, GL_LINEAR); // Note the 'i' after glFog - the GL_LINEAR constant is an integer.
-//	glFogfv(GL_FOG_COLOR,FogCol);
-//	glFogf(GL_FOG_START, 10.f);
-//	glFogCoordfEXT(1);
-//	glFogf(GL_FOG_END, 40.f);
-//
-//
-//	glFogi(GL_FOG_MODE, GL_EXP);
+	//	glEnable(GL_FOG);
+	//	glFogi(GL_FOG_MODE, GL_LINEAR); // Note the 'i' after glFog - the GL_LINEAR constant is an integer.
+	//	glFogfv(GL_FOG_COLOR,FogCol);
+	//	glFogf(GL_FOG_START, 10.f);
+	//	glFogCoordfEXT(1);
+	//	glFogf(GL_FOG_END, 40.f);
+	//
+	//
+	//	glFogi(GL_FOG_MODE, GL_EXP);
 
 
-//	glDisable(GL_FOG);
+	//	glDisable(GL_FOG);
 
 	//_terreny2->render();
 
@@ -378,6 +389,8 @@ void World::render() {
 
 	for (unsigned int i = 0; i < _nuvols.size(); ++i)
 		_nuvols.at(i)->render();
+	for (unsigned int i = 0; i < _nuvols2.size(); ++i)
+		_nuvols2.at(i)->render();
 
 	BulletManager::getInstance()->render();
 }

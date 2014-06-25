@@ -70,6 +70,8 @@ public:
 
 	std::vector<EntityBoard*> _nuvols;
 
+	std::vector<EntityBoard*> _nuvols2;
+
 	std::vector<Entity*> _waypoints;
 
 	void printPositions();

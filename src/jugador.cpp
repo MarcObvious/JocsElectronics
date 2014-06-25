@@ -13,9 +13,15 @@ void Jugador::canvia_control() {
 	std::cout << "Estic controlant a: " << _apunta << std::endl;
 	if (_apunta >= World::getInstance()->_naus_aliades.size())
 		_apunta = 0;
+	EntityMesh* punt_mira = new EntityMesh();
+
+	_controlat->removeChid();
 	_controlat->_lider = false;
 	_controlat = World::getInstance()->_naus_aliades[_apunta];
 	_controlat->_lider = true;
+	punt_mira->setParams(2, "assets/textures/crosshair.tga", 1, Vector3(0, 0, 60), true,Vector3(1, 0, 0), Vector3(0, 1, 0));
+	punt_mira->setParent(_controlat);
+	_controlat->addChild(punt_mira);
 	++_apunta;
 
 

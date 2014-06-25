@@ -27,8 +27,7 @@
      #TEXTURA assets/textures/cel/cel_dia.tga
      #MIPMAP  1
      #POSICIO 0 0 0
-     
-
+    
 #NUVOLS
      #MESH NO
      #TEXTURA assets/textures/cel/cloud.tga
@@ -39,7 +38,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 0
+     #POSICIO 100 0 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
@@ -94,7 +93,25 @@
      #POSICIO 0 100 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          3       500  2
-     #FILLS 3
+     #FILLS 6
+      #FILLSJUGADOR
+             #MESH CAP  
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -10
+             #PLA 2
+        #FILLSJUGADOR
+             #MESH CAP
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -11
+             #PLA 1
+        #FILLSJUGADOR
+             #MESH CAP  
+             #TEXTURA assets/textures/rainbow.tga
+             #MIPMAP  1
+             #POSICIO 0 -1 -12
+             #PLA 0.5
         #FILLSJUGADOR
              #MESH assets/meshes/misil  
              #TEXTURA assets/textures/misil.tga
@@ -168,7 +185,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 100
+     #POSICIO -100 0 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
@@ -318,8 +335,8 @@
              #PLA 0
 
 #ENEMIC1
-     #MESH assets/meshes/bomber
-     #TEXTURA assets/textures/bomber.tga
+     #MESH assets/meshes/hunter
+     #TEXTURA assets/textures/hunter.tga
      #MIPMAP  1
      #POSICIO 150 100 150 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales  #_vida #_resistencia
@@ -337,7 +354,7 @@
     
 #ENEMIC3
      #MESH assets/meshes/space_tank
-     #TEXTURA assets/textures/tank1.tga
+     #TEXTURA assets/textures/tank2.tga
      #MIPMAP  1
      #POSICIO 500 1500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
@@ -345,8 +362,8 @@
      #FILLS 0
     
 #ENEMIC4
-     #MESH assets/meshes/space_tank
-     #TEXTURA assets/textures/tank1.tga
+     #MESH assets/meshes/x3_fighter
+     #TEXTURA assets/textures/x3_fighter_spec.tga
      #MIPMAP  1
      #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
@@ -354,8 +371,8 @@
      #FILLS 0
 
 #ENEMIC5
-     #MESH assets/meshes/space_tank
-     #TEXTURA assets/textures/tank1.tga
+     #MESH assets/meshes/x3_interceptor
+     #TEXTURA assets/textures/x3_interceptor_spec.tga
      #MIPMAP  1
      #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia

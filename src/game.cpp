@@ -54,7 +54,9 @@ void Game::render(void) {
 
 	//draw the plane
 //	glColor3f(1, 1, 1);
+
 	World::getInstance()->render();
+
 
 	//swap between front buffer and back buffer
 
