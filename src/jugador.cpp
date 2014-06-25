@@ -4,6 +4,7 @@ Controller(contr) {
 	_apunta = 0;
 	_controlat = contr;
 	_controlat->_lider = true;
+	_aliats = World::getInstance()->_naus_aliades;
 	_espera = 2;
 	//_name << " i es jugador";
 }
@@ -49,28 +50,36 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 		World::getInstance()->_camera->move(Vector3(-1, 0, 0) * speed);
 
 	if (keystate[SDL_SCANCODE_D])
-		_controlat->girZY("DRETA", seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+		_aliats.at(i)->girZY("DRETA", seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_A])
-		_controlat->girZY("ESQUERRA", seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+				_aliats.at(i)->girZY("ESQUERRA", seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_W])
-		_controlat->girZX("AMUNT", seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+				_aliats.at(i)->girZX("AMUNT", seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_S])
-		_controlat->girZX("AVALL", seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+				_aliats.at(i)->girZX("AVALL", seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_Q])
-		_controlat->girXY("DRETA", seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+				_aliats.at(i)->girXY("DRETA", seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_E])
-		_controlat->girXY("ESQUERRA", seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+				_aliats.at(i)->girXY("ESQUERRA", seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_N])
-		_controlat->accelera(seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+				_aliats.at(i)->accelera(seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_M])
-		_controlat->decelera(seconds_elapsed);
+		for(int i = 0; i< _aliats.size(); i++ )
+				_aliats.at(i)->decelera(seconds_elapsed);
 
 	if (keystate[SDL_SCANCODE_Z]) { //Forats negres. Oh shit baby
 		if (_espera == 2) {
@@ -103,7 +112,8 @@ void Jugador::update(double seconds_elapsed, const Uint8* keystate) {
 				World::getInstance()->_camera->getLocalVector(Vector3(0, 0, -10 * _controlat->getVelocitat())), 10, 20,
 				_controlat->getId(), "puta");
 
-	_controlat->endavant(seconds_elapsed);
+	for(int i = 0; i< _aliats.size(); i++ )
+			_aliats.at(i)->endavant(seconds_elapsed);
 
 	World::getInstance()->_camera->center = _controlat->getCenter();
 	World::getInstance()->_camera->up = _controlat->getTop();

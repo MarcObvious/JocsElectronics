@@ -20,6 +20,7 @@ private:
 	float _ttl;
 	float _power;
 	float _author_id;
+
 	std::string _type;
 
 public:
@@ -27,6 +28,7 @@ public:
 	Vector3 _position;
 	Vector3 _last_position;
 
+	Matrix44 _mat_position;
 	Bullet(Vector3 position, Vector3 last_position, Vector3 velocity, float ttl, float power, float author_id,
 			std::string type);
 

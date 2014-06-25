@@ -25,20 +25,32 @@ BulletManager * BulletManager::getInstance() {
 }
 
 void BulletManager::render() {
+	glPointSize(5);
+	glBegin(GL_POINTS);
 
-	for(unsigned int i = 0; i < _bullets->size(); i++)
-		if ( _bullets->at(i)->viva() ) //Dibuixa nomes les que el temps de vida sigui positiu
-			_bullets->at(i)->render();
+		for(unsigned int i = 0; i < _bullets->size(); i++) {
+
+			if ( _bullets->at(i)->viva() ) {//Dibuixa nomes les que el temps de vida sigui positiu
+				glColor3f(0,5,20);
+				glVertex3f(_bullets->at(i)->_position.x,_bullets->at(i)->_position.y,_bullets->at(i)->_position.z);
+				glColor3f(1.0, 1.0, 1.0);
+			}
+		}
+	glEnd();
+
 
 }
 
 void BulletManager::update( float elapsed_time ){
 
 	for(unsigned int i = 0; i < _bullets->size(); i++) {
-		if ( _bullets->at(i)->viva() )
+		if ( _bullets->at(i)->viva() ) {
 			_bullets->at(i)->update( elapsed_time );
 
+		}
 	}
+
+
 }
 
 

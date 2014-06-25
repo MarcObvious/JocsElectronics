@@ -46,6 +46,8 @@ private:
 
 	EntityMesh* _terreny;
 
+	EntityMesh* _terreny2;
+
 	EntityMesh* _cel;
 
 	EntityMesh* _aigua;

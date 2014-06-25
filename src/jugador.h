@@ -20,6 +20,8 @@ protected:
 	unsigned int _apunta;
 	unsigned int _espera; //MANERA CUTRE. BUSCAR UN FILTRE
 public:
+	std::vector<Nau*> _aliats;
+
 	Jugador(Nau* contr);
 
 	~Jugador(){};

@@ -1,6 +1,6 @@
-#NUM_ELEMENTS 15
+#NUM_ELEMENTS 17
 
-#NUM_ELEMENTS_FIXOS 3  //Afegir bunkers o elements de terra interactius 
+#NUM_ELEMENTS_FIXOS 5  //Afegir bunkers o elements de terra interactius 
 
 #NUM_ALIATS 6
 
@@ -11,18 +11,29 @@
      #TEXTURA assets/textures/terreny/island_color_luz.tga
      #MIPMAP  1
      #POSICIO 0 -1000 0
-
+#TERRENY2
+     #MESH assets/meshes/terreny/water_deep
+     #TEXTURA assets/textures/terreny/water_deep.tga
+     #MIPMAP  1
+     #POSICIO 0 -1000 0
+#AIGUA
+     #MESH CAP
+     #TEXTURA assets/textures/terreny/agua3.tga
+     #MIPMAP  1
+     #POSICIO 0 -600 0
+     #TAMANY 20000
 #CEL
      #MESH assets/meshes/cel/cel_dia
      #TEXTURA assets/textures/cel/cel_dia.tga
      #MIPMAP  1
      #POSICIO 0 0 0
+     
 
 #NUVOLS
      #MESH NO
      #TEXTURA assets/textures/cel/cloud.tga
      #MIPMAP  1
-     #POSICIO 1 1000 200  Cas especial Numero-Tamanybase-Rang on estaran    
+     #POSICIO 10 1000 200  Cas especial Numero-Tamanybase-Rang on estaran    
 
 #JUGADOR1
      #MESH assets/meshes/bomber
@@ -32,7 +43,7 @@
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
-        #FILLSJUGADOR
+         #FILLSJUGADOR
              #MESH CAP  
              #TEXTURA assets/textures/rainbow.tga
              #MIPMAP  1
@@ -80,7 +91,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 10 0
+     #POSICIO 0 100 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          3       500  2
      #FILLS 3
@@ -106,7 +117,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 -10 0
+     #POSICIO 0 -100 0
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
@@ -157,7 +168,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 10
+     #POSICIO 0 0 100
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
@@ -208,7 +219,7 @@
      #MESH assets/meshes/bomber
      #TEXTURA assets/textures/bomber.tga
      #MIPMAP  1
-     #POSICIO 0 0 -10
+     #POSICIO 0 0 -100
      #velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
      ##   300           80           80            900            0               2               2               2               50             200     100          4       500  2
      #FILLS 7
@@ -321,7 +332,7 @@
      #MIPMAP  1
      #POSICIO 2000 500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
-     ##  400           10             2               700              10              0.2            0.2              0.2         600           500      10          -1      500     10
+     ##  400           10             2               700              10              2            2              2         600           500      10          -1      500     10
      #FILLS 0
     
 #ENEMIC3
@@ -330,7 +341,7 @@
      #MIPMAP  1
      #POSICIO 500 1500 500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
-     ##  200           10             2               700              10               0.2           0.2             0.2        600            500      10          -1       500   10
+     ##  200           10             2               700              10               2           2             2        600            500      10          -1       500   10
      #FILLS 0
     
 #ENEMIC4
@@ -339,7 +350,7 @@
      #MIPMAP  1
      #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
-     ##  1000           10             2               200              10             0.2             0.2             0.2        600            500      10          -1      500   10
+     ##  1000           10             2               200              10             2             2             2        600            500      10          -1      500   10
      #FILLS 0
 
 #ENEMIC5
@@ -348,7 +359,7 @@
      #MIPMAP  1
      #POSICIO 0 500 1500 
      #_velocitat  #_acceleraccio #_deceleraccio  #_max_velocitat  #_min_velocitat  #_angle_gir_XY  #_angle_gir_ZX  #_angle_gir_ZY  #_dist_optima #_dany  #_cadencia  #_num_bales #_vida #_resistencia
-     ##  1000           10             2               200              10             0.2             0.2             0.2        600            500      10          -1      500   10
+     ##  1000           10             2               200              10             2             2             2        600            500      10          -1      500   10
      #FILLS 0
 
 #ENEMIC6

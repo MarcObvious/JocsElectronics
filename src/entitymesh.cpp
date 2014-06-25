@@ -46,6 +46,8 @@ void EntityMesh::render() {
 	if (_alpha) {
 
 		glEnable(GL_BLEND);
+
+
 		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		//glDepthMask(true);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE); //FREAKING FIRE
@@ -53,7 +55,9 @@ void EntityMesh::render() {
 		_mesh->render();
 		_texture->unbind();
 		//glDepthMask(false);
+
 		glDisable(GL_BLEND);
+
 
 	} else {
 

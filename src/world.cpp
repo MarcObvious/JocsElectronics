@@ -17,8 +17,17 @@ World::World() {
 	for (int i = 0; i < 50; ++i) {
 		Entity* vaux = new Entity();
 		vaux->setParams(Vector3(rand() % 10000 - 5000, rand() % 2000 - 800, rand() % 10000 - 5000));
+		std::cout << "WAYPOINT " << i << " "<< vaux->getPosition().x << " X "<< vaux->getPosition().y << " Y "<<  vaux->getPosition().z << " Z" << std::endl;
 		_waypoints.push_back(vaux);
 	}
+	//	Entity* vaux = new Entity();
+	//	vaux->setParams(Vector3(1000, 1000, 1000));
+	//	std::cout << "WAYPOINT 0 "<< " "<< vaux->getPosition().x << " X "<< vaux->getPosition().y << " Y "<<  vaux->getPosition().z << " Z" << std::endl;
+	//	_waypoints.push_back(vaux);
+	//	vaux = new Entity();
+	//	vaux->setParams(Vector3(0, 0, 0));
+	//	std::cout << "WAYPOINT 1" << " "<< vaux->getPosition().x << " X "<< vaux->getPosition().y << " Y "<<  vaux->getPosition().z << " Z" << std::endl;
+	//	_waypoints.push_back(vaux);
 
 	_camera = new Camera();
 	_camera->setPerspective(70, WINDOW_WIDTH / (float) WINDOW_HEIGHT, 0.1, 10000); //set the projection, we want to be perspective
@@ -117,10 +126,25 @@ bool World::llegeixIcarrega(const char *dir) {
 
 		//Carreguem, ELEMENTS_FIXOS
 		if (num_elements_fixos != 0) {
-			if (num_elements_fixos == 3) { //terreny
-				_terreny = new EntityMesh();
-				_terreny->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
-
+			if (num_elements_fixos == 5) { //terreny
+				EntityMesh* terreny_aux = new EntityMesh();
+				terreny_aux->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
+				_elements_fixos.push_back(terreny_aux);
+				terreny_aux = new EntityMesh();
+				terreny_aux->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, 10000), false);
+				_elements_fixos.push_back(terreny_aux);
+				terreny_aux = new EntityMesh();
+				terreny_aux->setParams(mesh_dir, text_dir, mip, Vector3(10000, posy, posz), false);
+				_elements_fixos.push_back(terreny_aux);
+				//				_terreny2 = new EntityMesh();
+				//				_terreny2->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, 10000), false);
+			} else if (num_elements_fixos == 4) { //terreny
+				//				_terreny2 = new EntityMesh();
+				//				_terreny2->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
+			} else if (num_elements_fixos == 3) {
+				_aigua = new EntityMesh();
+				my_parser.seek("#TAMANY");
+				_aigua->setParams(my_parser.getfloat(), text_dir, mip, Vector3(posx, posy, posz) , false, Vector3(1, 0, 0), Vector3(0, 0,1));
 			} else if (num_elements_fixos == 2) { //cel
 				_cel = new EntityMesh();
 				_cel->setParams(mesh_dir, text_dir, mip,
@@ -211,13 +235,12 @@ bool World::llegeixIcarrega(const char *dir) {
 	//	punt_mira->setParent(_jugador);
 	//	_jugador->addChild(punt_mira);
 
-	EntityMesh* galaxy = new EntityMesh();
-	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true, Vector3(1, 0, 0), Vector3(0, 1, 0));
-	galaxy->setParent(_jugador);
-	_jugador->addChild(galaxy);
+//	EntityMesh* galaxy = new EntityMesh();
+//	galaxy->setParams(50, "assets/textures/galaxy.tga", 1, Vector3(0, 0, 65), true, Vector3(1, 0, 0), Vector3(0, 1, 0));
+//	galaxy->setParent(_jugador);
+//	_jugador->addChild(galaxy);
 
-		_aigua = new EntityMesh();
-		_aigua->setParams(10000, "assets/textures/terreny/agua.tga", 1, Vector3(_camera->center.x, -600, _camera->center.z) , true, Vector3(1, 0, 0), Vector3(0, 0,1));
+
 	//	Matrix44 aux = _aigua->getMatrix();
 	//	aux.rotateLocal(90*DEG2RAD, Vector3(-1,0,0));
 	//	_aigua->setMatrix(aux);
@@ -267,11 +290,12 @@ void World::printPositions() {
 void World::update(double elapsed_time) {
 
 	_cel->setPosition(Vector3(_camera->center.x, _camera->center.y - 500, _camera->center.z));
-//	_aigua->setParams(1000, "assets/textures/terreny/agua.tga", 0, _jugador->getPosition(), false, Vector3(1, 0, 0), Vector3(0, 0,1));
 
 	_aigua->setPosition(Vector3(_camera->center.x, -600, _camera->center.z));
+
 	for (unsigned int i = 0; i < _ia_enemics.size(); i++)
 		_ia_enemics.at(i)->update(elapsed_time);
+
 	for (unsigned int i = 0; i < _ia_aliats.size(); i++) {
 		if (!_ia_aliats.at(i)->getControlat()->_lider)
 			_ia_aliats.at(i)->update(elapsed_time);
@@ -302,19 +326,47 @@ void World::update(double elapsed_time) {
 
 void World::render() {
 	_camera->set();
+
 	glDisable(GL_DEPTH_TEST); //Z buffer desactivat
+
 	_cel->render();
+
+
 	glEnable(GL_DEPTH_TEST); //Altre cop activat
+	//_terreny->render();
+
+	for (unsigned int i = 0; i < _elements_fixos.size(); i++)
+		_elements_fixos.at(i)->render();
+
 	_aigua->render();
-	_terreny->render();
+
+//	glEnable(GL_FOG);
+//	glFogi(GL_FOG_MODE, GL_LINEAR); // Note the 'i' after glFog - the GL_LINEAR constant is an integer.
+//	glFogfv(GL_FOG_COLOR,FogCol);
+//	glFogf(GL_FOG_START, 10.f);
+//	glFogCoordfEXT(1);
+//	glFogf(GL_FOG_END, 40.f);
+//
+//
+//	glFogi(GL_FOG_MODE, GL_EXP);
+
+
+//	glDisable(GL_FOG);
+
+	//_terreny2->render();
 
 	for (unsigned int i = 0; i < _waypoints.size(); i++) {
+
 		glPushMatrix();
+
+
 		_waypoints.at(i)->getGlobalMatrix().set();
 		glutWireSphere(10, 20, 20);
+
 		glPopMatrix();
 
 	}
+
 
 	for (unsigned int i = 0; i < _naus_enemigues.size(); i++)
 		_naus_enemigues.at(i)->render();
@@ -322,8 +374,7 @@ void World::render() {
 	for (unsigned int i = 0; i < _naus_aliades.size(); i++)
 		_naus_aliades.at(i)->render();
 
-	for (unsigned int i = 0; i < _elements_fixos.size(); i++)
-		_elements_fixos.at(i)->render();
+
 
 	for (unsigned int i = 0; i < _nuvols.size(); ++i)
 		_nuvols.at(i)->render();

@@ -6,7 +6,7 @@ Aliat::Aliat(Nau* contr) : Controller(contr){
 
 void Aliat::update(double seconds_elapsed) {
 
-	_controlat->girXY("ESQUERRA", seconds_elapsed);
-	_controlat->endavant(seconds_elapsed);
+	//_controlat->girXY("ESQUERRA", seconds_elapsed);
+	//_controlat->endavant(seconds_elapsed);
 }
 
