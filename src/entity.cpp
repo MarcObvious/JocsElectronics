@@ -62,3 +62,5 @@ Matrix44 Entity::getGlobalMatrix(){
 			return _model * _parent->getGlobalMatrix();
 	return _model;
 }
+
+

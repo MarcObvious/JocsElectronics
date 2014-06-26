@@ -18,7 +18,7 @@
 class Jugador : public Controller {
 protected:
 	unsigned int _apunta;
-	unsigned int _espera; //MANERA CUTRE. BUSCAR UN FILTRE
+	 double _espera;
 public:
 	std::vector<Nau*> _aliats;
 
@@ -27,6 +27,8 @@ public:
 	~Jugador(){};
 
 	void canvia_control();
+
+	bool canvia_a_vius();
 
 	void update(double elapsed_time, const Uint8* keystate);
 

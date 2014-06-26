@@ -16,17 +16,17 @@
 
 class Enemic: public Controller {
 protected:
-	std::vector<Entity*> _objectius;
+	Entity* _objectiu;
 	std::vector<Nau*> _objectius_aliats;
 	unsigned int _proper_objectiu;
 public:
-	Enemic(Nau* contr);
+	Enemic(Nau* contr, Entity* waypoint);
 
 	 ~Enemic(){};
 
 	 void update(double elapsed_time);
 	 void actua(double elapsed_time);
-	 bool distancia_objectiu(Entity* ent);
+	 bool distancia_objectiu();
 
 };
 

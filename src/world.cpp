@@ -15,12 +15,7 @@ World::World() {
 
 	srand(static_cast<unsigned>(time(0))); //seed per poder fer rands.
 
-	for (int i = 0; i < 50; ++i) {
-		Entity* vaux = new Entity();
-		vaux->setParams(Vector3(rand() % 10000 - 5000, rand() % 2000 - 800, rand() % 10000 - 5000));
-		std::cout << "WAYPOINT " << i << " "<< vaux->getPosition().x << " X "<< vaux->getPosition().y << " Y "<<  vaux->getPosition().z << " Z" << std::endl;
-		_waypoints.push_back(vaux);
-	}
+
 	//	Entity* vaux = new Entity();
 	//	vaux->setParams(Vector3(1000, 1000, 1000));
 	//	std::cout << "WAYPOINT 0 "<< " "<< vaux->getPosition().x << " X "<< vaux->getPosition().y << " Y "<<  vaux->getPosition().z << " Z" << std::endl;
@@ -139,9 +134,13 @@ bool World::llegeixIcarrega(const char *dir) {
 				_elements_fixos.push_back(terreny_aux);
 				//				_terreny2 = new EntityMesh();
 				//				_terreny2->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, 10000), false);
-			} else if (num_elements_fixos == 4) { //terreny
-				//				_terreny2 = new EntityMesh();
-				//				_terreny2->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), false);
+			} else if (num_elements_fixos == 4) { //Waypoints
+				for (int i = posx; i > 0; --i) {
+					Entity* vaux = new Entity();
+					vaux->setParams(Vector3(rand() % 10000 - 5000, rand() % 2000 - 800, rand() % 10000 - 5000));
+					std::cout << "WAYPOINT " << i << " "<< vaux->getPosition().x << " X "<< vaux->getPosition().y << " Y "<<  vaux->getPosition().z << " Z" << std::endl;
+					_waypoints.push_back(vaux);
+				}
 			} else if (num_elements_fixos == 3) {
 				_aigua = new EntityMesh();
 				my_parser.seek("#TAMANY");
@@ -200,7 +199,8 @@ bool World::llegeixIcarrega(const char *dir) {
 			if (num_fills == 0) {
 				my_parser.seek("##");
 				enemy = new Nau();
-				enemy->setParams(mesh_dir, text_dir, mip, Vector3(posx, posy, posz), my_parser.getfloat(),
+				Vector3 pos = _waypoints.at(posx)->getPosition();
+				enemy->setParams(mesh_dir, text_dir, mip, Vector3(pos.x+200,  pos.y+posy, pos.z +posz), my_parser.getfloat(),
 						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
 						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
 						my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(), my_parser.getfloat(),
@@ -208,7 +208,7 @@ bool World::llegeixIcarrega(const char *dir) {
 				//_enemics.push_back(_enemy );
 				enemy->tecolisions();
 				_naus_enemigues.push_back(enemy);
-				_ia_enemics.push_back(new Enemic(enemy));
+				_ia_enemics.push_back(new Enemic(enemy, _waypoints.at(posx)));
 				my_parser.seek("#FILLS");
 				num_fills = my_parser.getint();
 				num_elements += num_fills;
@@ -299,30 +299,40 @@ void World::update(const double elapsed_time) {
 
 	_aigua->setPosition(Vector3(_camera->center.x, -600, _camera->center.z));
 
-	for (unsigned int i = 0; i < _ia_enemics.size(); i++)
+	for (unsigned int i = 0; i < _ia_enemics.size(); i++) {
 		_ia_enemics.at(i)->update(elapsed_time);
+		_naus_enemigues.at(i)->transform();
+
+		if ((BulletManager::getInstance())->comprova(_naus_enemigues.at(i)->tecolisions()))
+			_naus_enemigues.at(i)->tocat(10);
+	}
 
 	for (unsigned int i = 0; i < _ia_aliats.size(); i++) {
-		if (!_ia_aliats.at(i)->getControlat()->_lider)
+		if (!_ia_aliats.at(i)->getControlat()->_lider) {
 			_ia_aliats.at(i)->update(elapsed_time);
+			_naus_aliades.at(i)->transform();
+			if ((BulletManager::getInstance())->comprova(_naus_aliades.at(i)->tecolisions()))
+				_naus_aliades.at(i)->tocat(10);
+		}
+		else {
+			if (_naus_aliades.at(i)->tecolisions()->collision(_elements_fixos.at(0)->tecolisions(), -1, 0,
+					_elements_fixos.at(0)->getGlobalMatrix().m)) {
+				std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
+				_naus_aliades.at(i)->tocat(-1);
+			}
+		}
+		//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
+		for (unsigned int i = 0; i < _naus_aliades.size(); i++) {
+			//_naus_aliades.at(i)->update(elapsed_time);
+
+
+
+
+			//	_totes_entyties.at(i)->transform();
+
+			//
+		}
 	}
-	//TRAMPA: NOMES COMPROVARE COLISIONS AMB TERRENY A JUGADOR
-	//	for (unsigned int i = 0; i < _naus_aliades.size(); ++i) {
-	//		_naus_aliades.at(i)->update(elapsed_time);
-	//		_naus_aliades.at(i)->transform();
-	//
-	//		if ((BulletManager::getInstance())->comprova(_naus_aliades.at(i)->tecolisions()))
-	//			_naus_aliades.at(i)->tocat(10);
-	//
-	//		//_totes_entyties.at(i)->transform();
-	//		if (_naus_aliades.at(i)->tecolisions()->collision(_terreny->tecolisions(), -1, 0,
-	//				_terreny->getGlobalMatrix().m)) {
-	//
-	//			std::cout << "EEi, Que t'estampes!!!!!" << std::endl;
-	//			_naus_aliades.at(i)->tocat(10);
-	//
-	//		}
-	//	}
 
 	BulletManager::getInstance()->update(elapsed_time);
 

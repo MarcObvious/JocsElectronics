@@ -30,6 +30,8 @@ public:
 
 	void tocat(int dany);
 
+	float getVida();
+
 	void dispara_missil(float seconds_elapsed);
 
 };

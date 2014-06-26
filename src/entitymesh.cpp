@@ -84,3 +84,12 @@ Vector3 EntityMesh::getCenter() {
 Matrix44 EntityMesh::getMatrix() {
 	return _model;
 }
+
+Vector3 EntityMesh::getLocalVector(const Vector3& v)
+{
+	Matrix44 iV = this->getGlobalMatrix();
+	if (iV.inverse() == false)
+		std::cout << "Matrix Inverse error" << std::endl;
+	Vector3 result = iV.rotateVector(v);
+	return result;
+}

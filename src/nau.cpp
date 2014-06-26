@@ -25,8 +25,16 @@ void Nau::setParams(std::string mesh_dir, std::string text_dir, bool mipmapping,
 }
 
 void Nau::tocat(int dany) {
-	_dany -= dany;
+	if (dany == -1) {
+		_vida = 0;
+	}
+	_vida -= dany;
 	glColor3f(1.0, 0.0, 0.0);
+
+}
+
+float Nau::getVida() {
+	return _vida;
 
 }
 

@@ -42,6 +42,8 @@ public:
 
 	Vector3 getCenter();
 
+	Vector3 getLocalVector(const Vector3& v);
+
 	virtual void update(double elapsed_time) {
 	}
 	;
